@@ -2,5 +2,28 @@
     background-color: rgb(0, 238, 255);
   }
   .colTestMid{
-    background-color: rgb(255, 0, 140);
+    background-color: rgb(255, 128, 198);
+  }
+  .gameRow{
+    border-width: 4px;
+    border: solid;
+    border-color: rgb(129, 129, 129);
+    color: white;
+    background-color: rgb(41, 41, 41);
+  }
+  .gameTitle{
+    font-weight: 800;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .GameList {
+    border: 2px solid rgb(226, 83, 0);
+    border-left-width: 8px;
+    border-right-width: 8px;
+    border-top-width: 8px;
+    border-bottom-width: 8px;
+    padding-left: 0%;
+    padding-right: 0%;
+    border-radius: 4px !important;
   }
