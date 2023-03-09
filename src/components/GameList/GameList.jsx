@@ -1,7 +1,8 @@
 import { Container, Col, Row } from "react-bootstrap";
 import styles from "./GameList.module.css";
 import { useEffect, useState } from "react";
-import { useLocation, useNavigate, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, useLocation, useNavigate, Link } from "react-router-dom";
+
 const GameList = () => {
   const [clickedGame, setClickedGame] = useState(null);
   const navigate = useNavigate();
@@ -32,59 +33,59 @@ const GameList = () => {
       ends: new Date("2023-08-03"),
     },
   ];
-  const navigateToGameLobby = (game) => {
-    navigate("/gameLobby", { state: { currentGame: game } });
-    };
+  useEffect(() => {
+    if (clickedGame !==null) {
+      navigate("/gameLobby", { state: { currentGame: clickedGame } });
+    }
+  }, [clickedGame, navigate]);
+  
   return (
     <Container fluid>
-      
       <Row>
-      <Col lg={1} className={`${styles.colTestSides} d-none d-sm-block`}></Col>
+        <Col
+          lg={1}
+          className={`${styles.colTestSides} d-none d-sm-block`}
+        ></Col>
         <Col lg={10} xs={12} className={styles.GameList}>
           {gameListArray.map((game, index) => {
             return (
-              <Link key={index} to={{
-                
-                pathname: "/gameLobby",
-                state: {
-                  currentGame: game
-                }
-            }}
-            onClick={() => {setClickedGame(game)
-              navigateToGameLobby(game);}}
-            
-            >
-              <Container className={styles.gameRow}>
-                
-                <Row>
-                  <Col xs={12}>
-                    <span className={styles.gameTitle}>
-                      Game: {game.gameTitle}
-                    </span>
-                  </Col>
-                </Row>
-                <Row>
-                  <Col xs={12}>
-                    <span className={styles.players}> - Players: </span>
-                    {game.players}
-                  </Col>
-                </Row>
-                <Row>
-                  <Col xs={12}>
-                    <span className={styles.ends}> - ending Date: </span>
-                    {game.ends.toLocaleDateString()}
-                  </Col>
-                </Row>
-              </Container>
+              <Link
+                key={index}
+                onClick={() => {
+                  setClickedGame(game);
+                }}
+              >
+                <Container className={styles.gameRow}>
+                  <Row>
+                    <Col xs={12}>
+                      <span className={styles.gameTitle}>
+                        Game: {game.gameTitle}
+                      </span>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col xs={12}>
+                      <span className={styles.players}> - Players: </span>
+                      {game.players}
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col xs={12}>
+                      <span className={styles.ends}> - ending Date: </span>
+                      {game.ends.toLocaleDateString()}
+                    </Col>
+                  </Row>
+                </Container>
               </Link>
-              
             );
           })}
         </Col>
-        <Col lg={1} className={`${styles.colTestSides} d-none d-sm-block`}></Col>
+        <Col
+          lg={1}
+          className={`${styles.colTestSides} d-none d-sm-block`}
+        ></Col>
       </Row>
     </Container>
-    
   );
 };
 

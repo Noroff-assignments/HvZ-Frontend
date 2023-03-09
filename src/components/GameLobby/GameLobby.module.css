@@ -28,3 +28,19 @@
     border-radius: 4px !important;
     background-color: red;
   }
+  .GameCol{
+    padding: 5px;
+    color: white;
+    background-color: rgb(44, 33, 33);
+  }
+  .ReturnBtn{
+    
+  }
+  .mapCol{
+    padding: 5px;
+    background-color: red;
+  }
+  .mapImg{
+    max-width: 100%;
+    height: auto;
+  }
