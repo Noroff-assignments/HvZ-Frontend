@@ -34,7 +34,7 @@ const GameLobby = () => {
   function MapPlaceholder() {
     return (
       <p>
-        Map of London.{" "}
+        Map.{" "}
         <noscript>You need to enable JavaScript to see this map.</noscript>
       </p>
     );
