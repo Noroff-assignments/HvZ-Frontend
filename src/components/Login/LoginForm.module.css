@@ -1,6 +1,42 @@
-.colTestSides{
-    background-color: rgb(77, 255, 0);
+.LoginFormHeaderContainer{
+  padding-bottom: 20px;
+  background-color: rgb(253, 253, 253);
+}
+.colLoginFormSides{
+    background-color: rgb(255, 0, 212);
+    text-align: center;
   }
-  .colTestMid{
-    background-color: rgb(255, 0, 0);
+
+  .Login{
+    background-color: rgb(5, 5, 243);
+    text-align: center;
   }
+
+  .LoginButton{
+    background-color: rgb(6, 6, 230);
+    background-color: rgb(6, 6, 230);
+    color: #fff;
+    width: 120px;
+    height: 40px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;    
+  }
+  .LoginButton:hover{
+    background-color: rgb(0, 0, 153);;
+  }
+
+  .Username{
+    background-color: rgb(253, 253, 253);
+    text-align: center;
+  }
+
+  .UsernameBox{
+    background-color: rgb(255, 0, 212); 
+  }
+  
+  
