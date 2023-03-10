@@ -1,23 +1,98 @@
 import { Container, Col, Row, Button } from "react-bootstrap";
 import styles from "./GameLobby.module.css";
-import { useEffect } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { useLocation, useNavigate, Link } from "react-router-dom";
+import { MapContainer } from "react-leaflet/MapContainer";
+import { TileLayer } from "react-leaflet/TileLayer";
+import { useMap } from "react-leaflet/hooks";
+import { Rectangle } from "react-leaflet";
 const GameLobby = () => {
   const location = useLocation();
+  //const mapCoordinatesX = 55.642779272205274;
+  //const mapCoordinatesY = 12.271510716977884;
+  const mapCoordinatesX = 55.642779272205274;
+  const mapCoordinatesY = 12.271510716977884;
+
+  const mapCoordinates = [mapCoordinatesX, mapCoordinatesY];
+    
   
+  const innerBounds = [
+    [mapCoordinatesX + 0.003, mapCoordinatesY + 0.005],
+    [mapCoordinatesX - 0.003, mapCoordinatesY - 0.005],
+  ];
+  const outerBounds = [
+    [mapCoordinatesX + 0.003, mapCoordinatesY + 0.005],
+    [mapCoordinatesX - 0.003, mapCoordinatesY - 0.005],
+  ];
+  const redColor = { color: "red" };
+  const whiteColor = { color: "white" };
   const currentGame = location.state.currentGame;
   const navigate = useNavigate();
   const handleReturn = () => {
-    navigate("/"); 
+    navigate("/");
   };
+
+  function MapPlaceholder() {
+    return (
+      <p>
+        Map of London.{" "}
+        <noscript>You need to enable JavaScript to see this map.</noscript>
+      </p>
+    );
+  }
+  function SetBoundsRectangles() {
+    const [bounds, setBounds] = useState(outerBounds);
+    const map = useMap();
+
+    const innerHandlers = useMemo(
+      () => ({
+        click() {
+          setBounds(innerBounds);
+          map.fitBounds(innerBounds);
+        },
+      }),
+      [map]
+    );
+    const outerHandlers = useMemo(
+      () => ({
+        click() {
+          setBounds(outerBounds);
+          map.fitBounds(outerBounds);
+        },
+      }),
+      [map]
+    );
+
+    return (
+      <>
+        <Rectangle
+          bounds={outerBounds}
+          eventHandlers={outerHandlers}
+          pathOptions={bounds === outerBounds ? redColor : whiteColor}
+        />
+        <Rectangle
+          bounds={innerBounds}
+          eventHandlers={innerHandlers}
+          pathOptions={bounds === innerBounds ? redColor : whiteColor}
+        />
+      </>
+    );
+  }
+
   return (
     <Container fluid>
       <Row>
-        <Col lg={6} xs={12}className={styles.GameCol}>
+        <Col lg={6} xs={12} className={styles.GameCol}>
           <Row>
-          <Col lg={4} xs={4}>
-          <Button type="submit" className={styles.ReturnBtn} onClick={handleReturn}>return</Button>
-          </Col>
+            <Col lg={4} xs={4}>
+              <Button
+                type="submit"
+                className={styles.ReturnBtn}
+                onClick={handleReturn}
+              >
+                return
+              </Button>
+            </Col>
           </Row>
           <Row>
             <Col lg={12} xs={12}>
@@ -25,21 +100,34 @@ const GameLobby = () => {
             </Col>
           </Row>
           <Row>
-        <Col lg={12} xs={12}>
-          <p>Number of players: {currentGame.players}</p>
-        </Col>
-      </Row>
-      <Row>
-        <Col lg={12} xs={12}>
-          <p>End date: {currentGame.ends.toLocaleDateString()}</p>
-        </Col>
-      </Row>
+            <Col lg={12} xs={12}>
+              <p>Number of players: {currentGame.players}</p>
+            </Col>
+          </Row>
+          <Row>
+            <Col lg={12} xs={12}>
+              <p>End date: {currentGame.ends.toLocaleDateString()}</p>
+            </Col>
+          </Row>
         </Col>
         <Col lg={6} xs={12} className={styles.mapCol}>
-        <img src="https://i2-prod.corkbeo.ie/incoming/article18189170.ece/ALTERNATES/s810/0_Screen-Shot-2020-05-02-at-132900.png" className={styles.mapImg} alt="A beautiful sunset"></img>
+          <MapContainer
+            bounds={outerBounds}
+            className={styles.mapContainer}
+            center={mapCoordinates}
+            zoom={16}
+            scrollWheelZoom={false}
+            placeholder={<MapPlaceholder />}
+          >
+            <TileLayer
+              className={styles.mapImg}
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            />
+            <SetBoundsRectangles />
+          </MapContainer>
         </Col>
       </Row>
-      
     </Container>
   );
 };
