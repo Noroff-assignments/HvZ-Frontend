@@ -5,9 +5,12 @@ const LandingPageHeader = () => {
   return (
     <Container fluid className={styles.LandingPageHeaderContainer}>
       <Row>
-        <Col lg={9} xs={12} className={styles.colHeaderText}>
-          header message
+        <Col lg={4} className={`d-lg-block d-xs-none`}></Col>
+        <Col lg={4} xs={12} className={styles.colHeaderText}>
+          Games
         </Col>
+        <Col lg={1} className={` d-xs-none d-lg-block`}></Col>
+        
 
         <Col xs={2} className={`d-lg-none d-xs-block ${styles.colTestSides}`}></Col>
 

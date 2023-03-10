@@ -32,6 +32,7 @@ const GameList = () => {
       players: 1,
       ends: new Date("2023-08-03"),
     },
+  
   ];
   useEffect(() => {
     if (clickedGame !==null) {
@@ -41,12 +42,12 @@ const GameList = () => {
   
   return (
     <Container fluid>
-      <Row>
+      <Row className={styles.gameRowBox}>
         <Col
-          lg={1}
+          lg={3}
           className={`${styles.colTestSides} d-none d-sm-block`}
         ></Col>
-        <Col lg={10} xs={12} className={styles.GameList}>
+        <Col lg={6} xs={12} className={styles.GameList}>
           {gameListArray.map((game, index) => {
             return (
               <Link
@@ -54,6 +55,7 @@ const GameList = () => {
                 onClick={() => {
                   setClickedGame(game);
                 }}
+      
               >
                 <Container className={styles.gameRow}>
                   <Row>
@@ -81,7 +83,7 @@ const GameList = () => {
           })}
         </Col>
         <Col
-          lg={1}
+          lg={3}
           className={`${styles.colTestSides} d-none d-sm-block`}
         ></Col>
       </Row>

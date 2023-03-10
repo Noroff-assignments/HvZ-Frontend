@@ -27,3 +27,7 @@
     padding-right: 0%;
     border-radius: 4px !important;
   }
+  .gameRowBox{
+    margin-top: 2.5vh;
+    margin-bottom: 2.5vh;
+  }
