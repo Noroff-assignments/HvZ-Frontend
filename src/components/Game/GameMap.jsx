@@ -1,12 +1,12 @@
 import { Container, Col, Row, Button } from "react-bootstrap";
-import styles from "./GameLobby.module.css";
+import styles from "./GameMap.module.css";
 import { useEffect, useState, useMemo } from "react";
 import { useLocation, useNavigate, Link } from "react-router-dom";
 import { MapContainer } from "react-leaflet/MapContainer";
 import { TileLayer } from "react-leaflet/TileLayer";
 import { useMap } from "react-leaflet/hooks";
 import { Rectangle } from "react-leaflet";
-const GameLobby = () => {
+const GameMap = () => {
   const location = useLocation();
   //const mapCoordinatesX = 55.642779272205274;
   //const mapCoordinatesY = 12.271510716977884;
@@ -25,14 +25,6 @@ const GameLobby = () => {
   ];
   const redColor = { color: "red" };
   const whiteColor = { color: "white" };
-  const currentGame = location.state.currentGame;
-  const navigate = useNavigate();
-  const handleReturn = () => {
-    navigate("/");
-  };
-  const handleJoin = () => {
-    navigate("/currentGame",{ state: { currentGame: currentGame } });
-  }
 
   function MapPlaceholder() {
     return (
@@ -82,48 +74,7 @@ const GameLobby = () => {
   }
 
   return (
-    <Container fluid>
-      <Row>
-        <Col lg={6} xs={12} className={styles.GameCol}>
-          <Row>
-            <Col lg={4} xs={4}>
-              <Button
-                type="submit"
-                className={styles.ReturnBtn}
-                onClick={handleReturn}
-              >
-                return
-              </Button>
-            </Col>
-          </Row>
-          <Row>
-            <Col lg={12} xs={12}>
-              <h1>{currentGame.gameTitle}</h1>
-            </Col>
-          </Row>
-          <Row>
-            <Col lg={12} xs={12}>
-              <p>Number of players: {currentGame.players}</p>
-            </Col>
-          </Row>
-          <Row>
-            <Col lg={12} xs={12}>
-              <p>End date: {currentGame.ends.toLocaleDateString()}</p>
-            </Col>
-          </Row>
-          <Row>
-            <Col lg={4} xs={4}>
-              <Button
-                type="submit"
-                className={styles.JoinBtn}
-                onClick={handleJoin}
-              >
-                Join
-              </Button>
-            </Col>
-          </Row>
-        </Col>
-        <Col lg={6} xs={12} className={styles.mapCol}>
+        <Col lg={12} xs={12} className={styles.mapCol}>
           <MapContainer
             bounds={outerBounds}
             maxBounds={outerBounds}
@@ -143,9 +94,7 @@ const GameLobby = () => {
             <SetBoundsRectangles />
           </MapContainer>
         </Col>
-      </Row>
-    </Container>
   );
 };
 
-export default GameLobby;
+export default GameMap;
