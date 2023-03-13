@@ -14,8 +14,7 @@ const GameLobby = () => {
   const mapCoordinatesY = 12.271510716977884;
 
   const mapCoordinates = [mapCoordinatesX, mapCoordinatesY];
-    
-  
+
   const innerBounds = [
     [mapCoordinatesX + 0.003, mapCoordinatesY + 0.005],
     [mapCoordinatesX - 0.003, mapCoordinatesY - 0.005],
@@ -35,7 +34,7 @@ const GameLobby = () => {
   function MapPlaceholder() {
     return (
       <p>
-        Map of London.{" "}
+        Map.{" "}
         <noscript>You need to enable JavaScript to see this map.</noscript>
       </p>
     );
@@ -113,9 +112,12 @@ const GameLobby = () => {
         <Col lg={6} xs={12} className={styles.mapCol}>
           <MapContainer
             bounds={outerBounds}
+            maxBounds={outerBounds}
+            minZoom={16}
+            maxZoom={18}
             className={styles.mapContainer}
             center={mapCoordinates}
-            zoom={16}
+            zoom={18}
             scrollWheelZoom={false}
             placeholder={<MapPlaceholder />}
           >
