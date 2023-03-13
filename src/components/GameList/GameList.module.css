@@ -1,5 +1,7 @@
 .colTestSides{
     background-color: rgb(0, 238, 255);
+    background-image: url("https://cdn.pixabay.com/photo/2015/05/26/16/26/zombie-784914_960_720.jpg")!important;
+  
   }
   .colTestMid{
     background-color: rgb(255, 128, 198);
@@ -7,18 +9,20 @@
   .gameRow{
     border-width: 4px;
     border: solid;
-    border-color: rgb(129, 129, 129);
+    border-color: rgb(96, 2, 2) !important;
     color: white;
-    background-color: rgb(41, 41, 41);
+    background-color:rgb(81, 70, 65);
+    
   }
   .gameTitle{
     font-weight: 800;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    
   }
   .GameList {
-    border: 2px solid rgb(226, 83, 0);
+    border: 2px solid  rgb(96, 2, 2) !important;
     border-left-width: 8px;
     border-right-width: 8px;
     border-top-width: 8px;
@@ -26,8 +30,10 @@
     padding-left: 0%;
     padding-right: 0%;
     border-radius: 4px !important;
+    
   }
   .gameRowBox{
     margin-top: 2.5vh;
-    margin-bottom: 2.5vh;
+    margin-bottom: 2,5vh;
+    background-image: url("https://cdn.pixabay.com/photo/2015/05/26/16/26/zombie-784914_960_720.jpg")!important;
   }

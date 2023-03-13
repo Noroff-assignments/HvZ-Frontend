@@ -1,17 +1,29 @@
 .LandingPageHeaderContainer{
   padding-bottom: 20px;
-  background-color: rgb(255, 230, 0) !important;
+  padding-top: 20px;
+  background-image: url("https://cdn.pixabay.com/photo/2015/05/26/16/26/zombie-784914_960_720.jpg")!important;
   text-align: center ;
+  box-shadow: 2px 2px 2px black;
+  
 }
 .colTestSides{
     background-color: rgb(0, 255, 38);
   }
   .colHeaderText{
-    background-color: rgb(81, 204, 15);
-    font-family:'';
+    background-color: rgb(81, 70, 65); 
+    border-bottom-right-radius: 0.8rem;
+    border-top-right-radius: 0.8rem;
+    border-bottom-left-radius: 0.8rem;
+    border-top-left-radius: 0.8rem;
+    padding-right: 0 !important;
+    width: 35%;
+    border-color: rgb(96, 2, 2) !important;
+    border-width: 5px;
+    border: solid;
+    font-family:'Imprint MT Shadow';
+    font-size:50px;
   }
   .colLoginSignup{
-    background-color: rgb(255, 0, 115);
     padding-left: 0 !important;
     padding-right: 0 !important;
   }
@@ -19,26 +31,26 @@
     background-color: rgb(255, 242, 0);
   }
   .loginBtn{
-    background-color: rgb(67, 130, 255); 
+    background-color: rgb(81, 70, 65); 
     border-bottom-right-radius: 0px;
     border-top-right-radius: 0px;
     border-bottom-left-radius: 0.8rem;
     border-top-left-radius: 0.8rem;
     padding-right: 0 !important;
     width: 100%;
-    border-color: rgb(23, 105, 228) !important;
+    border-color: rgb(96, 2, 2) !important;
     border-width: 5px;
     border: solid;
   }
   .signupBtn{
-    background-color: rgb(67, 180, 255); 
+    background-color: rgb(81, 70, 65); 
     width: 100%;
     border-bottom-left-radius: 0px;
     border-top-left-radius: 0px;
     border-bottom-right-radius: 0.8rem;
     border-top-right-radius: 0.8rem;
     padding-left: 0 !important;
-    border-color: rgb(23, 105, 228) !important;
+    border-color:rgb(96, 2, 2) !important;
     border-width: 5px;
     border: solid;
   }
