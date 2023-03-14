@@ -24,7 +24,7 @@ const GameChat = () => {
     const timestamp = new Date().getTime();
     setMessages([...messages, { message, timestamp }]);
   };
-  
+
   return (
     <Col lg={12} xs={12} className={styles.ChatComponentContainer}>
       <MDBContainer fluid>
@@ -40,43 +40,50 @@ const GameChat = () => {
                 <MDBIcon fas icon="chevron-down" />
               </div>
             </MDBBtn>
-            <MDBCollapse show={showShow} className="mt-3">
+            <MDBCollapse show={showShow} className={styles.ToggleChatContainer}>
               <MDBCard>
                 <div className={styles.scroller}>
                   <MDBCardBody>
-                  {messages.map(({ message, timestamp }, index) => (
-    <div className="d-flex flex-row justify-content-start" key={index}>
-        <img
-            src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava5-bg.webp"
-            alt="avatar 1"
-            style={{ width: "45px", height: "100%" }}
-        />
-        <div>
-            <p
-                className="small p-2 ms-3 mb-1 rounded-3"
-                style={{ backgroundColor: "#f5f6f7" }}
-            >
-                {message}
-            </p>
-            <p className="small ms-3 mb-3 rounded-3 text-muted">
-                {new Date(timestamp).toLocaleTimeString()}
-            </p>
-        </div>
-    </div>
-))}
+                    {messages.map(({ message, timestamp }, index) => (
+                      <div
+                        className="d-flex flex-row justify-content-start"
+                        key={index}
+                      >
+                        <img
+                          src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava5-bg.webp"
+                          alt="avatar 1"
+                          style={{ width: "45px", height: "100%" }}
+                        />
+                        <div>
+                          <p
+                            className="small p-2 ms-3 mb-1 rounded-3 breakWord"
+                            style={{ backgroundColor: "#f5f6f7", wordBreak: "break-word"  }}
+                          >
+                            {message}
+                          </p>
+                          <p className="small ms-3 mb-3 rounded-3 text-muted">
+                            {new Date(timestamp).toLocaleTimeString()}
+                          </p>
+                        </div>
+                      </div>
+                    ))}
                   </MDBCardBody>
                 </div>
                 <MDBCardFooter>
                   <form
                     onSubmit={(e) => {
                       e.preventDefault();
-                      handleSendMessage(e.target.elements.message.value);
+                      const messageInput = e.target.elements.message;
+                      if (messageInput.value.trim() !== "") {
+                        handleSendMessage(messageInput.value);
+                        messageInput.value = null;
+                      }
                     }}
                   >
                     <div className="input-group">
                       <input
                         type="text"
-                        className="form-control"
+                        className="form-control breakWord"
                         placeholder="Type your message here..."
                         name="message"
                       />
