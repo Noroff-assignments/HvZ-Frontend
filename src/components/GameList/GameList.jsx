@@ -70,6 +70,8 @@ const GameList = () => {
                       </Col>
                   </Row>
                   <Row>
+                    
+                    
                     <Col xs={12}>
                       <h6 className={styles.players}> - Players<FaUserAlt/>: {game.players} </h6>
                     </Col>
