@@ -43,11 +43,12 @@ const GameList = () => {
   return (
     <Container fluid>
       <Row className={styles.gameRowBox}>
+      <table className={styles.gameTable}></table>
         <Col
-          lg={3}
+          lg={4}
           className={`${styles.colTestSides} d-none d-sm-block`}
         ></Col>
-        <Col lg={6} xs={12} className={styles.GameList}>
+        <Col lg={4} xs={12} className={styles.GameList}>
           {gameListArray.map((game, index) => {
             return (
               <Link
@@ -83,7 +84,7 @@ const GameList = () => {
           })}
         </Col>
         <Col
-          lg={3}
+          lg={4}
           className={`${styles.colTestSides} d-none d-sm-block`}
         ></Col>
       </Row>

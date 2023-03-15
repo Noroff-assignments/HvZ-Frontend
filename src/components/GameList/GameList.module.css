@@ -1,5 +1,5 @@
 .colTestSides{
-    background-color: rgb(53, 54, 54);
+    background-color: rgb(103, 131, 150);
     filter: blur(4px);
     -webkit-filter: blur(2px);
     background-position: left !important;
@@ -8,15 +8,21 @@
   }
 
   .colTestMid{
-    background-color: rgb(255, 128, 198);
+    background-color: rgb(0, 0, 0);
   }
   .gameRow{
     border-width: 4px;
     border: solid;
-    border-color: rgb(96, 2, 2) !important;
-    color: white;
-    background-color:rgb(81, 70, 65);
+    border-color: rgb(0, 0, 0) !important;
+    color: rgb(0, 0, 0);
+    background-color:rgb(255, 255, 255);
     
+  }
+
+  .gameTable{
+    border-width: 4px;
+    border: solid;
+    border-color: aqua;
   }
   .gameTitle{
     font-weight: 800;
@@ -26,7 +32,7 @@
     
   }
   .GameList {
-    border: 2px solid  rgb(96, 2, 2) !important;
+    border: 2px solid  rgb(0, 0, 0) !important;
     border-left-width: 8px;
     border-right-width: 8px;
     border-top-width: 8px;

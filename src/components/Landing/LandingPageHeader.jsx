@@ -1,5 +1,5 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Container, Col, Row } from "react-bootstrap";
+import { Container, Col, Row, Button } from "react-bootstrap";
 import styles from "./LandingPageHeader.module.css";
 
 
@@ -13,11 +13,7 @@ const LandingPageHeader = () => {
           <p>Games</p>
         </Col>
         <Col lg={1} className={` d-xs-none d-lg-block`}></Col>
-        
-
-        <Col xs={2} className={`d-lg-none d-xs-block ${styles.colTestSides}`}></Col>
-
-        
+        <Col xs={2} className={`d-lg-none d-xs-block ${styles.colTestSides}`}></Col>        
         <Col xs={2} className={`d-lg-none d-xs-block ${styles.colTestSides}`}></Col>
       </Row>
     </Container>
