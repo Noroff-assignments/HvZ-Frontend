@@ -43,7 +43,6 @@ const GameList = () => {
   return (
     <Container fluid>
       <Row className={styles.gameRowBox}>
-      <table className={styles.gameTable}></table>
         <Col
           lg={4}
           className={`${styles.colTestSides} d-none d-sm-block`}
@@ -61,10 +60,10 @@ const GameList = () => {
                 <Container className={styles.gameRow}>
                   <Row>
                     <Col xs={12}>
-                      <span className={styles.gameTitle}>
-                        Game: {game.gameTitle}
-                      </span>
-                    </Col>
+                      <h4 className={styles.gameTitle}>
+                      {game.gameTitle}
+                      </h4>
+                      </Col>
                   </Row>
                   <Row>
                     <Col xs={12}>

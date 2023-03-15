@@ -13,26 +13,24 @@
   .gameRow{
     border-width: 4px;
     border: solid;
-    border-color: rgb(0, 0, 0) !important;
-    color: rgb(0, 0, 0);
-    background-color:rgb(255, 255, 255);
-    
+    border-color: rgb(67, 95, 114) !important;
+    color: rgb(255, 255, 255);
+    background-color:rgb(103, 131, 150);
+    background: linear-gradient(to top, rgb(103, 131, 150), rgb(67, 95, 114)) !important;   
   }
-
-  .gameTable{
-    border-width: 4px;
-    border: solid;
-    border-color: aqua;
-  }
+  
   .gameTitle{
     font-weight: 800;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    
+    color: rgb(255, 255, 255);
+    font-family: Arial;
+    text-align: center;  
   }
+
   .GameList {
-    border: 2px solid  rgb(0, 0, 0) !important;
+    border: 2px solid  rgb(103, 131, 150) !important;
     border-left-width: 8px;
     border-right-width: 8px;
     border-top-width: 8px;
