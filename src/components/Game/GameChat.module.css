@@ -1,10 +1,4 @@
-  .divider:after,
-  .divider:before {
-    content: "";
-    flex: 1;
-    height: 1px;
-    background: #eee;
-  }
+  
   .scroller {
     width: 100%;
     height:40vh;
@@ -19,9 +13,36 @@
   }
   .chatToggleBtn{
     width: 100%;
-    background-color: red !important;
-    align-content: center;
+    background-color: rgb(62, 62, 62) !important;
+    border-radius: 3px;
+    border-color: rgb(130, 130, 130);
+    border-width: 4px;
+    box-shadow: 0px 2px 2px 2px #292929;
+    
+  }
+  .chatToggleBtn:hover{
+    width: 100%;
+    background-color: rgb(62, 62, 62) !important;
+    border-radius: 3px;
+    border-color: rgb(130, 130, 130);
+    border-width: 4px;
+    box-shadow: 0px 2px 2px 2px #292929;
+    
+  }
+  .ToggleChatContainer{
+    margin-top: -1px;
+    height:50vh;
+    width: 100%;
+    border-top-right-radius: 0 !important;
+    border-top-left-radius: 0 !important;
+    border-width: 4px;
+    border-top-width: 0px;
+    border-color: rgb(130, 130, 130);
+  }
+  .ChatBtnText > span{
     text-align: center !important;
+    align-content: center !important;
+    color: white;
   }
   .ChatContainer{
     
@@ -31,10 +52,30 @@
     
     background-color: rgb(6, 0, 128);
   }
-  .ToggleChatContainer{
-    height:50vh;
-    width: 100%;
-  }
+  
   .breakWord{
     word-wrap: break-word !important;
+  }
+  .myMessageP{
+    background-color: rgb(12, 105, 227)!important;
+    word-break: break-all;
+    color: white;
+    font-weight: 600;
+  }
+  .theirMessageP{
+    background-color: rgb(112, 112, 112)!important;
+    word-break: break-all;
+    color: white;
+    font-weight: 600;
+  }
+  .sendMessageBtn{
+    color: white;
+    font-weight: 600;
+    background-color: rgb(55, 55, 55);
+    height: 100%;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+  .sendMessageBtn:hover{
+    background-color: rgb(155, 155, 155);
   }

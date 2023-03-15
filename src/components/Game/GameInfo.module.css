@@ -36,6 +36,10 @@
   .ReturnBtn{
     
   }
+  .ReturnIcon{
+    color: white;
+    font-size: 40px;
+  }
   .mapCol{
     padding: 5px;
     background-color: red;
