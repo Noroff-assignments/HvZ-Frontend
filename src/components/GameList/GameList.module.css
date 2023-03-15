@@ -1,10 +1,7 @@
 .colTestSides{
     background-color: rgb(103, 131, 150);
-    filter: blur(4px);
-    -webkit-filter: blur(2px);
-    background-position: left !important;
-    background-repeat: no-repeat !important;
-    background-size: auto;
+    background: linear-gradient(to top, rgb(103, 131, 150), rgb(67, 95, 114)) !important;
+
   }
 
   .colTestMid{
@@ -16,7 +13,7 @@
     border-color: rgb(67, 95, 114) !important;
     color: rgb(255, 255, 255);
     background-color:rgb(103, 131, 150);
-    background: linear-gradient(to top, rgb(103, 131, 150), rgb(67, 95, 114)) !important;   
+    background: linear-gradient( rgb(103, 131, 150), rgb(67, 95, 114)) !important;   
   }
   
   .gameTitle{
@@ -41,6 +38,7 @@
     
   }
   .gameRowBox{
-    margin-top: 2.5vh;
+    margin-top: 0vh;
     margin-bottom: 2,5vh;
+    
   }
