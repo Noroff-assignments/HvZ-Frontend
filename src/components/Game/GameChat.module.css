@@ -38,3 +38,9 @@
   .breakWord{
     word-wrap: break-word !important;
   }
+  .myMessageP{
+    background-color: rgb(12, 105, 227)!important;
+    word-break: break-all;
+    color: white;
+    font-weight: 600;
+  }
