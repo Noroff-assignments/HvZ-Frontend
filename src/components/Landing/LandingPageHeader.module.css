@@ -6,17 +6,16 @@
   box-shadow: 2px 2px 2px black;
   background-repeat: no-repeat !important;
   background-size:cover;
-  
 }
   .colHeaderText{
     background-color: rgb(81, 70, 65); 
-    border-bottom-right-radius: 0.8rem;
-    border-top-right-radius: 0.8rem;
-    border-bottom-left-radius: 0.8rem;
-    border-top-left-radius: 0.8rem;
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
     padding-right: 0 !important;
     border-color: rgb(96, 2, 2) !important;
-    border-width: 5px;
+    width: 100%;
     border: solid;
     font-family:'Imprint MT Shadow';
     font-size:50px;
@@ -30,28 +29,4 @@
   }
   .colTestRight{
     background-color: rgb(81, 70, 65);
-  }
-  .loginBtn{
-    background-color: rgb(81, 70, 65); 
-    border-bottom-right-radius: 0px;
-    border-top-right-radius: 0px;
-    border-bottom-left-radius: 0.8rem;
-    border-top-left-radius: 0.8rem;
-    padding-right: 0 !important;
-    width: 100%;
-    border-color: rgb(96, 2, 2) !important;
-    border-width: 5px;
-    border: solid;
-  }
-  .signupBtn{
-    background-color: rgb(81, 70, 65); 
-    width: 100%;
-    border-bottom-left-radius: 0px;
-    border-top-left-radius: 0px;
-    border-bottom-right-radius: 0.8rem;
-    border-top-right-radius: 0.8rem;
-    padding-left: 0 !important;
-    border-color:rgb(96, 2, 2) !important;
-    border-width: 5px;
-    border: solid;
   }
