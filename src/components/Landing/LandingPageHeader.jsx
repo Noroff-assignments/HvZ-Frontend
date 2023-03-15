@@ -10,7 +10,7 @@ const LandingPageHeader = () => {
         {/*<img src="./resources/LandingBackGround.jpg" className={styles.LandingPageHeaderImage} alt="Landing Page" />*/}
         <Col lg={4} className={`d-lg-block d-xs-none`}></Col>
         <Col lg={4} xs={12} className={styles.colHeaderText}>
-          Games
+          <p>Games</p>
         </Col>
         <Col lg={1} className={` d-xs-none d-lg-block`}></Col>
         

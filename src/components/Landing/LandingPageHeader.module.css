@@ -4,7 +4,8 @@
   background-image: url("https://cdn.pixabay.com/photo/2015/05/26/16/26/zombie-784914_960_720.jpg")!important;
   text-align: center ;
   box-shadow: 2px 2px 2px black;
-
+  background-repeat: no-repeat !important;
+  background-size:cover;
   
 }
   .colHeaderText{
@@ -14,12 +15,14 @@
     border-bottom-left-radius: 0.8rem;
     border-top-left-radius: 0.8rem;
     padding-right: 0 !important;
-    width: 100%;
     border-color: rgb(96, 2, 2) !important;
     border-width: 5px;
     border: solid;
     font-family:'Imprint MT Shadow';
     font-size:50px;
+  }
+  .colHeaderText > p{
+    color: white !important;
   }
   .colLoginSignup{
     padding-left: 0 !important;

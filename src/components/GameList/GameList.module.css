@@ -1,8 +1,7 @@
 .colTestSides{
     background-color: rgb(53, 54, 54);
-    background-image: url("https://cdn.pixabay.com/photo/2015/05/26/16/26/zombie-784914_960_720.jpg")!important;
     filter: blur(4px);
-    -webkit-filter: blur(8px);
+    -webkit-filter: blur(2px);
     background-position: left !important;
     background-repeat: no-repeat !important;
     background-size: auto;
