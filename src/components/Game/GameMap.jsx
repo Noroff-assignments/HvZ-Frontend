@@ -5,9 +5,10 @@ import { useLocation, useNavigate, Link } from "react-router-dom";
 import { MapContainer } from "react-leaflet/MapContainer";
 import { TileLayer } from "react-leaflet/TileLayer";
 import { useMap } from "react-leaflet/hooks";
-import { Rectangle } from "react-leaflet";
+import { Circle } from "react-leaflet";
 import { GiPirateGrave } from "react-icons/gi";
 import { MarkerLayer, Marker } from "react-leaflet-marker";
+import L from 'leaflet';
 const GameMap = () => {
   const location = useLocation();
   const mapCoordinatesX = 55.642779272205274;
@@ -46,10 +47,10 @@ const GameMap = () => {
       </p>
     );
   }
-  function SetBoundsRectangles() {
+  function SetBoundsCircle() {
     const [bounds, setBounds] = useState(outerBounds);
     const map = useMap();
-
+  
     const innerHandlers = useMemo(
       () => ({
         click() {
@@ -68,16 +69,18 @@ const GameMap = () => {
       }),
       [map]
     );
-
+  
     return (
       <>
-        <Rectangle
-          bounds={outerBounds}
+        <Circle
+          center={mapCoordinates}
+          radius={150} // change this to adjust the size of the circle
           eventHandlers={outerHandlers}
           pathOptions={bounds === outerBounds ? redColor : whiteColor}
         />
-        <Rectangle
-          bounds={innerBounds}
+        <Circle
+          center={mapCoordinates}
+          radius={50} // change this to adjust the size of the circle
           eventHandlers={innerHandlers}
           pathOptions={bounds === innerBounds ? redColor : whiteColor}
         />
@@ -113,7 +116,7 @@ const GameMap = () => {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        <SetBoundsRectangles />
+        <SetBoundsCircle />
       </MapContainer>
     </Col>
   );
