@@ -1,7 +1,7 @@
-import { Container, Col, Row, Button } from "react-bootstrap";
+import { Container, Col, Row } from "react-bootstrap";
 import styles from "./GameList.module.css";
 import { useEffect, useState } from "react";
-import { BrowserRouter as Router, Route, Switch, useLocation, useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { FaUserAlt, FaCalendarAlt } from "react-icons/fa";
 import React from "react";
 
@@ -46,13 +46,13 @@ const GameList = () => {
   }, [clickedGame, navigate]);
   
   return (
-    <Container fluid>
+    <Container fluid className={styles.GameListContainerFluid}>
       <Row className={styles.gameRowBox}>
         <Col
-          lg={4}
+          lg={2}
           className={`${styles.colTestSides} d-none d-sm-block`}
         ></Col>
-        <Col lg={4} xs={12} className={styles.GameList}>
+        <Col lg={8} xs={12} className={styles.GameList}>
           {gameListArray.map((game, index) => {
             return (
 
@@ -61,7 +61,7 @@ const GameList = () => {
                 onClick={() => {
                   setClickedGame(game);
                 }}>
-                <Container className={styles.gameRow}>
+                <Container className={styles.gameListElementContainer}>
                   <Row >
                     <Col xs={12}>
                       <h4 className={styles.gameTitle}>
@@ -77,7 +77,6 @@ const GameList = () => {
                     <FaCalendarAlt className={styles.calenderIcon}/> {game.ends.toLocaleDateString()}
                     </Col>
                       <Col xs={3}>
-                      <Button className={styles.joinGameBtn}>Join</Button>
                       </Col>
                     </Row>
                 </Container>
@@ -86,7 +85,7 @@ const GameList = () => {
           })}
         </Col>
         <Col
-          lg={4}
+          lg={2}
           className={`${styles.colTestSides} d-none d-sm-block`}
         ></Col>
       </Row>
