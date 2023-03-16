@@ -1,8 +1,8 @@
-import { Container, Col, Row } from "react-bootstrap";
+import { Container, Col, Row, Button } from "react-bootstrap";
 import styles from "./GameList.module.css";
 import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Switch, useLocation, useNavigate, Link } from "react-router-dom";
-import { FaUserAlt } from "react-icons/fa";
+import { FaUserAlt, FaCalendarAlt } from "react-icons/fa";
 import React from "react";
 
 const GameList = () => {
@@ -22,13 +22,13 @@ const GameList = () => {
     },
     {
       gameTitle: "zzzzZZZZzzzzZ",
-      players: 8000000000,
+      players: 800,
       ends: new Date("2175-01-09"),
     },
     {
       gameTitle: "Real Guns Allowed",
       players: 20,
-      ends: new Date("2023-08-03"),
+      ends: new Date("2023-11-14"),
     },
     {
       gameTitle: "Just me. lonesome me...",
@@ -56,7 +56,7 @@ const GameList = () => {
           {gameListArray.map((game, index) => {
             return (
 
-              <Link
+              <Link className={styles.Link}
                 key={index}
                 onClick={() => {
                   setClickedGame(game);
@@ -66,21 +66,20 @@ const GameList = () => {
                     <Col xs={12}>
                       <h4 className={styles.gameTitle}>
                       {game.gameTitle}
-                      </h4>
+                      </h4>    
                       </Col>
                   </Row>
-                  <Row>
-                    
-                    
-                    <Col xs={12}>
-                      <h6 className={styles.players}> - Players<FaUserAlt/>: {game.players} </h6>
+                  <Row className={styles.gameListElementRow}>
+                    <Col xs={4}>
+                      <FaUserAlt className={styles.userIcon}/>: {game.players}                        
                     </Col>
-                  </Row>
-                  <Row>
-                    <Col xs={12}>
-                      <h6 className={styles.ends}> - ending Date: {game.ends.toLocaleDateString()} </h6>
+                    <Col xs={5}>
+                    <FaCalendarAlt className={styles.calenderIcon}/> {game.ends.toLocaleDateString()}
                     </Col>
-                  </Row>
+                      <Col xs={3}>
+                      <Button className={styles.joinGameBtn}>Join</Button>
+                      </Col>
+                    </Row>
                 </Container>
               </Link>
             );
