@@ -36,6 +36,7 @@ const GameList = () => {
       ends: new Date("2023-08-03"),
     },
   
+    
   ];
 
   
