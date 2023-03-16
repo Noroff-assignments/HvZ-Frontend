@@ -8,7 +8,7 @@ import { useMap } from "react-leaflet/hooks";
 import { Circle } from "react-leaflet";
 import { GiPirateGrave } from "react-icons/gi";
 import { MarkerLayer, Marker } from "react-leaflet-marker";
-import L from 'leaflet';
+import { LatLng} from "react-leaflet";
 const GameMap = () => {
   const location = useLocation();
   const mapCoordinatesX = 55.642779272205274;
@@ -107,6 +107,7 @@ const GameMap = () => {
       <Marker key={index} position={death}>
         <GiPirateGrave className={styles.graveStone} />
       </Marker>
+      
     );
   })}
 </MarkerLayer>
