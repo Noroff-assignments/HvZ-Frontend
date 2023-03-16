@@ -10,7 +10,7 @@ const GameList = () => {
   const navigate = useNavigate();
   let gameListArray = [
     {
-      gameTitle: "Vegetables Vs Zombies (Handicapped)",
+      gameTitle: "Vegetables Vs Zombies",
       players: 20,
       ends: new Date("2023-08-03"),
     },
