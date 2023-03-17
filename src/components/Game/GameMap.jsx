@@ -1,10 +1,9 @@
 import {Col} from "react-bootstrap";
 import styles from "./GameMap.module.css";
 import {useState, useMemo } from "react";
-import { MapContainer } from "react-leaflet/MapContainer";
 import { TileLayer } from "react-leaflet/TileLayer";
 import { useMap } from "react-leaflet/hooks";
-import { Rectangle } from "react-leaflet";
+import { Rectangle, MapContainer } from "react-leaflet";
 import { GiPirateGrave } from "react-icons/gi";
 import { MarkerLayer, Marker } from "react-leaflet-marker";
 const GameMap = () => {
