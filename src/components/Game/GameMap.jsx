@@ -1,9 +1,11 @@
 import {Col} from "react-bootstrap";
 import styles from "./GameMap.module.css";
 import {useState, useMemo } from "react";
-import { Rectangle, MapContainer, MarkerLayer, Marker, useMap, TileLayer } from "react-leaflet";
+import { TileLayer } from "react-leaflet/TileLayer";
+import { useMap } from "react-leaflet/hooks";
+import { Rectangle, MapContainer } from "react-leaflet";
 import { GiPirateGrave } from "react-icons/gi";
-
+import { MarkerLayer, Marker } from "react-leaflet-marker";
 const GameMap = () => {
   
   const mapCoordinatesX = 55.642779272205274;
