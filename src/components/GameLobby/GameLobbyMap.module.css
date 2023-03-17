@@ -11,6 +11,9 @@
     color: white;
     background-color: rgb(41, 41, 41);
   }
+  .graveStone{
+    font-size: 25px;
+  }
   .gameTitle{
     font-weight: 800;
     white-space: nowrap;
