@@ -1,11 +1,6 @@
-import { Container, Col, Row, Button } from "react-bootstrap";
+import {Col, Row, Button } from "react-bootstrap";
 import styles from "./GameInfo.module.css";
-import { useEffect, useState, useMemo } from "react";
-import { useLocation, useNavigate, Link } from "react-router-dom";
-import { MapContainer } from "react-leaflet/MapContainer";
-import { TileLayer } from "react-leaflet/TileLayer";
-import { useMap } from "react-leaflet/hooks";
-import { Rectangle } from "react-leaflet";
+import { useLocation, useNavigate} from "react-router-dom";
 import { IoReturnDownBack } from "react-icons/io5";
 const GameInfo = () => {
   const location = useLocation();
