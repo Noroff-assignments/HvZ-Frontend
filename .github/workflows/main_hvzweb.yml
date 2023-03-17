@@ -52,5 +52,5 @@ jobs:
         with:
           app-name: 'hvzweb'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_C69B2A3BBB104AD080CD8B86CD6AA3DD }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_D0E6AEAC5BF6411185F00DDDBDBC5FFA }}
           package: .
