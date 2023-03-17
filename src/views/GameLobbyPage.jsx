@@ -1,11 +1,22 @@
-import LandingPageHeader from "../components/Landing/LandingPageHeader";
-import GameLobby from "../components/GameLobby/GameLobby";
-import LoginForm from "../components/Login/LoginForm";
+import GameLobbyInfo from "../components/GameLobby/GameLobbyInfo";
+import GameLobbyMap from "../components/GameLobby/GameLobbyMap";
+import { Container, Row, Col } from "react-bootstrap";
 
 const GameLobbyPage = () => {
     return (
         <>
-            <GameLobby/>
+            <Container fluid>
+        <Row>
+          <Col lg={6} xs={12}>
+          <GameLobbyInfo/>
+          </Col>
+          <Col lg={6} xs={12}>
+          <GameLobbyMap/>
+          </Col>
+        </Row>
+      </Container>
+            
+            
         </>
     );
 };

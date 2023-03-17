@@ -1,6 +1,5 @@
 import LandingPageHeader from "../components/Landing/LandingPageHeader";
 import GameList from "../components/GameList/GameList";
-import LoginForm from "../components/Login/LoginForm";
 import { Container } from "react-bootstrap";
 
 const LandingPage = () => {
@@ -14,8 +13,6 @@ const LandingPage = () => {
           backgroundRepeat: "no-repeat",
           backgroundPosition: "center",
           minHeight: "100%",
-          height:"auto !important",
-          height: "100%",
           height: "100vh"
         }}
       >

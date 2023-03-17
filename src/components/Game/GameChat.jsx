@@ -1,6 +1,6 @@
-import { Container, Col, Row } from "react-bootstrap";
+import { Col} from "react-bootstrap";
 import styles from "./GameChat.module.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   MDBContainer,
   MDBRow,
