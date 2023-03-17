@@ -1,9 +1,7 @@
 import { Col} from "react-bootstrap";
 import styles from "./GameLobbyMap.module.css";
 import { useState, useMemo } from "react";
-import { TileLayer } from "react-leaflet/TileLayer";
-import { useMap } from "react-leaflet/hooks";
-import { Rectangle, MapContainer } from "react-leaflet";
+import { Rectangle, MapContainer, useMap, TileLayer } from "react-leaflet";
 
 const GameLobbyMap = () => {
   
