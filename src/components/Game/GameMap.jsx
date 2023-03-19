@@ -1,13 +1,13 @@
-import {Col} from "react-bootstrap";
+import { Col } from "react-bootstrap";
 import styles from "./GameMap.module.css";
-import {useState, useMemo } from "react";
+import { MapContainer } from "react-leaflet/MapContainer";
 import { TileLayer } from "react-leaflet/TileLayer";
 import { useMap } from "react-leaflet/hooks";
-import { Rectangle, MapContainer } from "react-leaflet";
+import { Circle, Pane } from "react-leaflet";
 import { GiPirateGrave } from "react-icons/gi";
-import { MarkerLayer, Marker } from "react-leaflet-marker";
+import { Marker } from "react-leaflet-marker";
+import L from "leaflet";
 const GameMap = () => {
-  
   const mapCoordinatesX = 55.642779272205274;
   const mapCoordinatesY = 12.271510716977884;
   const deathLocations = [
@@ -20,98 +20,51 @@ const GameMap = () => {
     [mapCoordinatesX + 0.000664, mapCoordinatesY - 0.00032],
     [mapCoordinatesX - 0.00036, mapCoordinatesY + 0.00423],
   ];
-  //const mapCoordinatesX = 55.642779272205274;
-  //const mapCoordinatesY = 12.271510716977884;
-  
 
   const mapCoordinates = [mapCoordinatesX, mapCoordinatesY];
-
-  const innerBounds = [
-    [mapCoordinatesX + 0.003, mapCoordinatesY + 0.005],
-    [mapCoordinatesX - 0.003, mapCoordinatesY - 0.005],
+  const circleBounds = [
+    [mapCoordinatesX, mapCoordinatesY],
+    [mapCoordinatesX, mapCoordinatesY],
   ];
-  const outerBounds = [
-    [mapCoordinatesX + 0.003, mapCoordinatesY + 0.005],
-    [mapCoordinatesX - 0.003, mapCoordinatesY - 0.005],
-  ];
-  const redColor = { color: "red" };
-  const whiteColor = { color: "white" };
 
-  function MapPlaceholder() {
-    return (
-      <p>
-        Map. <noscript>You need to enable JavaScript to see this map.</noscript>
-      </p>
-    );
-  }
-  function SetBoundsRectangles() {
-    const [bounds, setBounds] = useState(outerBounds);
+  const MyMarker = ({ position }) => {
     const map = useMap();
-
-    const innerHandlers = useMemo(
-      () => ({
-        click() {
-          setBounds(innerBounds);
-          map.fitBounds(innerBounds);
-        },
-      }),
-      [map]
-    );
-    const outerHandlers = useMemo(
-      () => ({
-        click() {
-          setBounds(outerBounds);
-          map.fitBounds(outerBounds);
-        },
-      }),
-      [map]
-    );
-
+    const markerPosition = map.project(position);
+    const markerPixelCoords = L.point(markerPosition.x, markerPosition.y - 35);
+    const markerLatLng = map.unproject(markerPixelCoords);
     return (
-      <>
-        <Rectangle
-          bounds={outerBounds}
-          eventHandlers={outerHandlers}
-          pathOptions={bounds === outerBounds ? redColor : whiteColor}
-        />
-        <Rectangle
-          bounds={innerBounds}
-          eventHandlers={innerHandlers}
-          pathOptions={bounds === innerBounds ? redColor : whiteColor}
-        />
-      </>
+      <Pane zIndex={500}>
+        <Marker position={markerLatLng}>
+          <GiPirateGrave className={styles.graveStone} />
+        </Marker>
+      </Pane>
     );
-  }
+  };
 
   return (
     <Col lg={12} xs={12} className={styles.mapCol}>
       <MapContainer
-        bounds={outerBounds}
-        maxBounds={outerBounds}
+        bounds={circleBounds}
+        maxBounds={circleBounds}
         minZoom={16}
         maxZoom={18}
         className={styles.mapContainer}
         center={mapCoordinates}
         zoom={18}
         scrollWheelZoom={false}
-        placeholder={<MapPlaceholder />}
       >
-        <MarkerLayer>
-  {deathLocations.map((death, index) => {
-    return (
-      <Marker key={index} position={death}>
-        <GiPirateGrave className={styles.graveStone} />
-      </Marker>
-    );
-  })}
-</MarkerLayer>
-
+        <Circle
+          center={mapCoordinates}
+          radius={150}
+          pathOptions={{ color: "red" }}
+        />
+        {deathLocations.map((death, index) => {
+          return <MyMarker key={index} position={death} />;
+        })}
         <TileLayer
-          className={styles.mapImg}
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright%22%3EOpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        <SetBoundsRectangles />
       </MapContainer>
     </Col>
   );
