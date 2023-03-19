@@ -1,29 +1,82 @@
-.colTestSides{
-    background-color: rgb(0, 238, 255);
-  }
   .colTestMid{
-    background-color: rgb(255, 128, 198);
+    background-color: rgb(0, 0, 0);
   }
-  .gameRow{
+  .gameListElementContainer{
     border-width: 4px;
     border: solid;
-    border-color: rgb(129, 129, 129);
-    color: white;
-    background-color: rgb(41, 41, 41);
+    border-color: rgb(67, 95, 114) !important;
+    color: rgb(255, 255, 255);
+    background: linear-gradient( rgb(103, 131, 150), rgb(67, 95, 114)) !important;
+    padding-left: 20px;
+    padding-top: 0.5vh;
+    padding-bottom: 0.5vh;
+    margin-bottom: 20px;
+    box-shadow: 0px 2px 2px 2px rgba(43, 64, 82, 0.5);
+  }
+  .gameListElementContainer:hover{
+    border-color: rgb(190, 157, 87) !important;
+  }
+  .GameListContainerFluid{
+    min-height: 100%;
+    max-height: fit-content;
   }
   .gameTitle{
     font-weight: 800;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    color: rgb(255, 255, 255);
+    font-size: 1.7vh;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-align: center;
   }
+
+  .gameListElementRow{
+    flex-wrap: nowrap;
+    align-items: center;
+    font-weight: 500%;
+  }
+
   .GameList {
-    border: 2px solid rgb(226, 83, 0);
+    box-shadow: 0px 2px 2px 2px rgba(43, 64, 82, 0.3);
+    backdrop-filter: blur(2px);
     border-left-width: 8px;
     border-right-width: 8px;
     border-top-width: 8px;
     border-bottom-width: 8px;
-    padding-left: 0%;
-    padding-right: 0%;
+    padding-left: 2vh;
+    padding-right: 2vh;
+    padding-top: 1vh;
     border-radius: 4px !important;
+    background-color: none !important;
+    
   }
+  .gameRowBox{
+    margin-top: 0vh;
+    margin-bottom: 2,5vh;
+    background: red, !important;
+  }
+  .joinGameBtn{
+  color:  rgb(255, 255, 255);
+  border-color: rgb(190, 157, 87);
+  background-color:  rgb(67, 95, 114);
+  width:100%;
+  height: 35px;
+  text-align: center;
+  }
+  .Link{
+    text-decoration: none;
+  }
+  .userIcon{
+    color: rgb(190, 157, 87);
+  }
+  .calenderIcon{
+    color: rgb(190, 157, 87);
+  }
+
+ 
+
+
+  
+
+  

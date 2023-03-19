@@ -1,25 +1,13 @@
-import {Col} from "react-bootstrap";
-import styles from "./GameMap.module.css";
-import {useState, useMemo } from "react";
-import { TileLayer } from "react-leaflet/TileLayer";
-import { useMap } from "react-leaflet/hooks";
-import { Rectangle, MapContainer } from "react-leaflet";
-import { GiPirateGrave } from "react-icons/gi";
-import { MarkerLayer, Marker } from "react-leaflet-marker";
-const GameMap = () => {
+import { Col} from "react-bootstrap";
+import styles from "./GameLobbyMap.module.css";
+import { useState, useMemo } from "react";
+import { Rectangle, MapContainer, useMap, TileLayer } from "react-leaflet";
+
+const GameLobbyMap = () => {
   
   const mapCoordinatesX = 55.642779272205274;
   const mapCoordinatesY = 12.271510716977884;
-  const deathLocations = [
-    [mapCoordinatesX + 0.0003, mapCoordinatesY + 0.0003],
-    [mapCoordinatesX - 0.0004, mapCoordinatesY + 0.00083],
-    [mapCoordinatesX + 0.000664, mapCoordinatesY - 0.00032],
-    [mapCoordinatesX - 0.00096, mapCoordinatesY + 0.00023],
-    [mapCoordinatesX + 0.0003, mapCoordinatesY + 0.0003],
-    [mapCoordinatesX + 0.0015, mapCoordinatesY + 0.00383],
-    [mapCoordinatesX + 0.000664, mapCoordinatesY - 0.00032],
-    [mapCoordinatesX - 0.00036, mapCoordinatesY + 0.00423],
-  ];
+  
   //const mapCoordinatesX = 55.642779272205274;
   //const mapCoordinatesY = 12.271510716977884;
   
@@ -96,16 +84,6 @@ const GameMap = () => {
         scrollWheelZoom={false}
         placeholder={<MapPlaceholder />}
       >
-        <MarkerLayer>
-  {deathLocations.map((death, index) => {
-    return (
-      <Marker key={index} position={death}>
-        <GiPirateGrave className={styles.graveStone} />
-      </Marker>
-    );
-  })}
-</MarkerLayer>
-
         <TileLayer
           className={styles.mapImg}
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -117,4 +95,4 @@ const GameMap = () => {
   );
 };
 
-export default GameMap;
+export default GameLobbyMap;
