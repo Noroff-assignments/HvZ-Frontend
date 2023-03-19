@@ -11,10 +11,12 @@
     color: white;
     background-color: rgb(41, 41, 41);
   }
-  .graveStone{
-    font-size: 25px;
+  .graveStone {
+    font-size: 1.5vh;
     text-align: center;
     vertical-align: middle;
+    transform: translate(-50%, -50%);
+    transform-origin: center;
   }
   .gameTitle{
     font-weight: 800;

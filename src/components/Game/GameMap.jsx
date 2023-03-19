@@ -40,7 +40,7 @@ const GameMap = () => {
       </Pane>
     );
   };
-
+  
   return (
     <Col lg={12} xs={12} className={styles.mapCol}>
       <MapContainer
