@@ -8,11 +8,11 @@ const GameLobbyPage = () => {
     <>
       <Container fluid>
         <Row>
-          <Col lg={6} xs={12}>
+        <Col lg={6} xs={12}style={{padding: "0px"}}>
             <GameInfo />
             <GameChat />
           </Col>
-          <Col lg={6} xs={12}>
+          <Col lg={6} xs={12}style={{padding: "0px"}}>
             <GameMap />
           </Col>
         </Row>

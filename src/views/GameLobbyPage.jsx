@@ -7,10 +7,10 @@ const GameLobbyPage = () => {
         <>
             <Container fluid>
         <Row>
-          <Col lg={6} xs={12}>
+          <Col lg={6} xs={12}style={{padding: "0px"}}>
           <GameLobbyInfo/>
           </Col>
-          <Col lg={6} xs={12}>
+          <Col lg={6} xs={12}style={{padding: "0px"}}>
           <GameLobbyMap/>
           </Col>
         </Row>
