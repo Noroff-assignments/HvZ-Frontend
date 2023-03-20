@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useLocation, Link } from "react-router-dom";
+import { useLocation, useNavigate, Link } from "react-router-dom";
 import { Col } from "react-bootstrap";
 import styles from "./GameMap.module.css";
 import { MapContainer } from "react-leaflet/MapContainer";
@@ -11,14 +11,25 @@ import { Marker } from "react-leaflet-marker";
 import L from "leaflet";
 const GameMap = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const currentGame = location.state.currentGame;
   const currentMission = location.state.currentMission;
   const [clickedMission, setClickedMission] = useState(null);
   const mapCoordinatesX = 55.642779272205274;
   const mapCoordinatesY = 12.271510716977884;
   const missionLocations = [
-    ["Free Cars (Keys not included)", mapCoordinatesX + 0.0008, mapCoordinatesY - 0.0002, 40],
-    ["Rene's Drug stash", mapCoordinatesX - 0.00096, mapCoordinatesY + 0.00083, 10],
+    [
+      "Free Cars (Keys not included)",
+      mapCoordinatesX + 0.0008,
+      mapCoordinatesY - 0.0002,
+      40,
+    ],
+    [
+      "Rene's Drug stash",
+      mapCoordinatesX - 0.00096,
+      mapCoordinatesY + 0.00083,
+      10,
+    ],
   ];
   const deathLocations = [
     [mapCoordinatesX + 0.0003, mapCoordinatesY + 0.0003],
@@ -35,6 +46,12 @@ const GameMap = () => {
     [mapCoordinatesX, mapCoordinatesY],
     [mapCoordinatesX, mapCoordinatesY],
   ];
+  const handleMissionClick = (mission) => {
+    console.log("test: " + mission[0]); // log the mission title to the console
+    navigate("/currentGame", {
+      state: { currentGame: currentGame, currentMission: mission },
+    });
+  };
   useEffect(() => {
     if (clickedMission !== null) {
       console.log(clickedMission[0]);
@@ -79,19 +96,26 @@ const GameMap = () => {
           pathOptions={{ color: "red" }}
         />
         {missionLocations.map((mission, index) => {
-        return (
-          <Pane zIndex={500} key={index}>
-            <Marker position={[mission[1], mission[2]]} onClick={() => setClickedMission(mission)}>
-              <h5 className={styles.missionTitle}>{mission[0]}</h5>
-            </Marker>
-            <Circle
-              center={[mission[1], mission[2]]}
-              radius={mission[3]}
-              pathOptions={{ color: "green" }}
-            />
-          </Pane>
-        );
-      })}
+          return (
+            <div
+              className={styles.Link}
+              key={index}
+              onClick={() => handleMissionClick(mission)}
+            >
+              <Pane zIndex={500}>
+                <Marker position={[mission[1], mission[2]]}>
+                  <h5 className={styles.missionTitle}>{mission[0]}</h5>
+                </Marker>
+                <Circle
+                  center={[mission[1], mission[2]]}
+                  radius={mission[3]}
+                  pathOptions={{ color: "green" }}
+                  onClick={() => handleMissionClick(mission)}
+                />
+              </Pane>
+            </div>
+          );
+        })}
         {deathLocations.map((death, index) => {
           return <MyMarker key={index} position={death} />;
         })}
