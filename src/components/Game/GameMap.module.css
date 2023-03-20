@@ -11,6 +11,13 @@
     color: white;
     background-color: rgb(41, 41, 41);
   }
+  .graveStone {
+    font-size: 1.5vh;
+    text-align: center;
+    vertical-align: middle;
+    transform: translate(-50%, -50%);
+    transform-origin: center;
+  }
   .gameTitle{
     font-weight: 800;
     white-space: nowrap;
@@ -33,9 +40,7 @@
     color: white;
     background-color: rgb(44, 33, 33);
   }
-  .ReturnBtn{
-    
-  }
+  
   .mapCol{
     padding: 5px;
     background-color: red;

@@ -1,8 +1,7 @@
-.colTestSides{
-    background-color: rgb(0, 238, 255);
-  }
-  .colTestMid{
-    background-color: rgb(255, 128, 198);
+  .InfoContainer{
+    background-color: rgb(41, 41, 41);
+    width:100%;
+    height:100%;
   }
   .gameRow{
     border-width: 4px;
@@ -32,13 +31,6 @@
     padding: 5px;
     color: white;
     background-color: rgb(44, 33, 33);
-  }
-  .ReturnBtn{
-    
-  }
-  .ReturnIcon{
-    color: white;
-    font-size: 40px;
   }
   .mapCol{
     padding: 5px;
