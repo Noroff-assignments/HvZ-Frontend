@@ -44,9 +44,18 @@ const GameInfo = () => {
       <Row>
         <Col lg={12} xs={12}>
           {currentMission && currentMission.length > 0 ? (
-            <p>Current mission: {currentMission[0]}</p>
+            <h4>Selected mission: {currentMission[0]}</h4>
           ) : (
-            <p>No current mission</p>
+            <p></p>
+          )}
+        </Col>
+      </Row>
+      <Row>
+        <Col lg={12} xs={12}>
+          {currentMission && currentMission.length > 0 ? (
+            <p>Description: {currentMission[1]}</p>
+          ) : (
+            <p>empty</p>
           )}
         </Col>
       </Row>
