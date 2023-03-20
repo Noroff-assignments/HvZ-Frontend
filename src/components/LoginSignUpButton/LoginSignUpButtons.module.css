@@ -6,7 +6,7 @@
     border-top-left-radius: 0.8rem;
     padding-right: 0 !important;
     width: 100%;
-    border-color: rgb(96, 2, 2) !important;
+    border-color: rgb(65, 68, 105) !important;
     border-width: 5px;
     border: solid;
   }
@@ -18,7 +18,11 @@
     border-bottom-right-radius: 0.8rem;
     border-top-right-radius: 0.8rem;
     padding-left: 0 !important;
-    border-color:rgb(96, 2, 2) !important;
+    border-color: rgb(65, 68, 105) !important;
     border-width: 5px;
     border: solid;
+  }
+  .colLoginSignup{
+    padding-left: 0px;
+    padding-right: 0px;
   }
