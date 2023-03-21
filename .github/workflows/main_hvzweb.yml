@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+  # Run manually only when needed
   workflow_dispatch:
 
 jobs:
@@ -16,22 +17,27 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
-
+    # Use cache action to speed up the build process
+    # by caching node_modules directory
+    env:
+      CI: true
     steps:
       - uses: actions/checkout@v2
 
       - name: SETUP node.js
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v2
         with:
           node-version: '18.x'
-          
+
+      # Run npm installs in parallel
       - name: NPM i
         run: |
-          npm i react
-          npm i react-leaflet
+          npm i react &
+          npm i react-leaflet &
+          wait
           npm run build --if-present
           npm run test --if-present
-          
+
       - name: ZIP
         run: zip release.zip ./* -r
 
@@ -57,9 +63,10 @@ jobs:
       - name: UNZIP ARTIFACTS
         run: unzip release.zip
 
+      # Specify version of azure/webapps-deploy action
       - name: DEPLOY TO AZURE
         id: deploy-to-webapp
-        uses: azure/webapps-deploy@v2
+        uses: azure/webapps-deploy@v4
         with:
           app-name: 'hvzweb'
           slot-name: 'Production'
