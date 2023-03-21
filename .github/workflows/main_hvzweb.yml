@@ -32,10 +32,10 @@ jobs:
       # Run npm installs in parallel
       - name: NPM i
         run: |
-          npm i mdb-react-ui-kit &
-          npm i npm i react-qr-reader &
-          npm i react &
-          npm i react-leaflet &
+          yarn i mdb-react-ui-kit &
+          yarn i npm i react-qr-reader &
+          yarn i react &
+          yarn i react-leaflet &
           wait
           npm run build --if-present
           npm run test --if-present
