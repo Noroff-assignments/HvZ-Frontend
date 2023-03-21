@@ -20,8 +20,6 @@ jobs:
           
       - name: REMOVE Artifacts
         uses: glassechidna/artifact-cleaner@master
-        with:
-          minimumAge: 60
 
       - name: NPM i
         run: |
