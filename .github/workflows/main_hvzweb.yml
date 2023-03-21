@@ -23,7 +23,8 @@ jobs:
 
       - name: npm install, build, and test
         run: |
-          npm install
+          npm install --production=false
+          npm install react-leaflet
           npm run build --if-present
           npm run test --if-present
 
@@ -52,5 +53,5 @@ jobs:
         with:
           app-name: 'hvzweb'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_D0E6AEAC5BF6411185F00DDDBDBC5FFA }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_4305DE59D52B4E6589DF2A525C604200 }}
           package: .
