@@ -1,11 +1,13 @@
-import {Col, Row, Button } from "react-bootstrap";
+import { Col, Row, Button } from "react-bootstrap";
 import styles from "./GameInfo.module.css";
-import { useLocation, useNavigate} from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { IoReturnDownBack } from "react-icons/io5";
+
 const GameInfo = () => {
   const location = useLocation();
-
-  const currentGame = location.state.currentGame;
+  const currentMission =
+    location.state && location.state.currentMission != null ? location.state.currentMission : {};
+  const currentGame = location.state && location.state.currentGame;
   const navigate = useNavigate();
   const handleReturn = () => {
     navigate("/");
@@ -20,8 +22,7 @@ const GameInfo = () => {
             className={styles.ReturnBtn}
             onClick={handleReturn}
           >
-            <IoReturnDownBack className={styles.ReturnIcon}/>
-            
+            <IoReturnDownBack className={styles.ReturnIcon} />
           </Button>
         </Col>
       </Row>
@@ -37,7 +38,16 @@ const GameInfo = () => {
       </Row>
       <Row>
         <Col lg={12} xs={12}>
-          <p>End date: {currentGame.ends.toLocaleDateString()}</p>
+          <p>End date: {currentGame.ends && currentGame.ends.toLocaleDateString()}</p>
+        </Col>
+      </Row>
+      <Row>
+        <Col lg={12} xs={12}>
+          {currentMission && currentMission.length > 0 ? (
+            <p>Current mission: {currentMission[0]}</p>
+          ) : (
+            <p>No current mission</p>
+          )}
         </Col>
       </Row>
     </Col>

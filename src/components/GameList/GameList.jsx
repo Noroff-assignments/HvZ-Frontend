@@ -1,6 +1,6 @@
+import { useEffect, useState } from "react";
 import { Container, Col, Row } from "react-bootstrap";
 import styles from "./GameList.module.css";
-import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { FaUserAlt, FaCalendarAlt } from "react-icons/fa";
 import React from "react";
