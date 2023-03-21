@@ -1,6 +1,7 @@
 import GameInfo from "../components/Game/GameInfo";
 import GameMap from "../components/Game/GameMap";
 import KillCodeQR from "../components/Game/KillCodeQR";
+import KillCodeQRScanner from "../components/Game/KillCodeQRScanner";
 import GameChat from "../components/Game/GameChat";
 import { Container, Row, Col } from "react-bootstrap";
 
@@ -13,6 +14,7 @@ const GameLobbyPage = () => {
             <GameInfo />
             <GameChat />
             <KillCodeQR />
+            <KillCodeQRScanner />
           </Col>
           <Col sm={12}md={6}lg={{order: 2}} xs={{order: 1}}style={{padding: "0px"}}>
             <GameMap />
