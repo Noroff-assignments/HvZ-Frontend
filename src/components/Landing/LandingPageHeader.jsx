@@ -2,39 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Container, Col, Row } from "react-bootstrap";
 import styles from "./LandingPageHeader.module.css";
 
-
 const LandingPageHeader = () => {
-  //import { SecretClient } from "@azure/keyvault-secrets";
-  //import { DefaultAzureCredential } from "@azure/identity";
-  // const credential = new DefaultAzureCredential();
-
-  // const vaultName = "hvzvault"
-  // const vaultURL = `https://${vaultName}.vault.azure.net/`
-  
-  // const client = new SecretClient(vaultURL, credential);
-  
-  // const secretName = "";
-
-  // async function test(){
-  //    secretName = await client.getSecret("KeyURI");
-  // }
-
-  // test()
-  // useEffect(() => {
-  //   keycloak.init({ onLoad: 'login-required' })
-  //     .then((authenticated) => {
-  //       console.log(authenticated);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }, []);
-  
-  // const handleLogin = () => {
-  //   keycloak.login();
-  // }
-  // const { keycloak, initialized } = useKeycloak();
-
   return (
     <Container fluid className={styles.LandingPageHeaderContainer}>
       <Row>
@@ -43,7 +11,7 @@ const LandingPageHeader = () => {
         <Col lg={4} xs={12} className={styles.colHeaderText}>
           <h3>Games</h3>
         </Col>
-        <Col lg={1} className={` d-xs-none d-lg-block`}></Col>
+        <Col lg={1} className={`d-xs-none d-lg-block`}></Col>
         <Col xs={2} className={`d-lg-none d-xs-block ${styles.colTestSides}`}></Col>        
         <Col xs={2} className={`d-lg-none d-xs-block ${styles.colTestSides}`}></Col>
       </Row>

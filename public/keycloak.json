@@ -1,0 +1,10 @@
+{
+    "realm": "hvz",
+    "auth-server-url": "https://hvzkeycloak.azurewebsites.net/auth",
+    "ssl-required": "external",
+    "resource": "hvzfrontend",
+    "credentials": {
+      "secret": "6AHY1uT1p9EEj6ff1Laq1xbmyITtvaJG"
+    },
+    "confidential-port": 0
+  }

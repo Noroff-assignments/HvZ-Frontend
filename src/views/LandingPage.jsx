@@ -1,5 +1,7 @@
 import LandingPageHeader from "../components/Landing/LandingPageHeader";
-import LoginSignUpButtons from "../components/LoginSignUpButton/LoginSignUpButtons";
+import LoginButton from "../components/buttons/LoginButton";
+import LogoutButton from "../components/buttons/LogoutButton";
+import RegisterButton from "../components/buttons/RegisterButton";
 import GameList from "../components/GameList/GameList";
 import { Container } from "react-bootstrap";
 
@@ -17,7 +19,9 @@ const LandingPage = () => {
           height: "100vh"
         }}
       >
-        <LoginSignUpButtons/>
+        <LoginButton />
+        <RegisterButton />
+        <LogoutButton />
         <LandingPageHeader />
         <GameList />
       </Container>
