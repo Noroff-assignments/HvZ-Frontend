@@ -16,8 +16,8 @@ const GameMap = () => {
   const currentMission = location.state.currentMission;
   const [clickedMission, setClickedMission] = useState(null);
   const [selectedMission, setSelectedMission] = useState(null);
-  const mapCoordinatesX = 55.642779272205274;
-  const mapCoordinatesY = 12.271510716977884;
+  const mapCoordinatesX = currentGame.x;
+  const mapCoordinatesY = currentGame.y;
   const missionLocations = [
     [
       "Free Cars (Keys not included)",
@@ -50,7 +50,6 @@ const GameMap = () => {
     [mapCoordinatesX + 0.0025, mapCoordinatesY + 0.0025],
   ];
   const handleMissionClick = (mission) => {
-    console.log("test: " + mission[0]); // log the mission title to the console
     navigate("/currentGame", {
       state: { currentGame: currentGame, currentMission: mission },
     });
@@ -58,15 +57,13 @@ const GameMap = () => {
   };
   useEffect(() => {
     if (clickedMission !== null) {
-      console.log(clickedMission[0]);
       setClickedMission(null);
-      // Update link state here
       location.state = {
         currentGame: currentGame,
         mission: currentMission,
       };
     }
-  }, [clickedMission, currentGame, currentMission, location.state]);
+  }, [clickedMission, currentGame, currentMission, location, location.state]);
 
   const MyMarker = ({ position }) => {
     const map = useMap();
@@ -102,30 +99,33 @@ const GameMap = () => {
         {missionLocations.map((mission, index) => {
           const isSelectedMission =
             selectedMission && selectedMission[0] === mission[0];
-          const circleColor = isSelectedMission ? "yellow" : "rgba(50, 197, 57, 0.8)";
+          const circleColor = isSelectedMission
+            ? "yellow"
+            : "rgba(50, 197, 57, 0.8)";
           return (
-            <div
-              className={styles.Link}
-              key={index}
-              onClick={() => handleMissionClick(mission)}
-            >
-              <Pane zIndex={500}>
-                <Marker position={[mission[2], mission[3]]}>
+            <Pane zIndex={500} key={index}>
+              <Marker position={[mission[2], mission[3]]}>
                 <h5
-                    className={styles.missionTitle}
-                    style={{
-                      color: selectedMission && selectedMission[0] === mission[0]  ? "orange" : "limeGreen",
-                    }}
-                  >{mission[0]}</h5>
-                </Marker>
-                <Circle
-                  center={[mission[2], mission[3]]}
-                  radius={mission[4]}
-                  pathOptions={{ color: circleColor }}
-                  onClick={() => handleMissionClick(mission)}
-                />
-              </Pane>
-            </div>
+                  className={styles.missionTitle}
+                  style={{
+                    color:
+                      selectedMission && selectedMission[0] === mission[0]
+                        ? "orange"
+                        : "limeGreen",
+                  }}
+                >
+                  {mission[0]}
+                </h5>
+              </Marker>
+              <Circle
+                eventHandlers={{
+                  click: () => handleMissionClick(mission),
+                }}
+                center={[mission[2], mission[3]]}
+                radius={mission[4]}
+                pathOptions={{ color: circleColor }}
+              />
+            </Pane>
           );
         })}
         {deathLocations.map((death, index) => {

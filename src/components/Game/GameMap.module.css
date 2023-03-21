@@ -10,6 +10,12 @@
   .colTestMid{
     background-color: rgb(255, 128, 198);
   }
+  .missionBtn{
+    background-color: red;
+    width: 400px;
+    height: 400px;
+    padding: 500px;
+  }
   .gameRow{
     border-width: 4px;
     border: solid;
