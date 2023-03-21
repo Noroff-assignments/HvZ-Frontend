@@ -1,8 +1,7 @@
 import { Col} from "react-bootstrap";
 import styles from "./GameLobbyMap.module.css";
 import { useLocation } from "react-router-dom";
-import { TileLayer } from "react-leaflet/TileLayer";
-import { Circle, MapContainer } from "react-leaflet";
+import {TileLayer, Circle, MapContainer } from "react-leaflet";
 
 const GameLobbyMap = () => {
   const location = useLocation();

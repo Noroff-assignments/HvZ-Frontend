@@ -2,11 +2,8 @@ import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Col } from "react-bootstrap";
 import styles from "./GameMap.module.css";
-import { TileLayer } from "react-leaflet/TileLayer";
-import { useMap } from "react-leaflet/hooks";
-import { Circle, Pane, MapContainer } from "react-leaflet";
+import { Marker, useMap, Circle, Pane, MapContainer, TileLayer } from "react-leaflet";
 import { GiPirateGrave } from "react-icons/gi";
-import { Marker } from "react-leaflet-marker";
 import L from "leaflet";
 const GameMap = () => {
   const location = useLocation();
