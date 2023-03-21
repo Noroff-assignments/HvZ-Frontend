@@ -1,95 +1,46 @@
 import { Col} from "react-bootstrap";
 import styles from "./GameLobbyMap.module.css";
-import { useState, useMemo } from "react";
-import { Rectangle, MapContainer, useMap, TileLayer } from "react-leaflet";
+import { useLocation } from "react-router-dom";
+import { MapContainer } from "react-leaflet/MapContainer";
+import { TileLayer } from "react-leaflet/TileLayer";
+import { Circle } from "react-leaflet";
 
 const GameLobbyMap = () => {
+  const location = useLocation();
+  const currentGame = location.state.currentGame;
   
-  const mapCoordinatesX = 55.642779272205274;
-  const mapCoordinatesY = 12.271510716977884;
+  const mapCoordinatesX = currentGame.x;
+  const mapCoordinatesY = currentGame.y;
   
-  //const mapCoordinatesX = 55.642779272205274;
-  //const mapCoordinatesY = 12.271510716977884;
   
-
   const mapCoordinates = [mapCoordinatesX, mapCoordinatesY];
-
-  const innerBounds = [
-    [mapCoordinatesX + 0.003, mapCoordinatesY + 0.005],
-    [mapCoordinatesX - 0.003, mapCoordinatesY - 0.005],
+  const circleBounds = [
+    [mapCoordinatesX - 0.0025, mapCoordinatesY - 0.0025],
+    [mapCoordinatesX + 0.0025, mapCoordinatesY + 0.0025],
   ];
-  const outerBounds = [
-    [mapCoordinatesX + 0.003, mapCoordinatesY + 0.005],
-    [mapCoordinatesX - 0.003, mapCoordinatesY - 0.005],
-  ];
-  const redColor = { color: "red" };
-  const whiteColor = { color: "white" };
-
-  function MapPlaceholder() {
-    return (
-      <p>
-        Map. <noscript>You need to enable JavaScript to see this map.</noscript>
-      </p>
-    );
-  }
-  function SetBoundsRectangles() {
-    const [bounds, setBounds] = useState(outerBounds);
-    const map = useMap();
-
-    const innerHandlers = useMemo(
-      () => ({
-        click() {
-          setBounds(innerBounds);
-          map.fitBounds(innerBounds);
-        },
-      }),
-      [map]
-    );
-    const outerHandlers = useMemo(
-      () => ({
-        click() {
-          setBounds(outerBounds);
-          map.fitBounds(outerBounds);
-        },
-      }),
-      [map]
-    );
-
-    return (
-      <>
-        <Rectangle
-          bounds={outerBounds}
-          eventHandlers={outerHandlers}
-          pathOptions={bounds === outerBounds ? redColor : whiteColor}
-        />
-        <Rectangle
-          bounds={innerBounds}
-          eventHandlers={innerHandlers}
-          pathOptions={bounds === innerBounds ? redColor : whiteColor}
-        />
-      </>
-    );
-  }
 
   return (
     <Col lg={12} xs={12} className={styles.mapCol}>
       <MapContainer
-        bounds={outerBounds}
-        maxBounds={outerBounds}
+        bounds={circleBounds}
+        maxBounds={circleBounds}
         minZoom={16}
         maxZoom={18}
         className={styles.mapContainer}
         center={mapCoordinates}
         zoom={18}
         scrollWheelZoom={false}
-        placeholder={<MapPlaceholder />}
       >
+        <Circle
+          center={mapCoordinates}
+          radius={150}
+          pathOptions={{ color: "rgba(184, 48, 48, 0.8)" }}
+        />
+        
         <TileLayer
-          className={styles.mapImg}
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright%22%3EOpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        <SetBoundsRectangles />
       </MapContainer>
     </Col>
   );

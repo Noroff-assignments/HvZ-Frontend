@@ -13,29 +13,38 @@ const GameList = () => {
       gameTitle: "Vegetables Vs Zombies",
       players: 20,
       ends: new Date("2023-08-03"),
+      x: 55.642779272205274,
+      y: 12.271510716977884,
     },
     
     {
       gameTitle: "Rene Royale",
       players: 35,
       ends: new Date("2023-08-03"),
+      x: 55.124758, 
+      y: 14.908497,
     },
     {
       gameTitle: "zzzzZZZZzzzzZ",
       players: 800,
       ends: new Date("2175-01-09"),
+      x: -63.39720351402566, 
+      y: -56.99776636278607,
     },
     {
       gameTitle: "Real Guns Allowed",
       players: 20,
       ends: new Date("2023-11-14"),
+      x: 67.011239, 
+      y: -50.716628,
     },
     {
       gameTitle: "Just me. lonesome me...",
       players: 1,
       ends: new Date("2023-08-03"),
+      x: 21.38969509141705, 
+      y: -157.94513716587218,
     },
-  
     
   ];
 
