@@ -19,7 +19,7 @@ jobs:
           node-version: '18.x'
           
       - name: REMOVE Artifacts
-      - uses: kolpav/purge-artifacts-action@v1
+        uses: kolpav/purge-artifacts-action@v1
         with:
           token: $
           expire-in: 0
