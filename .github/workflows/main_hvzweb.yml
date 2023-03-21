@@ -27,7 +27,13 @@ jobs:
           
       - name: NPM i
         run: |
-          npm install react-leaflet
+          npm i react-router-dom
+          npm i react-leaflet
+          npm i react-bootstrap bootstrap
+          npm i react
+          npm i mdb-react-ui-kit
+          npm i react-leaflet
+          npm i react-qr-reader
           npm run build --if-present
           npm run test --if-present
           
