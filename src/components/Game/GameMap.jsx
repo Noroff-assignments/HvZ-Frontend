@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useLocation, useNavigate, Link } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Col } from "react-bootstrap";
 import styles from "./GameMap.module.css";
 import { MapContainer } from "react-leaflet/MapContainer";

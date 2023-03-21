@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'FiraSans';
-  src: url('/public/Fonts/Fira_Sans/FiraSans-Medium.ttf') format('truetype');
+  src: url('/public/Fonts/Fira_Sans/FiraSans-Medium.ttf');
   font-weight: normal;
   font-style: normal;
 }
