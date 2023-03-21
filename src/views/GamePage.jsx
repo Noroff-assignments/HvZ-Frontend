@@ -1,9 +1,6 @@
-import LandingPageHeader from "../components/Landing/LandingPageHeader";
-import GameLobby from "../components/GameLobby/GameLobby";
 import GameInfo from "../components/Game/GameInfo";
 import GameMap from "../components/Game/GameMap";
 import GameChat from "../components/Game/GameChat";
-import LoginForm from "../components/Login/LoginForm";
 import { Container, Row, Col } from "react-bootstrap";
 
 const GameLobbyPage = () => {
@@ -11,11 +8,11 @@ const GameLobbyPage = () => {
     <>
       <Container fluid>
         <Row>
-          <Col lg={6} xs={12}>
+        <Col sm={12}md={6}lg={{order: 1}} xs={{order: 2}}style={{padding: "0px"}}>
             <GameInfo />
             <GameChat />
           </Col>
-          <Col lg={6} xs={12}>
+          <Col sm={12}md={6}lg={{order: 2}} xs={{order: 1}}style={{padding: "0px"}}>
             <GameMap />
           </Col>
         </Row>

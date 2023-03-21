@@ -1,119 +1,140 @@
-import { Container, Col, Row, Button } from "react-bootstrap";
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { Col } from "react-bootstrap";
 import styles from "./GameMap.module.css";
-import { useEffect, useState, useMemo } from "react";
-import { useLocation, useNavigate, Link } from "react-router-dom";
 import { MapContainer } from "react-leaflet/MapContainer";
 import { TileLayer } from "react-leaflet/TileLayer";
 import { useMap } from "react-leaflet/hooks";
-import { Rectangle } from "react-leaflet";
+import { Circle, Pane } from "react-leaflet";
 import { GiPirateGrave } from "react-icons/gi";
-import { MarkerLayer, Marker } from "react-leaflet-marker";
+import { Marker } from "react-leaflet-marker";
+import L from "leaflet";
 const GameMap = () => {
   const location = useLocation();
-  const mapCoordinatesX = 55.642779272205274;
-  const mapCoordinatesY = 12.271510716977884;
+  const navigate = useNavigate();
+  const currentGame = location.state.currentGame;
+  const currentMission = location.state.currentMission;
+  const [clickedMission, setClickedMission] = useState(null);
+  const [selectedMission, setSelectedMission] = useState(null);
+  const mapCoordinatesX = currentGame.x;
+  const mapCoordinatesY = currentGame.y;
+  const missionLocations = [
+    [
+      "Free Cars (Keys not included)",
+      "Lots of fancy cars free for the taking if you can get inside",
+      mapCoordinatesX + 0.0008,
+      mapCoordinatesY - 0.0002,
+      40,
+    ],
+    [
+      "Rene's Drug stash",
+      "Intricate description of all Rene's expensive drugs from his stash ",
+      mapCoordinatesX - 0.00096,
+      mapCoordinatesY + 0.00083,
+      10,
+    ],
+  ];
   const deathLocations = [
     [mapCoordinatesX + 0.0003, mapCoordinatesY + 0.0003],
     [mapCoordinatesX - 0.0004, mapCoordinatesY + 0.00083],
     [mapCoordinatesX + 0.000664, mapCoordinatesY - 0.00032],
     [mapCoordinatesX - 0.00096, mapCoordinatesY + 0.00023],
-    [mapCoordinatesX + 0.0003, mapCoordinatesY + 0.0003],
+    [mapCoordinatesX + 0.0007, mapCoordinatesY + 0.0001],
     [mapCoordinatesX + 0.0015, mapCoordinatesY + 0.00383],
-    [mapCoordinatesX + 0.000664, mapCoordinatesY - 0.00032],
+    [mapCoordinatesX + 0.0003, mapCoordinatesY - 0.00032],
     [mapCoordinatesX - 0.00036, mapCoordinatesY + 0.00423],
   ];
-  //const mapCoordinatesX = 55.642779272205274;
-  //const mapCoordinatesY = 12.271510716977884;
-  
-
   const mapCoordinates = [mapCoordinatesX, mapCoordinatesY];
-
-  const innerBounds = [
-    [mapCoordinatesX + 0.003, mapCoordinatesY + 0.005],
-    [mapCoordinatesX - 0.003, mapCoordinatesY - 0.005],
+  const circleBounds = [
+    [mapCoordinatesX - 0.0025, mapCoordinatesY - 0.0025],
+    [mapCoordinatesX + 0.0025, mapCoordinatesY + 0.0025],
   ];
-  const outerBounds = [
-    [mapCoordinatesX + 0.003, mapCoordinatesY + 0.005],
-    [mapCoordinatesX - 0.003, mapCoordinatesY - 0.005],
-  ];
-  const redColor = { color: "red" };
-  const whiteColor = { color: "white" };
+  const handleMissionClick = (mission) => {
+    navigate("/currentGame", {
+      state: { currentGame: currentGame, currentMission: mission },
+    });
+    setSelectedMission(mission);
+  };
+  useEffect(() => {
+    if (clickedMission !== null) {
+      setClickedMission(null);
+      location.state = {
+        currentGame: currentGame,
+        mission: currentMission,
+      };
+    }
+  }, [clickedMission, currentGame, currentMission, location, location.state]);
 
-  function MapPlaceholder() {
-    return (
-      <p>
-        Map. <noscript>You need to enable JavaScript to see this map.</noscript>
-      </p>
-    );
-  }
-  function SetBoundsRectangles() {
-    const [bounds, setBounds] = useState(outerBounds);
+  const MyMarker = ({ position }) => {
     const map = useMap();
-
-    const innerHandlers = useMemo(
-      () => ({
-        click() {
-          setBounds(innerBounds);
-          map.fitBounds(innerBounds);
-        },
-      }),
-      [map]
-    );
-    const outerHandlers = useMemo(
-      () => ({
-        click() {
-          setBounds(outerBounds);
-          map.fitBounds(outerBounds);
-        },
-      }),
-      [map]
-    );
-
+    const markerPosition = map.project(position);
+    const markerPixelCoords = L.point(markerPosition.x, markerPosition.y);
+    const markerLatLng = map.unproject(markerPixelCoords);
     return (
-      <>
-        <Rectangle
-          bounds={outerBounds}
-          eventHandlers={outerHandlers}
-          pathOptions={bounds === outerBounds ? redColor : whiteColor}
-        />
-        <Rectangle
-          bounds={innerBounds}
-          eventHandlers={innerHandlers}
-          pathOptions={bounds === innerBounds ? redColor : whiteColor}
-        />
-      </>
+      <Pane zIndex={500}>
+        <Marker position={markerLatLng}>
+          <GiPirateGrave className={styles.graveStone} />
+        </Marker>
+      </Pane>
     );
-  }
+  };
 
   return (
     <Col lg={12} xs={12} className={styles.mapCol}>
       <MapContainer
-        bounds={outerBounds}
-        maxBounds={outerBounds}
+        bounds={circleBounds}
+        maxBounds={circleBounds}
         minZoom={16}
         maxZoom={18}
         className={styles.mapContainer}
         center={mapCoordinates}
         zoom={18}
         scrollWheelZoom={false}
-        placeholder={<MapPlaceholder />}
       >
-        <MarkerLayer>
-  {deathLocations.map((death, index) => {
-    return (
-      <Marker key={index} position={death}>
-        <GiPirateGrave className={styles.graveStone} />
-      </Marker>
-    );
-  })}
-</MarkerLayer>
-
+        <Circle
+          center={mapCoordinates}
+          radius={150}
+          pathOptions={{ color: "rgba(184, 48, 48, 0.8)" }}
+        />
+        {missionLocations.map((mission, index) => {
+          const isSelectedMission =
+            selectedMission && selectedMission[0] === mission[0];
+          const circleColor = isSelectedMission
+            ? "yellow"
+            : "rgba(50, 197, 57, 0.8)";
+          return (
+            <Pane zIndex={500} key={index}>
+              <Marker position={[mission[2], mission[3]]}>
+                <h5
+                  className={styles.missionTitle}
+                  style={{
+                    color:
+                      selectedMission && selectedMission[0] === mission[0]
+                        ? "orange"
+                        : "limeGreen",
+                  }}
+                >
+                  {mission[0]}
+                </h5>
+              </Marker>
+              <Circle
+                eventHandlers={{
+                  click: () => handleMissionClick(mission),
+                }}
+                center={[mission[2], mission[3]]}
+                radius={mission[4]}
+                pathOptions={{ color: circleColor }}
+              />
+            </Pane>
+          );
+        })}
+        {deathLocations.map((death, index) => {
+          return <MyMarker key={index} position={death} />;
+        })}
         <TileLayer
-          className={styles.mapImg}
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright%22%3EOpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        <SetBoundsRectangles />
       </MapContainer>
     </Col>
   );
