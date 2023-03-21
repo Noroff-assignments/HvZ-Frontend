@@ -7,6 +7,13 @@ on:
   workflow_dispatch:
 
 jobs:
+  remove-artifacts:
+    runs-on: ubuntu-latest
+    steps:
+      - name: REMOVE ARTIFACTS
+        run: |
+          echo "::remove-artifacts::"
+
   build:
     runs-on: ubuntu-latest
 
@@ -18,12 +25,6 @@ jobs:
         with:
           node-version: '18.x'
           
-      - name: REMOVE Artifacts
-        uses: kolpav/purge-artifacts-action@v1
-        with:
-          token: $
-          expire-in: 0
-
       - name: NPM i
         run: |
           npm install react-leaflet
