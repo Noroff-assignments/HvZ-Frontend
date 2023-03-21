@@ -17,10 +17,11 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '18.x'
+          
       - name: REMOVE Artifacts
-        uses: c-hive/gha-remove-artifacts@v1
+        uses: glassechidna/artifact-cleaner@master
         with:
-          age: '30 seconds'
+          minimumAge: 60
 
       - name: NPM i
         run: |
