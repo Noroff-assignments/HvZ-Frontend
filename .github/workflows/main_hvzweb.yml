@@ -34,6 +34,8 @@ jobs:
           npm i react@"^18.2.0"
           npm i react@"^16.8.0"
           npm i react@"^17.0.0"
+          npm i react@"^17.0.2"
+          npm i react@"^18.1.0"
           npm i mdb-react-ui-kit
           npm i react-leaflet
           npm i react-qr-reader
