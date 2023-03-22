@@ -6,24 +6,20 @@ import GamePage from './views/GamePage';
 import LandingPage from './views/LandingPage';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useEffect } from 'react';
-import Pusher from "pusher-js";
+import Pusher from './utils/Pusher';
 
 function App() {
 
   useEffect(() => {
     // Enable pusher logging - don't include this in production
     Pusher.logToConsole = true;
-    
-    var pusher = new Pusher('e21b2fdbfe431899b6bb', {
-      cluster: 'eu'
-    });
-    
-    var channel = pusher.subscribe('HvZApp');
-    channel.bind('my-event', function(data) {
+
+    // Use the pusher instance imported from pusher.js
+    var channel = Pusher.subscribe('HvZApp');
+    channel.bind('rene', function(data) {
       alert(JSON.stringify(data));
     });
   }, []);
-
   
 
   return (
