@@ -69,7 +69,7 @@ jobs:
       # Specify version of azure/webapps-deploy action
       - name: DEPLOY TO AZURE
         id: deploy-to-webapp
-        uses: azure/webapps-deploy@v4
+        uses: azure/webapps-deploy@v2
         with:
           app-name: 'hvzweb'
           slot-name: 'Production'
