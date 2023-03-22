@@ -19,7 +19,24 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+.qrScanner{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.qrScanFrameImg{
+    position: absolute;
+    top: 45%;
+    left: 51.2%;
+    transform: translate(-50%, -50%);
+    width: 135%;
+    height: 100%;
+    z-index: 3;
+  }
 .qrCol{
+    position: relative;
     padding: 1vh;
 }
 .qrColSides{

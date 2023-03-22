@@ -1,4 +1,4 @@
-import styles from "./KillCodeQR.module.css";
+import styles from "./KillCodeQRScanner.module.css";
 import { Col, Row } from "react-bootstrap";
 import React, { useState } from 'react';
 import { QrReader } from 'react-qr-reader';
@@ -13,6 +13,7 @@ const KillCodeQRScanner = (props) => {
           <h2>Scan Target KillCode</h2>
         </Col>
         <Col lg={12} xs={12} className={styles.qrCol}>
+        <img className={styles.qrScanFrameImg} src="https://static.thenounproject.com/png/3046863-200.png" alt="qrScanner"/>
         <QrReader
         onResult={(result, error) => {
           if (!!result) {
@@ -23,7 +24,7 @@ const KillCodeQRScanner = (props) => {
             console.info(error);
           }
         }}
-        style={{ width: '100%' }}
+        className={styles.qrScanner}
       />
       <p>{data}</p>
         </Col>
