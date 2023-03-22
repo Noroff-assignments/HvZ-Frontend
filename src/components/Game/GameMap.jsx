@@ -14,8 +14,8 @@ import useGeolocation from "../Hooks/useGeolocation";
 const GameMap = () => {
   // GEOLOCATION:
   const { latitude, longitude, error } = useGeolocation();
-  const [updatedLatitude, setUpdatedLatitude] = useState(null);
-  const [updatedLongitude, setUpdatedLongitude] = useState(null);
+  const [updatedLatitude, setUpdatedLatitude] = useState(0);
+  const [updatedLongitude, setUpdatedLongitude] = useState(0);
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -153,11 +153,11 @@ const GameMap = () => {
         {deathLocations.map((death, index) => {
           return <MyMarker key={index} position={death} />;
         })}
-                {/* <Circle
+                { <Circle
           center={[updatedLatitude, updatedLongitude]}
           radius={10}
           pathOptions={{ color: "rgba(0, 0, 255, 0.8)" }}
-        /> */}
+        /> }
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright%22%3EOpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
