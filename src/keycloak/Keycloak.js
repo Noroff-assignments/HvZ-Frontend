@@ -12,19 +12,3 @@ export const initialize = () => {
   return keycloak.init(config);
 }
 export default keycloak;
-
-
-// const Login = (onAuthenticatedCallback) => {
-//   keycloakInstance
-//     .init({ onLoad: "login-required" })
-//     .then(function (authenticated) {
-//       authenticated ? onAuthenticatedCallback() : alert("NOT AUTHENTICATED");
-//     })
-//     .catch((e) => {
-//         console.error("Keycloak Error:", e);
-//     });
-// };
-
-// const KeycloakService = {
-//   CallLogin: Login,
-// };

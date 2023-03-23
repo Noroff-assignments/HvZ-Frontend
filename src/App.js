@@ -10,9 +10,12 @@ import LandingPage from './views/LandingPage';
 import GamePage from './views/GamePage';
 import { ROLES } from './consts/roles';
 import KeycloakRoute from './keycloak/KeycloakRoute';
+import { ReactKeycloakProvider } from '@react-keycloak/web';
+import keycloak from './keycloak/keycloak';
 
 function App() {
   return (
+    <ReactKeycloakProvider authClient={keycloak}>
     <BrowserRouter>
       <div className="App">
         <Routes>
@@ -28,6 +31,7 @@ function App() {
         </Routes>
       </div>
     </BrowserRouter>
+    </ReactKeycloakProvider>
   );
 }
 

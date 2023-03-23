@@ -1,7 +1,7 @@
 import axios from "axios";
 import keycloak from "../keycloak/keycloak";
 
-const setAuthenticationHeader = (header, keycloak) => {
+const setAuthenticationHeader = (headers, keycloak) => {
     const { token } = keycloak;
     return {
         ...headers,
@@ -33,7 +33,7 @@ axios.interceptors.request.use(async (config) => {
 
     return {
         ...config,
-        headers: setAuthenticationHeader(config.headers, keycloak);
+        headers: setAuthenticationHeader(config.headers, keycloak)
     };
 });
 
