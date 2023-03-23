@@ -5,7 +5,16 @@ import { Container, Row, Col } from "react-bootstrap";
 const GameLobbyPage = () => {
     return (
         <>
-            <Container fluid>
+            <Container fluid
+            style={{
+              backgroundImage: `url(${"https://e0.pxfuel.com/wallpapers/884/480/desktop-wallpaper-post-apocalypse-background-apocalypse-city.jpg"})`,
+              backgroundSize: "cover",
+              backgroundRepeat: "no-repeat",
+              backgroundPosition: "center",
+              minHeight: "100%",
+              height: "100vh"
+            }}
+            >
         <Row style={{padding: "0px"}}>
           <Col lg={6} xs={12}style={{padding: "0px"}}>
           <GameLobbyInfo/>
