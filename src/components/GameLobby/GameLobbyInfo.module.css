@@ -129,11 +129,7 @@
     border-bottom-right-radius: 0px;
     background:  rgb(67, 95, 114);
   }
-  .gameInfoElement{
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    border-bottom-left-radius: 5px;
-    border-bottom-left-radius: 5px;
+  .gameInfoElementMid{
     background:  rgb(67, 95, 114);
   }
   .gameInfoElementBottom{

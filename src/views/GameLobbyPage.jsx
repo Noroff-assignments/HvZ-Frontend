@@ -12,7 +12,7 @@ const GameLobbyPage = () => {
               backgroundRepeat: "no-repeat",
               backgroundPosition: "center",
               minHeight: "100%",
-              height: "100vh"
+              height: "100%"
             }}
             >
         <Row style={{padding: "0px"}}>
