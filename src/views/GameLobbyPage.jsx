@@ -6,7 +6,7 @@ const GameLobbyPage = () => {
     return (
         <>
             <Container fluid>
-        <Row>
+        <Row style={{padding: "0px"}}>
           <Col lg={6} xs={12}style={{padding: "0px"}}>
           <GameLobbyInfo/>
           </Col>

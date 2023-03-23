@@ -32,7 +32,7 @@ const GameLobby = () => {
             </Col>
           </Row>
           <Row>
-            <Col lg={12} xs={12}>
+            <Col lg={12} xs={12} className={styles.gameTitleCol}>
               <h1 className={styles.gameTitle}>{currentGame.gameTitle}</h1>
             </Col>
           </Row>
