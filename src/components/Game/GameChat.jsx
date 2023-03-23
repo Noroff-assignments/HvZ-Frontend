@@ -1,4 +1,4 @@
-import { Col} from "react-bootstrap";
+import { Row, Col, Container, Button} from "react-bootstrap";
 import styles from "./GameChat.module.css";
 import { useState } from "react";
 import {
@@ -33,7 +33,10 @@ const GameChat = () => {
   );
 
   return (
-    <Col lg={12} xs={12} className={styles.ChatComponentContainer}>
+    <Container fluid>
+      <Row>
+    <Col lg={1} className={`d-none d-sm-block`}></Col>
+    <Col lg={10} xs={12} className={styles.ChatComponentContainer}>
       <MDBContainer fluid>
         <MDBRow className="d-flex justify-content-center">
           <MDBCol md="12" lg="12" xl="12" className={styles.ChatContainer}>
@@ -48,6 +51,29 @@ const GameChat = () => {
               </div>
             </MDBBtn>
             <MDBCollapse show={showChat} >
+            <Row className={styles.chatCategoryRow}>
+            <Col lg={4} xs={4} className={styles.chatCategoryCol}>
+            <Button
+            type="submit"
+            className={styles.localBtn}
+            onClick={""}
+            >local</Button>
+            </Col>
+            <Col lg={4} xs={4} className={styles.chatCategoryCol}>
+            <Button
+            type="submit"
+            className={styles.squadBtn}
+            onClick={""}
+            >squad</Button>
+            </Col>
+            <Col lg={4} xs={4} className={styles.chatCategoryCol}>
+            <Button
+            type="submit"
+            className={styles.globalBtn}
+            onClick={""}
+            >global</Button>
+            </Col>
+            </Row>
               <MDBCard className={styles.ToggleChatContainer}>
                 <div className={styles.scroller}>
                   <MDBCardBody>
@@ -156,6 +182,9 @@ const GameChat = () => {
         </MDBRow>
       </MDBContainer>
     </Col>
+    <Col lg={1} className={`d-none d-sm-block`}></Col>
+    </Row>
+    </Container>
   );
 };
 
