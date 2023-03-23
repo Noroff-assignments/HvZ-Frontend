@@ -26,19 +26,16 @@ const GameLobby = () => {
           </Col>
           <Col lg={10} xs={12} className={styles.gameInfoColContainer}>
           <Row className={styles.headerRow}>
-          <Col lg={2} xs={2} className={styles.headerReturnCol}>
-            <Button className={styles.headerReturnBtn}
-              type="submit"
-              onClick={handleReturn}
-            >
-              <BsArrowLeftSquare className={styles.returnIcon} />
-            </Button>
+          <Col lg={1} xs={1} className={styles.headerReturnCol}>
+            
+              <BsArrowLeftSquare className={styles.returnIcon} onClick={handleReturn} />
+            
           </Col>
         
-          <Col lg={8} xs={8} className={styles.gameTitleCol}>
-            <h6 className={styles.gameTitle}>{currentGame.gameTitle}</h6>
+          <Col lg={10} xs={10} className={styles.gameTitleCol}>
+            <h3 className={styles.gameTitle}>{currentGame.gameTitle}</h3>
           </Col>
-          <Col lg={2} xs={2} className={styles.headerReturnCol}></Col>
+          <Col lg={1} xs={1} className={styles.headerReturnCol}></Col>
         </Row>
             <Row>
               <Col lg={12} xs={12} className={styles.gameInfoElementTop}>
