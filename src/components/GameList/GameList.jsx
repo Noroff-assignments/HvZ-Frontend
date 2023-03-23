@@ -4,11 +4,10 @@ import styles from "./GameList.module.css";
 import { useNavigate, Link } from "react-router-dom";
 import { FaUserAlt, FaCalendarAlt } from "react-icons/fa";
 import React from "react";
-import { getGames } from "../../api/Game";
+
 
 
 const GameList = () => {
-  const [games, setGames] = useState([]);
   const [clickedGame, setClickedGame] = useState(null);
   const navigate = useNavigate();
   let gameListArray = [
@@ -50,18 +49,6 @@ const GameList = () => {
     },
   ];
 
-  useEffect(() => {
-    async function fetchGames() {
-      const [error, response] = await getGames();
-      if (error !== null) {
-        alert(error);
-        if (response !== null) {
-          setGames(response);
-        }
-      }
-    }
-    fetchGames();
-  }, []);
 
   useEffect(() => {
     if (clickedGame !== null) {
