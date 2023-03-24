@@ -10,11 +10,12 @@ import 'leaflet/dist/leaflet.css'
 import { initialize } from './keycloak/keycloak';
 //App
 import App from './App';
+import LoadingCircle from './components/Loading/LoadingCircle';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 //Loading message
-root.render(<Loading message="Securing connection..." />)
+root.render(<LoadingCircle/>)
 
 // Init keycloak
 initialize()

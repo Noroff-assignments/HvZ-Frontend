@@ -18,20 +18,6 @@ import Pusher from './utils/Pusher';
 
 function App() {
 
-  // const checkToken = async () => {
-  //   if (keycloak.authenticated && keycloak.isTokenExpired()) {
-  //     try {
-  //       await keycloak.updateToken();
-  //       console.log('Token refreshed successfully.');
-  //     } catch (error) {
-  //       console.log('Failed to refresh token:', error);
-  //     }
-  //   }
-  // };
-  
-  // Check the token every minute
-  // setInterval(checkToken, 60 * 1000);
- 
   useEffect(() => {
     // Enable pusher logging - don't include this in production
     Pusher.logToConsole = true;

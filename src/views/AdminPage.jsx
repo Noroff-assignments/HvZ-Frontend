@@ -1,12 +1,15 @@
 import LogoutButton from "../components/buttons/LogoutButton";
+import AdminFields from "../components/Admin/AdminFields";
+import AdminMap from "../components/Admin/AdminMap";
 
 const AdminPage = () => {
 
 
     return (
         <>
-            ADMIN PAGE
             <LogoutButton/>
+            <AdminMap/>
+            <AdminFields/>
         </>
     );
 };
