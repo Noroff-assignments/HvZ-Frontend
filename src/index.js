@@ -20,16 +20,16 @@ root.render(<Loading message="Securing connection..." />)
 initialize()
   .then(() => {
     root.render(
-    <React.StrictMode>
+    // <React.StrictMode>
       <App />
-    </React.StrictMode>
+    // </React.StrictMode> 
     )
   })
   .catch(() => {
     root.render(
-      <React.StrictMode>
+      // <React.StrictMode>
         <p>"Could not establish connection to Keycloak."</p>
-      </React.StrictMode>
+      // </React.StrictMode>
     )
   })
 

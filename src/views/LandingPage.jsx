@@ -3,6 +3,7 @@ import LandingPageHeader from "../components/Landing/LandingPageHeader";
 import LoginButton from "../components/buttons/LoginButton";
 import LogoutButton from "../components/buttons/LogoutButton";
 import RegisterButton from "../components/buttons/RegisterButton";
+import AdminButton from "../components/buttons/AdminButton";
 import GameList from "../components/GameList/GameList";
 import { Container } from "react-bootstrap";
 import keycloak from "../keycloak/keycloak";
@@ -10,12 +11,8 @@ import keycloak from "../keycloak/keycloak";
 
 const LandingPage = () => {
 
-if(keycloak.authenticated) {
-  console.log("IN!");
-}
   return (
     <>
-
       <Container
         fluid
         style={{
@@ -30,12 +27,11 @@ if(keycloak.authenticated) {
         <LoginButton />
         <RegisterButton />
         <LogoutButton />
+        <AdminButton />
         <LandingPageHeader />
         <GameList />
       </Container>
-
     </>
   );
 };
-
 export default LandingPage;

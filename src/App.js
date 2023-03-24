@@ -8,6 +8,7 @@ import './App.css';
 import GameLobbyPage from './views/GameLobbyPage';
 import LandingPage from './views/LandingPage';
 import GamePage from './views/GamePage';
+import AdminPage from './views/AdminPage';
 import { ROLES } from './consts/roles';
 import KeycloakRoute from './keycloak/KeycloakRoute';
 import { ReactKeycloakProvider } from '@react-keycloak/web';
@@ -17,6 +18,20 @@ import Pusher from './utils/Pusher';
 
 function App() {
 
+  // const checkToken = async () => {
+  //   if (keycloak.authenticated && keycloak.isTokenExpired()) {
+  //     try {
+  //       await keycloak.updateToken();
+  //       console.log('Token refreshed successfully.');
+  //     } catch (error) {
+  //       console.log('Failed to refresh token:', error);
+  //     }
+  //   }
+  // };
+  
+  // Check the token every minute
+  // setInterval(checkToken, 60 * 1000);
+ 
   useEffect(() => {
     // Enable pusher logging - don't include this in production
     Pusher.logToConsole = true;
@@ -28,20 +43,23 @@ function App() {
     });
   }, []);
   
-
   return (
     <ReactKeycloakProvider authClient={keycloak}>
     <BrowserRouter>
       <div className="App">
         <Routes>
           <Route path="/" element={<LandingPage />} />
-          <Route path="/gameLobby" element= { 
+          <Route path="/gameLobby" element= {
             <KeycloakRoute role={ ROLES.User }> 
               <GameLobbyPage />
             </KeycloakRoute>} />
           <Route path="/currentGame" element={
             <KeycloakRoute role={ ROLES.User }>
               <GamePage/>
+            </KeycloakRoute>} />
+          <Route path="/admin" element={
+            <KeycloakRoute role={ ROLES.Admin }>
+              <AdminPage />
             </KeycloakRoute>} />
         </Routes>
       </div>

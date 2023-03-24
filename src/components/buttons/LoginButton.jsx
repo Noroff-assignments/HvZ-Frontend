@@ -5,7 +5,7 @@ import keycloak from "../../keycloak/keycloak";
 import styles from "./Buttons.module.css";
 
 const LoginButton = () => {
-  const redirectUri = `${window.location.origin}/`;
+  const redirectUri = `${window.location.origin}`;
 
   return (
     <Container fluid>

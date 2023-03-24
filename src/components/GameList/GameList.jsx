@@ -48,7 +48,6 @@ const GameList = () => {
     
   ];
 
-  
   useEffect(() => {
     if (clickedGame !==null) {
       navigate("/gameLobby", { state: { currentGame: clickedGame } });

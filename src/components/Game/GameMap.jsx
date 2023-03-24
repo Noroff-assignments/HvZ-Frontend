@@ -63,7 +63,7 @@ const GameMap = () => {
     setSelectedMission(mission);
   };
 
-  //GEOLOCATION:
+  GEOLOCATION:
   useEffect(() => {
     if (latitude && longitude) {
       const interval = setInterval(() => {
