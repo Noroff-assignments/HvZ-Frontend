@@ -48,7 +48,7 @@
     padding-right: 2vh;
     padding-top: 1vh;
     border-radius: 4px !important;
-    background-color: none !important;
+    background-color: rgba(119, 119, 119, 0.8);
     
   }
   .gameRowBox{

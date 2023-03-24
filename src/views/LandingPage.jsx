@@ -21,7 +21,10 @@ const LandingPage = () => {
           backgroundRepeat: "no-repeat",
           backgroundPosition: "center",
           minHeight: "100%",
-          height: "100vh"
+          height: "100vh",
+          backgroundColor: "rgb(255,255,255)",
+          borderBottom: "2vh solid rgba(190, 157, 87)",
+          
         }}
       >
         <LoginButton />
