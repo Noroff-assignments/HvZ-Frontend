@@ -18,7 +18,6 @@ export const GetAllGamesAPI = ( ) => {
     }
     fetchGames();
   }, []);
-  console.log("Tester"+games);
   return games;
 };
 

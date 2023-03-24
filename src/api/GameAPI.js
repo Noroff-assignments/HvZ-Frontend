@@ -35,6 +35,7 @@ export const getGames = async () => {
       throw new Error("Could not complete request");
     }
     const data = await response.json();
+    console.log(data);
     return [null, data];
   } catch (error) {
     return [error.message, []];
