@@ -104,11 +104,11 @@ const GameMap = () => {
       <MapContainer
         bounds={circleBounds}
         maxBounds={circleBounds}
-        minZoom={16}
-        maxZoom={18}
+        minZoom={8}
+        maxZoom={24}
         className={styles.mapContainer}
         center={mapCoordinates}
-        zoom={18}
+        zoom={1}
         scrollWheelZoom={false}
       >
         <Circle

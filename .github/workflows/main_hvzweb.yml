@@ -32,10 +32,11 @@ jobs:
       # Run npm installs in parallel
       - name: NPM i
         run: |
-          yarn i mdb-react-ui-kit &
-          yarn i npm i react-qr-reader &
-          yarn i react &
-          yarn i react-leaflet &
+          yarn install
+          yarn install mdb-react-ui-kit &
+          yarn install react-qr-reader &
+          yarn install react &
+          yarn install react-leaflet &
           wait
           npm run build --if-present
           npm run test --if-present
@@ -68,7 +69,7 @@ jobs:
       # Specify version of azure/webapps-deploy action
       - name: DEPLOY TO AZURE
         id: deploy-to-webapp
-        uses: azure/webapps-deploy@v4
+        uses: azure/webapps-deploy@v2
         with:
           app-name: 'hvzweb'
           slot-name: 'Production'
