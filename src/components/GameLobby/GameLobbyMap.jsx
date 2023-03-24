@@ -9,8 +9,8 @@ const GameLobbyMap = () => {
   const location = useLocation();
   const currentGame = location.state.currentGame;
   
-  const mapCoordinatesX = currentGame.x;
-  const mapCoordinatesY = currentGame.y;
+  const mapCoordinatesX = 1;
+  const mapCoordinatesY = 2;
   
   
   const mapCoordinates = [mapCoordinatesX, mapCoordinatesY];

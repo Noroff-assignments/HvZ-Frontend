@@ -4,38 +4,47 @@ import { getGames } from "../../api/GameAPI";
 import { getGame } from "../../api/GameAPI";
 
 
-export const GetAllGamesAPI = ( ) => {
-  const [games, setGames] = useState([]);
+export const useGetAllGamesAPI = () => {
+  const [games, setGames] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     async function fetchGames() {
       const [error, response] = await getGames();
+      
       if (error !== null) {
         alert(error);
-        if (response) {
-          setGames(response);
-        }
+      } else if (response !== undefined) {
+        setGames(response);
+        
       }
+
+      setIsLoading(false);
     }
+    
     fetchGames();
   }, []);
-  console.log("Tester"+games);
-  return games;
+  return { games, isLoading };
 };
 
-export const GetOneGameAPI = (options = {}, gameId) => {
-  const [game, setGame] = useState([]);
-  useEffect(() => {
-    async function fetchGame(id) {
-      const [error, response] = await getGame();
-      if (error !== null) {
-        alert(error);
-        if (response !== null) {
+export const useGetOneGameAPI = (gameId) => {
+    const [game, setGame] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
+  
+    useEffect(() => {
+      async function fetchGame() {
+        const [error, response] = await getGame(gameId);
+  
+        if (error !== null) {
+          alert(error);
+        } else if (response !== undefined) {
           setGame(response);
         }
+        setIsLoading(false);
       }
-    }
-    fetchGame(gameId);
-  }, [options]);
-  return game;
-};
+      fetchGame();
+    }, [gameId]);
+  
+    return { game, isLoading };
+  };
 
