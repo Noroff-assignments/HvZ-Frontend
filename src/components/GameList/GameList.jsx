@@ -4,10 +4,11 @@ import styles from "./GameList.module.css";
 import { useNavigate, Link } from "react-router-dom";
 import { FaUserAlt, FaCalendarAlt } from "react-icons/fa";
 import React from "react";
-
+import { GetAllGamesAPI } from "../Hooks/ApiGames";
 
 
 const GameList = () => {
+  const games = GetAllGamesAPI();
   const [clickedGame, setClickedGame] = useState(null);
   const navigate = useNavigate();
   let gameListArray = [

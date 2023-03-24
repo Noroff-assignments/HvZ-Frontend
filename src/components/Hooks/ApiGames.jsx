@@ -1,25 +1,28 @@
+
+import { useEffect, useState } from "react";
 import { getGames } from "../../api/GameAPI";
 import { getGame } from "../../api/GameAPI";
 
 
-export const getAllGamesAPI = (options = {}) => {
+export const GetAllGamesAPI = ( ) => {
   const [games, setGames] = useState([]);
   useEffect(() => {
     async function fetchGames() {
       const [error, response] = await getGames();
       if (error !== null) {
         alert(error);
-        if (response !== null) {
+        if (response) {
           setGames(response);
         }
       }
     }
     fetchGames();
-  }, [options]);
+  }, []);
+  console.log("Tester"+games);
   return games;
 };
 
-export const getOneGameAPI = (options = {}, gameId) => {
+export const GetOneGameAPI = (options = {}, gameId) => {
   const [game, setGame] = useState([]);
   useEffect(() => {
     async function fetchGame(id) {

@@ -119,7 +119,7 @@ export const patchGameDescription = async (id,description) => {
   }
 };
 
-export const patchGamePeriode = async (id, beginTime, endTime) => {
+export const patchGamePeriod = async (id, beginTime, endTime) => {
   try {
     const response = await fetch(gameURL + "/" + id, {
       method: 'PATCH',
@@ -130,7 +130,7 @@ export const patchGamePeriode = async (id, beginTime, endTime) => {
       })
     });
     if (!response.ok){
-      throw new Error("Could not update time periode of game!");
+      throw new Error("Could not update time period of game!");
     }
     const data = await response.json();
     return [null,data];

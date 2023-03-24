@@ -2,7 +2,7 @@ const apiUrl = process.env.REACT_APP_API_URL;
 const chatURL = apiUrl+"/game/chat";
 
 
-export const postGame = async (message, event) => {
+export const postMessage = async (message, event) => {
   try {
     const response = await fetch(chatURL, {
       method: 'POST',
