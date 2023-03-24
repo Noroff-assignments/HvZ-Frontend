@@ -9,7 +9,14 @@ import { Circle, Pane } from "react-leaflet";
 import { GiPirateGrave } from "react-icons/gi";
 import { Marker } from "react-leaflet-marker";
 import L from "leaflet";
+import useGeolocation from "../Hooks/useGeolocation";
+
 const GameMap = () => {
+  // GEOLOCATION:
+  const { latitude, longitude, error } = useGeolocation();
+  const [updatedLatitude, setUpdatedLatitude] = useState(null);
+  const [updatedLongitude, setUpdatedLongitude] = useState(null);
+
   const location = useLocation();
   const navigate = useNavigate();
   const currentGame = location.state.currentGame;
@@ -55,6 +62,18 @@ const GameMap = () => {
     });
     setSelectedMission(mission);
   };
+
+  //GEOLOCATION:
+  useEffect(() => {
+    if (latitude && longitude) {
+      const interval = setInterval(() => {
+        setUpdatedLatitude(latitude);
+        setUpdatedLongitude(longitude);
+      }, 1000);
+      return () => clearInterval(interval);
+    }
+  }, [latitude, longitude]);
+
   useEffect(() => {
     if (clickedMission !== null) {
       setClickedMission(null);
@@ -81,14 +100,15 @@ const GameMap = () => {
 
   return (
     <Col lg={12} xs={12} className={styles.mapCol}>
+
       <MapContainer
         bounds={circleBounds}
         maxBounds={circleBounds}
-        minZoom={16}
-        maxZoom={18}
+        minZoom={8}
+        maxZoom={24}
         className={styles.mapContainer}
         center={mapCoordinates}
-        zoom={18}
+        zoom={1}
         scrollWheelZoom={false}
       >
         <Circle
@@ -96,6 +116,8 @@ const GameMap = () => {
           radius={150}
           pathOptions={{ color: "rgba(184, 48, 48, 0.8)" }}
         />
+
+
         {missionLocations.map((mission, index) => {
           const isSelectedMission =
             selectedMission && selectedMission[0] === mission[0];
@@ -131,10 +153,16 @@ const GameMap = () => {
         {deathLocations.map((death, index) => {
           return <MyMarker key={index} position={death} />;
         })}
+                {/* <Circle
+          center={[updatedLatitude, updatedLongitude]}
+          radius={10}
+          pathOptions={{ color: "rgba(0, 0, 255, 0.8)" }}
+        /> */}
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright%22%3EOpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
+
       </MapContainer>
     </Col>
   );
