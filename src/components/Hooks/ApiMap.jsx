@@ -28,7 +28,7 @@ export const useGetAllMapsAPI = () => {
 };
 
 export const useGetOneMapAPI = (mapId) => {
-    const [map, setMap] = useState(null);
+    const [indexMap, setMap] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
   
     useEffect(() => {
@@ -45,6 +45,6 @@ export const useGetOneMapAPI = (mapId) => {
       fetchMap();
     }, [mapId]);
   
-    return { map, isLoading };
+    return { indexMap, isLoading };
   };
 

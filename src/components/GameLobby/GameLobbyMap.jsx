@@ -1,16 +1,29 @@
+import { useEffect, useState } from "react";
 import { Col} from "react-bootstrap";
 import styles from "./GameLobbyMap.module.css";
 import { useLocation } from "react-router-dom";
 import { MapContainer } from "react-leaflet/MapContainer";
 import { TileLayer } from "react-leaflet/TileLayer";
 import { Circle } from "react-leaflet";
-
+import { useGetOneGameMapAPI } from "../Hooks/APIGameMapPlayer";
 const GameLobbyMap = () => {
   const location = useLocation();
-  const currentGame = location.state.currentGame;
   
-  const mapCoordinatesX = 1;
-  const mapCoordinatesY = 2;
+  const currentGameId = location.state.currentGameId;
+  const { game, indexMap } = useGetOneGameMapAPI(currentGameId)
+  
+  
+  
+  useEffect(() => {
+    if (indexMap !== null) {
+      console.log("Lobbygame")
+      console.log(game)
+      console.log("LobbyindexMap")
+      console.log(indexMap)
+    }
+  }, [game,indexMap]);
+  const mapCoordinatesX = indexMap ? indexMap.latitude : 0;
+  const mapCoordinatesY = indexMap ? indexMap.longitude : 0;
   
   
   const mapCoordinates = [mapCoordinatesX, mapCoordinatesY];
@@ -21,6 +34,7 @@ const GameLobbyMap = () => {
 
   return (
     <Col lg={12} xs={12} className={styles.mapCol}>
+      {indexMap !== null && (
       <MapContainer
         bounds={circleBounds}
         maxBounds={circleBounds}
@@ -42,6 +56,7 @@ const GameLobbyMap = () => {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
       </MapContainer>
+      )}
     </Col>
   );
 };

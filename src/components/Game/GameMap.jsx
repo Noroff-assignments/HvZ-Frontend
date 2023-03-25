@@ -10,7 +10,8 @@ import { GiPirateGrave } from "react-icons/gi";
 import { Marker } from "react-leaflet-marker";
 import L from "leaflet";
 import useGeolocation from "../Hooks/useGeolocation";
-
+import { useGetOneGameMapPlayersAPI } from "../Hooks/APIGameMapPlayer";
+import PlayerLocations from './PlayerLocations';
 const GameMap = () => {
   // GEOLOCATION:
   const { latitude, longitude, error } = useGeolocation();
@@ -19,12 +20,24 @@ const GameMap = () => {
 
   const location = useLocation();
   const navigate = useNavigate();
-  const currentGame = location.state.currentGame;
+  const currentGameId = location.state.currentGameId;
+  const { game, indexMap, players } = useGetOneGameMapPlayersAPI(currentGameId);
+
+  useEffect(() => {
+    if (indexMap !== null) {
+      console.log("game");
+      console.log(game);
+      console.log("indexMap");
+      console.log(indexMap);
+      console.log("indexPlayers");
+      console.log(players);
+    }
+  }, [game, indexMap, players]);
   const currentMission = location.state.currentMission;
   const [clickedMission, setClickedMission] = useState(null);
   const [selectedMission, setSelectedMission] = useState(null);
-  const mapCoordinatesX = currentGame.x;
-  const mapCoordinatesY = currentGame.y;
+  const mapCoordinatesX = indexMap ? indexMap.latitude : 0;
+  const mapCoordinatesY = indexMap ? indexMap.longitude : 0;
   const missionLocations = [
     [
       "Free Cars (Keys not included)",
@@ -58,7 +71,7 @@ const GameMap = () => {
   ];
   const handleMissionClick = (mission) => {
     navigate("/currentGame", {
-      state: { currentGame: currentGame, currentMission: mission },
+      state: { currentGameId: currentGameId, currentMission: mission },
     });
     setSelectedMission(mission);
   };
@@ -78,11 +91,11 @@ const GameMap = () => {
     if (clickedMission !== null) {
       setClickedMission(null);
       location.state = {
-        currentGame: currentGame,
+        currentGameId: currentGameId,
         mission: currentMission,
       };
     }
-  }, [clickedMission, currentGame, currentMission, location, location.state]);
+  }, [clickedMission, currentGameId, currentMission, location, location.state]);
 
   const MyMarker = ({ position }) => {
     const map = useMap();
@@ -100,70 +113,71 @@ const GameMap = () => {
 
   return (
     <Col lg={12} xs={12} className={styles.mapCol}>
-
-      <MapContainer
-        bounds={circleBounds}
-        maxBounds={circleBounds}
-        minZoom={8}
-        maxZoom={24}
-        className={styles.mapContainer}
-        center={mapCoordinates}
-        zoom={1}
-        scrollWheelZoom={false}
-      >
-        <Circle
+      {indexMap !== null && (
+        <MapContainer
+          bounds={circleBounds}
+          maxBounds={circleBounds}
+          minZoom={8}
+          maxZoom={24}
+          className={styles.mapContainer}
           center={mapCoordinates}
-          radius={150}
-          pathOptions={{ color: "rgba(184, 48, 48, 0.8)" }}
-        />
-
-
-        {missionLocations.map((mission, index) => {
-          const isSelectedMission =
-            selectedMission && selectedMission[0] === mission[0];
-          const circleColor = isSelectedMission
-            ? "yellow"
-            : "rgba(50, 197, 57, 0.8)";
-          return (
-            <Pane zIndex={500} key={index}>
-              <Marker position={[mission[2], mission[3]]}>
-                <h5
-                  className={styles.missionTitle}
-                  style={{
-                    color:
-                      selectedMission && selectedMission[0] === mission[0]
-                        ? "orange"
-                        : "limeGreen",
+          zoom={1}
+          scrollWheelZoom={false}
+        >
+          <Circle
+            center={mapCoordinates}
+            radius={150}
+            pathOptions={{ color: "rgba(184, 48, 48, 0.8)" }}
+          />
+          {game && <PlayerLocations id={game.id} />}
+          {missionLocations.map((mission, index) => {
+            const isSelectedMission =
+              selectedMission && selectedMission[0] === mission[0];
+            const circleColor = isSelectedMission
+              ? "yellow"
+              : "rgba(50, 197, 57, 0.8)";
+            return (
+              <Pane zIndex={500} key={index}>
+                <Marker position={[mission[2], mission[3]]}>
+                  <h5
+                    className={styles.missionTitle}
+                    style={{
+                      color:
+                        selectedMission && selectedMission[0] === mission[0]
+                          ? "orange"
+                          : "limeGreen",
+                    }}
+                  >
+                    {mission[0]}
+                  </h5>
+                </Marker>
+                <Circle
+                  eventHandlers={{
+                    click: () => handleMissionClick(mission),
                   }}
-                >
-                  {mission[0]}
-                </h5>
-              </Marker>
-              <Circle
-                eventHandlers={{
-                  click: () => handleMissionClick(mission),
-                }}
-                center={[mission[2], mission[3]]}
-                radius={mission[4]}
-                pathOptions={{ color: circleColor }}
-              />
-            </Pane>
-          );
-        })}
-        {deathLocations.map((death, index) => {
-          return <MyMarker key={index} position={death} />;
-        })}
-                { <Circle
-          center={[updatedLatitude, updatedLongitude]}
-          radius={10}
-          pathOptions={{ color: "rgba(0, 0, 255, 0.8)" }}
-        /> }
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright%22%3EOpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-
-      </MapContainer>
+                  center={[mission[2], mission[3]]}
+                  radius={mission[4]}
+                  pathOptions={{ color: circleColor }}
+                />
+              </Pane>
+            );
+          })}
+          {deathLocations.map((death, index) => {
+            return <MyMarker key={index} position={death} />;
+          })}
+          {
+            <Circle
+              center={[updatedLatitude, updatedLongitude]}
+              radius={10}
+              pathOptions={{ color: "rgba(0, 0, 255, 0.8)" }}
+            />
+          }
+          <TileLayer
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright%22%3EOpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+        </MapContainer>
+      )}
     </Col>
   );
 };

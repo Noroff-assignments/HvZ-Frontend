@@ -16,7 +16,7 @@ const GameLobby = () => {
     navigate("/");
   };
   const handleJoin = () => {
-    navigate("/currentGame", { state: { currentGame: game.id } });
+    navigate("/currentGame", { state: { currentGameId: game.id } });
   };
 
   useEffect(() => {
