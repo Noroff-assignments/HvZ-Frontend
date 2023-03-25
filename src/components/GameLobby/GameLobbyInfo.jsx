@@ -20,10 +20,7 @@ const GameLobby = () => {
   };
 
   useEffect(() => {
-    console.log(location.state.currentGameId)
     if (game !== null) {
-      console.log("Current");
-      console.log(game);
     }
   }, [game]);
 

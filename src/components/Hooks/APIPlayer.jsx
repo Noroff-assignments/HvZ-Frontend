@@ -1,25 +1,20 @@
+import { useEffect, useState } from "react";
 import { getPlayer } from "../../api/PlayerAPI";
 import { getPlayers } from "../../api/PlayerAPI";
 
-export const useGetAllPlayersAPI = () => {
-    const [maps, setMaps] = useState(null);
-    const [isLoading, setIsLoading] = useState(true);
+export const useGetAllPlayersAPI = (gameId) => {
+    const [players, setPlayers] = useState(null);
   
     useEffect(() => {
-      async function fetchMaps() {
-        const [error, response] = await getMaps();
-        
+      async function fetchPlayers() {
+        const [error, response] = await getPlayers(gameId);
         if (error !== null) {
           alert(error);
         } else if (response !== undefined) {
-          setMaps(response);
-          
+          setPlayers(response);
         }
-  
-        setIsLoading(false);
       }
-      
-      fetchMaps();
+      fetchPlayers();
     }, []);
-    return { maps, isLoading };
+    return { players};
   };

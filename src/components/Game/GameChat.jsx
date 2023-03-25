@@ -73,21 +73,21 @@ const GameChat = () => {
             <Button
             type="submit"
             className={styles.localBtn}
-            onClick={""}
+            onClick={toggleShow}
             >local</Button>
             </Col>
             <Col lg={4} xs={4} className={styles.chatCategoryCol}>
             <Button
             type="submit"
             className={styles.squadBtn}
-            onClick={""}
+            onClick={toggleShow}
             >squad</Button>
             </Col>
             <Col lg={4} xs={4} className={styles.chatCategoryCol}>
             <Button
             type="submit"
             className={styles.globalBtn}
-            onClick={""}
+            onClick={toggleShow}
             >global</Button>
             </Col>
             </Row>
