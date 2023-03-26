@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { Container, Col, Row, Button } from "react-bootstrap";
+import React, { useEffect } from "react";
+import { Container, Col, Row } from "react-bootstrap";
 import styles from "./GameInfo.module.css";
 import { useLocation, useNavigate } from "react-router-dom";
-import { IoReturnDownBack } from "react-icons/io5";
 import { BsArrowLeftSquare } from "react-icons/bs";
 import { useGetOneGameAPI } from "../Hooks/APIGames";
 
@@ -13,8 +12,7 @@ const GameInfo = () => {
       ? location.state.currentMission
       : {};
   const currentGameId = location.state.currentGameId;
-  const { game, gamesIsLoading } = useGetOneGameAPI(2);
-  const currentGame = location.state && location.state.currentGame;
+  const { game, gamesIsLoading } = useGetOneGameAPI(currentGameId);
   const navigate = useNavigate();
   const handleReturn = () => {
     navigate("/");
