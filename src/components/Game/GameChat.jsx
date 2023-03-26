@@ -2,6 +2,7 @@ import { Row, Col, Container, Button} from "react-bootstrap";
 import styles from "./GameChat.module.css";
 import { useState } from "react";
 import Pusher from "../../utils/Pusher";
+import { usePostOneMessageAPI } from "../Hooks/ApiChat";
 import {
   MDBContainer,
   MDBRow,
@@ -18,7 +19,7 @@ const GameChat = () => {
   const [showChat, setShowChat] = useState(false);
   const [myMessages, setMyMessages] = useState([]);
   const [messages, setMessages] = useState([]);
-
+  //const { response, error, isLoading } = usePostOneMessageAPI('Hello, world!', 'new_message');
   const toggleShow = () => setShowChat(!showChat);
 
   const handleSendMessage = (message) => {
