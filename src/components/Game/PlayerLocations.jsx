@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Circle} from "react-leaflet";
-import { useGetAllPlayersAPI } from "../Hooks/APIPlayer";
+import { useGetAllPlayersAPI } from "../Hooks/APIPlayers";
 const PlayerLocations = (id) => {
     const { players } = useGetAllPlayersAPI(id.id);
     const [count, setCount] = useState(0);

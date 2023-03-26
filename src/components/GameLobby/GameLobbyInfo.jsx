@@ -3,14 +3,14 @@ import { Container, Col, Row, Button } from "react-bootstrap";
 import styles from "./GameLobbyInfo.module.css";
 import { BsArrowLeftSquare } from "react-icons/bs";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useGetOneGameAPI } from "../Hooks/ApiGames";
+import { useGetOneGameAPI } from "../Hooks/APIGames";
 
 const GameLobby = () => {
   const location = useLocation();
   const currentGameId = location.state.currentGameId;
   const { game, gamesIsLoading } = useGetOneGameAPI(currentGameId);
 
-  const [gameStatus, setGameStatus] = useState("Open for Registration");
+  const [gameStatus, setGameStatus] = useState("Unknown");
   const navigate = useNavigate();
   const handleReturn = () => {
     navigate("/");
@@ -21,6 +21,20 @@ const GameLobby = () => {
 
   useEffect(() => {
     if (game !== null) {
+      switch (game.status) {
+        case 0:
+          setGameStatus("Open for Registration");
+          break;
+        case 1:
+          setGameStatus("Running");
+          break;
+        case 2:
+          setGameStatus("Ended");
+          break;
+        default:
+          setGameStatus("Unknown");
+          break;
+      }
     }
   }, [game]);
 

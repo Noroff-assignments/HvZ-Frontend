@@ -9,9 +9,10 @@ import { Circle, Pane } from "react-leaflet";
 import { GiPirateGrave } from "react-icons/gi";
 import { Marker } from "react-leaflet-marker";
 import L from "leaflet";
-import useGeolocation from "../Hooks/useGeolocation";
-import { useGetOneGameMapPlayersAPI } from "../Hooks/APIGameMapPlayer";
 import PlayerLocations from './PlayerLocations';
+import GameMissions from './GameMissions'
+import useGeolocation from "../Hooks/useGeolocation";
+import { useGetOneGameMapAPI } from "../Hooks/APIGameMapPlayer";
 const GameMap = () => {
   // GEOLOCATION:
   const { latitude, longitude, error } = useGeolocation();
@@ -21,7 +22,7 @@ const GameMap = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const currentGameId = location.state.currentGameId;
-  const { game, indexMap, players } = useGetOneGameMapPlayersAPI(currentGameId);
+  const { game, indexMap} = useGetOneGameMapAPI(currentGameId);
 
   useEffect(() => {
     if (indexMap !== null) {
@@ -29,10 +30,9 @@ const GameMap = () => {
       console.log(game);
       console.log("indexMap");
       console.log(indexMap);
-      console.log("indexPlayers");
-      console.log(players);
+      
     }
-  }, [game, indexMap, players]);
+  }, [game, indexMap]);
   const currentMission = location.state.currentMission;
   const [clickedMission, setClickedMission] = useState(null);
   const [selectedMission, setSelectedMission] = useState(null);

@@ -4,8 +4,8 @@ import styles from "./GameList.module.css";
 import { useNavigate, Link } from "react-router-dom";
 import { FaUserAlt, FaCalendarAlt } from "react-icons/fa";
 import React from "react";
-import { useGetAllGamesAPI } from "../Hooks/ApiGames";
-import { useGetOneMapAPI } from "../Hooks/ApiMap";
+import { useGetAllGamesAPI } from "../Hooks/APIGames";
+import { useGetOneMapAPI } from "../Hooks/APIMaps";
 
 const GameList = () => {
   const { games, gamesIsLoading } = useGetAllGamesAPI();

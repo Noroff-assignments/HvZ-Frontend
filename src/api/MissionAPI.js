@@ -1,9 +1,10 @@
 const apiUrl = process.env.REACT_APP_API_URL;
 const mapURL = apiUrl+"/map";
 
-export const getMap = async (id) => {
+
+  export const getMission = async (mapId, missionId) => {
     try {
-      const response = await fetch(mapURL + "/" + id);
+      const response = await fetch(mapURL + "/" + mapId + "/mission/"+ missionId);
       if (!response.ok) {
         throw new Error("Could not complete request");
       }
@@ -14,9 +15,9 @@ export const getMap = async (id) => {
     }
   };
   
-  export const getMaps = async () => {
+  export const getMissions = async (mapId) => {
     try {
-      const response = await fetch(mapURL);
+      const response = await fetch(mapURL + "/" + mapId + "/mission");
       if (!response.ok) {
         throw new Error("Could not complete request");
       }
