@@ -1,7 +1,6 @@
 import { Container, Row, Col } from "react-bootstrap";
 import GameLobbyInfo from "../components/GameLobby/GameLobbyInfo";
 import GameLobbyMap from "../components/GameLobby/GameLobbyMap";
-import { useState, useEffect } from "react";
 
 const GameLobbyPage = () => {
 
