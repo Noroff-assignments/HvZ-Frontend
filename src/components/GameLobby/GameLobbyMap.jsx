@@ -12,8 +12,6 @@ const GameLobbyMap = () => {
   const currentGameId = location.state.currentGameId;
   const { game, indexMap } = useGetOneGameMapAPI(currentGameId)
   
-  
-  
   useEffect(() => {
     if (indexMap !== null) {
       console.log("Lobbygame")
@@ -24,7 +22,6 @@ const GameLobbyMap = () => {
   }, [game,indexMap]);
   const mapCoordinatesX = indexMap ? indexMap.latitude : 0;
   const mapCoordinatesY = indexMap ? indexMap.longitude : 0;
-  
   
   const mapCoordinates = [mapCoordinatesX, mapCoordinatesY];
   const circleBounds = [

@@ -5,20 +5,13 @@ import { useNavigate, Link } from "react-router-dom";
 import { FaUserAlt, FaCalendarAlt } from "react-icons/fa";
 import React from "react";
 import { useGetAllGamesAPI } from "../Hooks/APIGames";
-import { useGetOneMapAPI } from "../Hooks/APIMaps";
 
 const GameList = () => {
   const { games, gamesIsLoading } = useGetAllGamesAPI();
-  const { map, mapIsLoading } = useGetOneMapAPI(1);
-  
 
   const [clickedGame, setClickedGame] = useState(null);
   const navigate = useNavigate();
  
-  useEffect(() => {
-    if (games !== null) {
-    }
-  }, [games, map]);
 
   useEffect(() => {
     if (clickedGame !== null) {
