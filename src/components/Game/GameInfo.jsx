@@ -4,7 +4,7 @@ import styles from "./GameInfo.module.css";
 import { useLocation, useNavigate } from "react-router-dom";
 import { IoReturnDownBack } from "react-icons/io5";
 import { BsArrowLeftSquare } from "react-icons/bs";
-import { useGetOneGameAPI } from "../Hooks/APIGamess";
+import { useGetOneGameAPI } from "../Hooks/APIGames";
 
 const GameInfo = () => {
   const location = useLocation();
