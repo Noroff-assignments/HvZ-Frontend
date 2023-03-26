@@ -12,7 +12,6 @@ import L from "leaflet";
 import { useGetAllMissionsAPI } from "../Hooks/APIMissions";
 
 const GameMissions = (id) => {
-    
   const { missions } = useGetAllMissionsAPI(id.id);
   const location = useLocation();
   const navigate = useNavigate();
@@ -20,6 +19,17 @@ const GameMissions = (id) => {
   const currentMission = location.state.currentMission;
   const [clickedMission, setClickedMission] = useState(null);
   const [selectedMission, setSelectedMission] = useState(null);
+
+    //ensures missions are being updated every 1 minute
+  const [count, setCount] = useState(0);
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      window.requestAnimationFrame(() => {
+        setCount((count) => count + 1);
+      });
+    }, 60000);
+    return () => clearTimeout(timeoutId);
+  });
 
   const handleMissionClick = (mission) => {
     navigate("/currentGame", {
@@ -40,39 +50,40 @@ const GameMissions = (id) => {
 
   return (
     <div>
-          {missions.map((mission, index) => {
-            const isSelectedMission =
-              selectedMission && selectedMission[0] === mission[0];
-            const circleColor = isSelectedMission
-              ? "yellow"
-              : "rgba(50, 197, 57, 0.8)";
-            return (
-              <Pane zIndex={500} key={index}>
-                <Marker position={[mission[2], mission[3]]}>
-                  <h5
-                    className={styles.missionTitle}
-                    style={{
-                      color:
-                        selectedMission && selectedMission[0] === mission[0]
-                          ? "orange"
-                          : "limeGreen",
-                    }}
-                  >
-                    {mission[0]}
-                  </h5>
-                </Marker>
-                <Circle
-                  eventHandlers={{
-                    click: () => handleMissionClick(mission),
+      {missions &&
+        missions.map((mission, index) => {
+          const isSelectedMission =
+            selectedMission && selectedMission.title === mission.title;
+          const circleColor = isSelectedMission
+            ? "yellow"
+            : "rgba(50, 197, 57, 0.8)";
+          return (
+            <Pane zIndex={500} key={index}>
+              <Marker position={[mission.latitude, mission.longitude]}>
+                <h5
+                  className={styles.missionTitle}
+                  style={{
+                    color:
+                      selectedMission && selectedMission.title === mission.title
+                        ? "orange"
+                        : "limeGreen",
                   }}
-                  center={[mission[2], mission[3]]}
-                  radius={mission[4]}
-                  pathOptions={{ color: circleColor }}
-                />
-              </Pane>
-            );
-          })}
-          </div>
+                >
+                  {mission.title}
+                </h5>
+              </Marker>
+              <Circle
+                eventHandlers={{
+                  click: () => handleMissionClick(mission),
+                }}
+                center={[mission.latitude, mission.longitude]}
+                radius={40}
+                pathOptions={{ color: circleColor }}
+              />
+            </Pane>
+          );
+        })}
+    </div>
   );
 };
 

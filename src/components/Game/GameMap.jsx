@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { Col } from "react-bootstrap";
 import styles from "./GameMap.module.css";
 import { MapContainer } from "react-leaflet/MapContainer";
@@ -20,40 +20,18 @@ const GameMap = () => {
   const [updatedLongitude, setUpdatedLongitude] = useState(0);
 
   const location = useLocation();
-  const navigate = useNavigate();
   const currentGameId = location.state.currentGameId;
   const { game, indexMap} = useGetOneGameMapAPI(currentGameId);
 
   useEffect(() => {
     if (indexMap !== null) {
-      console.log("game");
-      console.log(game);
-      console.log("indexMap");
-      console.log(indexMap);
-      
+      // REMOVE ME BEFORE RELEASE
     }
   }, [game, indexMap]);
-  const currentMission = location.state.currentMission;
-  const [clickedMission, setClickedMission] = useState(null);
-  const [selectedMission, setSelectedMission] = useState(null);
+  
   const mapCoordinatesX = indexMap ? indexMap.latitude : 0;
   const mapCoordinatesY = indexMap ? indexMap.longitude : 0;
-  const missionLocations = [
-    [
-      "Free Cars (Keys not included)",
-      "Lots of fancy cars free for the taking if you can get inside",
-      mapCoordinatesX + 0.0008,
-      mapCoordinatesY - 0.0002,
-      40,
-    ],
-    [
-      "Rene's Drug stash",
-      "Intricate description of all Rene's expensive drugs from his stash ",
-      mapCoordinatesX - 0.00096,
-      mapCoordinatesY + 0.00083,
-      10,
-    ],
-  ];
+  
   const deathLocations = [
     [mapCoordinatesX + 0.0003, mapCoordinatesY + 0.0003],
     [mapCoordinatesX - 0.0004, mapCoordinatesY + 0.00083],
@@ -69,12 +47,6 @@ const GameMap = () => {
     [mapCoordinatesX - 0.0025, mapCoordinatesY - 0.0025],
     [mapCoordinatesX + 0.0025, mapCoordinatesY + 0.0025],
   ];
-  const handleMissionClick = (mission) => {
-    navigate("/currentGame", {
-      state: { currentGameId: currentGameId, currentMission: mission },
-    });
-    setSelectedMission(mission);
-  };
 
   //GEOLOCATION:
   useEffect(() => {
@@ -86,16 +58,6 @@ const GameMap = () => {
       return () => clearInterval(interval);
     }
   }, [latitude, longitude]);
-
-  useEffect(() => {
-    if (clickedMission !== null) {
-      setClickedMission(null);
-      location.state = {
-        currentGameId: currentGameId,
-        mission: currentMission,
-      };
-    }
-  }, [clickedMission, currentGameId, currentMission, location, location.state]);
 
   const MyMarker = ({ position }) => {
     const map = useMap();
@@ -130,38 +92,7 @@ const GameMap = () => {
             pathOptions={{ color: "rgba(184, 48, 48, 0.8)" }}
           />
           {game && <PlayerLocations id={game.id} />}
-          {missionLocations.map((mission, index) => {
-            const isSelectedMission =
-              selectedMission && selectedMission[0] === mission[0];
-            const circleColor = isSelectedMission
-              ? "yellow"
-              : "rgba(50, 197, 57, 0.8)";
-            return (
-              <Pane zIndex={500} key={index}>
-                <Marker position={[mission[2], mission[3]]}>
-                  <h5
-                    className={styles.missionTitle}
-                    style={{
-                      color:
-                        selectedMission && selectedMission[0] === mission[0]
-                          ? "orange"
-                          : "limeGreen",
-                    }}
-                  >
-                    {mission[0]}
-                  </h5>
-                </Marker>
-                <Circle
-                  eventHandlers={{
-                    click: () => handleMissionClick(mission),
-                  }}
-                  center={[mission[2], mission[3]]}
-                  radius={mission[4]}
-                  pathOptions={{ color: circleColor }}
-                />
-              </Pane>
-            );
-          })}
+          {game && <GameMissions id={indexMap.id} />}
           {deathLocations.map((death, index) => {
             return <MyMarker key={index} position={death} />;
           })}

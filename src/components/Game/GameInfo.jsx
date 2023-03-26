@@ -8,8 +8,7 @@ import { useGetOneGameAPI } from "../Hooks/APIGames";
 
 const GameInfo = () => {
   const location = useLocation();
-  const currentMission =
-    location.state && location.state.currentMission != null ? location.state.currentMission : {};
+  const currentMission = location.state && location.state.currentMission != null ? location.state.currentMission : {};
   const currentGameId = location.state.currentGameId;
   const { game, gamesIsLoading } = useGetOneGameAPI(2);
   const currentGame = location.state && location.state.currentGame;
@@ -56,8 +55,8 @@ const GameInfo = () => {
             </Row>
             <Row>
         <Col lg={12} xs={12} className={styles.gameInfoElementMid}>
-          {currentMission && currentMission.length > 0 ? (
-            <h4>Selected mission: {currentMission[0]}</h4>
+          {currentMission ? (
+            <h4>Selected mission: {currentMission.title}</h4>
           ) : (
             <p></p>
           )}
@@ -65,8 +64,8 @@ const GameInfo = () => {
       </Row>
       <Row>
         <Col lg={12} xs={12} className={styles.gameInfoElementBottom}>
-          {currentMission && currentMission.length > 0 ? (
-            <p>Description: {currentMission[1]}</p>
+          {currentMission ? (
+            <p>Description: {currentMission.description}</p>
           ) : (
             <p>empty</p>
           )}
