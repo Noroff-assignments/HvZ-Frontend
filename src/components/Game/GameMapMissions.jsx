@@ -77,7 +77,7 @@ const GameMissions = (id) => {
                   click: () => handleMissionClick(mission),
                 }}
                 center={[mission.latitude, mission.longitude]}
-                radius={40}
+                radius={20}
                 pathOptions={{ color: circleColor }}
               />
             </Pane>

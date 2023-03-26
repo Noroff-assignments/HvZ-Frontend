@@ -4,13 +4,10 @@ import { Col } from "react-bootstrap";
 import styles from "./GameMap.module.css";
 import { MapContainer } from "react-leaflet/MapContainer";
 import { TileLayer } from "react-leaflet/TileLayer";
-import { useMap } from "react-leaflet/hooks";
-import { Circle, Pane } from "react-leaflet";
-import { GiPirateGrave } from "react-icons/gi";
-import { Marker } from "react-leaflet-marker";
-import L from "leaflet";
-import PlayerLocations from './PlayerLocations';
-import GameMissions from './GameMissions'
+import { Circle } from "react-leaflet";
+import PlayerLocations from "./GameMapPlayerLocations";
+import DeathLocations from "./GameMapKills";
+import GameMissions from "./GameMapMissions";
 import useGeolocation from "../Hooks/useGeolocation";
 import { useGetOneGameMapAPI } from "../Hooks/APIGameMapPlayer";
 const GameMap = () => {
@@ -21,27 +18,16 @@ const GameMap = () => {
 
   const location = useLocation();
   const currentGameId = location.state.currentGameId;
-  const { game, indexMap} = useGetOneGameMapAPI(currentGameId);
+  const { game, indexMap } = useGetOneGameMapAPI(currentGameId);
 
   useEffect(() => {
     if (indexMap !== null) {
       // REMOVE ME BEFORE RELEASE
     }
   }, [game, indexMap]);
-  
+
   const mapCoordinatesX = indexMap ? indexMap.latitude : 0;
   const mapCoordinatesY = indexMap ? indexMap.longitude : 0;
-  
-  const deathLocations = [
-    [mapCoordinatesX + 0.0003, mapCoordinatesY + 0.0003],
-    [mapCoordinatesX - 0.0004, mapCoordinatesY + 0.00083],
-    [mapCoordinatesX + 0.000664, mapCoordinatesY - 0.00032],
-    [mapCoordinatesX - 0.00096, mapCoordinatesY + 0.00023],
-    [mapCoordinatesX + 0.0007, mapCoordinatesY + 0.0001],
-    [mapCoordinatesX + 0.0015, mapCoordinatesY + 0.00383],
-    [mapCoordinatesX + 0.0003, mapCoordinatesY - 0.00032],
-    [mapCoordinatesX - 0.00036, mapCoordinatesY + 0.00423],
-  ];
   const mapCoordinates = [mapCoordinatesX, mapCoordinatesY];
   const circleBounds = [
     [mapCoordinatesX - 0.0025, mapCoordinatesY - 0.0025],
@@ -59,20 +45,6 @@ const GameMap = () => {
     }
   }, [latitude, longitude]);
 
-  const MyMarker = ({ position }) => {
-    const map = useMap();
-    const markerPosition = map.project(position);
-    const markerPixelCoords = L.point(markerPosition.x, markerPosition.y);
-    const markerLatLng = map.unproject(markerPixelCoords);
-    return (
-      <Pane zIndex={500}>
-        <Marker position={markerLatLng}>
-          <GiPirateGrave className={styles.graveStone} />
-        </Marker>
-      </Pane>
-    );
-  };
-
   return (
     <Col lg={12} xs={12} className={styles.mapCol}>
       {indexMap !== null && (
@@ -83,7 +55,7 @@ const GameMap = () => {
           maxZoom={24}
           className={styles.mapContainer}
           center={mapCoordinates}
-          zoom={1}
+          zoom={16}
           scrollWheelZoom={false}
         >
           <Circle
@@ -93,9 +65,7 @@ const GameMap = () => {
           />
           {game && <PlayerLocations id={game.id} />}
           {game && <GameMissions id={indexMap.id} />}
-          {deathLocations.map((death, index) => {
-            return <MyMarker key={index} position={death} />;
-          })}
+          {game && <DeathLocations id={game.id} />}
           {
             <Circle
               center={[updatedLatitude, updatedLongitude]}
