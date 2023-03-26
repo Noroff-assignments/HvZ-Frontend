@@ -13,7 +13,7 @@ const GameInfo = () => {
       ? location.state.currentMission
       : {};
   const currentGameId = location.state.currentGameId;
-  const { game, gamesIsLoading } = useGetOneGameAPI(2);
+  const { game, gamesIsLoading } = useGetOneGameAPI(currentGameId);
   const currentGame = location.state && location.state.currentGame;
   const navigate = useNavigate();
   const handleReturn = () => {
