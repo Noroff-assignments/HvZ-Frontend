@@ -27,6 +27,7 @@ export const useGetAllGamesAPI = () => {
   return { games, isLoading };
 };
 
+
 export const useGetOneGameAPI = (gameId) => {
     const [game, setGame] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
