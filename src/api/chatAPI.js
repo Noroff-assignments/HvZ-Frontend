@@ -1,5 +1,5 @@
 const apiUrl = process.env.REACT_APP_API_URL;
-const chatURL = apiUrl+"/game/chat";
+const chatURL = apiUrl+"/chat";
 
 
 export const postMessage = async (message, event) => {
