@@ -17,12 +17,7 @@ const GameInfo = () => {
   const handleReturn = () => {
     navigate("/");
   };
-  useEffect(() => {
-    if (game !== null) {
-      console.log("should be Test")
-      console.log(game)
-    }
-  }, [game]);
+  
   return (
     <Container fluid className={styles.GameCol}>
       {game !== null && (
