@@ -15,36 +15,20 @@ import {
 } from "mdb-react-ui-kit";
 
 const GameChat = () => {
-  //#region pusher chat
-  const channel = Pusher.subscribe("HvZApp");
-  channel.bind('pusher:subscription_succeeded', function() {
-    console.log('Subscription succeeded');
-  });
-  channel.bind('chat-message', function(data) {
-    console.log('New message received:', data);
-    // Add the new message to your messages state
-    setMessages([...messages, data]);
-  });
-  //#endregion
-  const handleSendMyMessage = (message) => {
-    const timestamp = new Date().getTime();
-    // Add the new message to your messages state
-    setMyMessages([...myMessages, { message, timestamp }]);
-    // Trigger the 'chat-message' event on the Pusher client
-    channel.trigger('chat-message', { message, timestamp });
-  };
-
   const [showChat, setShowChat] = useState(false);
   const [myMessages, setMyMessages] = useState([]);
   const [messages, setMessages] = useState([]);
-
+  //const { response, error, isLoading } = usePostOneMessageAPI('Hello, world!', 'new_message');
   const toggleShow = () => setShowChat(!showChat);
 
   const handleSendMessage = (message) => {
     const timestamp = new Date().getTime();
     setMessages([...messages, { message, timestamp }]);
   };
-  
+  const handleSendMyMessage = (message) => {
+    const timestamp = new Date().getTime();
+    setMyMessages([...myMessages, { message, timestamp }]);
+  };
   const combinedMessages = [...myMessages, ...messages].sort(
     (a, b) => a.timestamp - b.timestamp
   );
@@ -63,7 +47,7 @@ const GameChat = () => {
               className={styles.chatToggleBtn}
             >
               <div className={styles.ChatBtnText}>
-                <span >chat</span>
+                <span >CHAT</span>
                 <MDBIcon fas icon="chevron-down" />
               </div>
             </MDBBtn>
