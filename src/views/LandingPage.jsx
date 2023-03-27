@@ -1,5 +1,5 @@
 import LandingPageHeader from "../components/Landing/LandingPageHeader";
-import LoginSignUpButtons from "../components/LoginSignUpButton/LoginSignUpButtons";
+import KeyCloakLogin from "../components/KeyCloakLogin/KeyCloakLogin";
 import GameList from "../components/GameList/GameList";
 import { Container } from "react-bootstrap";
 
@@ -20,7 +20,7 @@ const LandingPage = () => {
           
         }}
       >
-        <LoginSignUpButtons/>
+        <KeyCloakLogin/>
         <LandingPageHeader />
         <GameList />
       </Container>

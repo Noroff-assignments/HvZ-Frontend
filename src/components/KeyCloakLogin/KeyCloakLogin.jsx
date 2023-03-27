@@ -1,6 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container, Col, Row, Button } from "react-bootstrap";
-import styles from "./LoginSignUpButtons.module.css";
+import styles from "./KeyCloakLogin.module.css";
 
 const LoginSignUpButtons = () => {
     return (
