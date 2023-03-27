@@ -12,14 +12,6 @@ const GameLobbyMap = () => {
   const currentGameId = location.state.currentGameId;
   const { game, indexMap } = useGetOneGameMapAPI(currentGameId)
   
-  useEffect(() => {
-    if (indexMap !== null) {
-      console.log("Lobbygame")
-      console.log(game)
-      console.log("LobbyindexMap")
-      console.log(indexMap)
-    }
-  }, [game,indexMap]);
   const mapCoordinatesX = indexMap ? indexMap.latitude : 0;
   const mapCoordinatesY = indexMap ? indexMap.longitude : 0;
   

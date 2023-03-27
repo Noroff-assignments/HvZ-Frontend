@@ -11,8 +11,8 @@ import { Marker } from "react-leaflet-marker";
 import L from "leaflet";
 import { useGetAllMissionsAPI } from "../Hooks/APIMissions";
 
-const GameMissions = (id) => {
-  const { missions } = useGetAllMissionsAPI(id.id);
+const GameMissions = ({ id, gameId }) => {
+  const { missions } = useGetAllMissionsAPI(id);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -33,7 +33,7 @@ const GameMissions = (id) => {
 
   const handleMissionClick = (mission) => {
     navigate("/currentGame", {
-      state: { currentGameId: id.id, currentMission: mission },
+      state: { currentGameId: gameId, currentMission: mission },
     });
     setSelectedMission(mission);
   };
@@ -42,7 +42,7 @@ const GameMissions = (id) => {
     if (clickedMission !== null) {
       setClickedMission(null);
       location.state = {
-        currentGameId: id.id,
+        currentGameId: gameId,
         mission: currentMission,
       };
     }

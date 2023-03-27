@@ -57,7 +57,7 @@ const GameMap = () => {
             pathOptions={{ color: "rgba(184, 48, 48, 0.8)" }}
           />
           {game && <PlayerLocations id={game.id} />}
-          {game && <GameMissions id={indexMap.id} />}
+          {game && <GameMissions id={indexMap.id} gameId={currentGameId} />}
           {game && <GameSafeZones id={indexMap.id} />}
           {game && <DeathLocations id={game.id} />}
           {

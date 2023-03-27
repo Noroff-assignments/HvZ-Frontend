@@ -19,6 +19,8 @@ const GameInfo = () => {
   };
   useEffect(() => {
     if (game !== null) {
+      console.log("should be Test")
+      console.log(game)
     }
   }, [game]);
   return (
