@@ -5,7 +5,6 @@ import styles from "./LandingPageHeader.module.css";
 import { useState, useEffect } from "react";
 
 const LandingPageHeader = () => {
-
   const { latitude, longitude, error } = useGeolocation();
   const [updatedLatitude, setUpdatedLatitude] = useState(null);
   const [updatedLongitude, setUpdatedLongitude] = useState(null);
@@ -22,20 +21,16 @@ const LandingPageHeader = () => {
 
   return (
     <Container fluid className={styles.LandingPageHeaderContainer}>
-      <Row>
+      <Row className={styles.colHeaderRow}>
         {/*<img src="./resources/LandingBackGround.jpg" className={styles.LandingPageHeaderImage} alt="Landing Page" />*/}
-        <Col lg={4} className={`d-lg-block d-xs-none`}></Col>
-        <Col lg={4} xs={12} className={styles.colHeaderText}>
-
-          <div>
-            {updatedLatitude} : {updatedLongitude}
-          </div>
-
-
+        <Col lg={4} className={`d-lg-block d-xs-none`}>
+          <p className={styles.colHeaderCoordinatesTest}> {updatedLatitude} : {updatedLongitude}{" "} </p>
+          
         </Col>
-        <Col lg={1} className={` d-xs-none d-lg-block`}></Col>
-        <Col xs={2} className={`d-lg-none d-xs-block ${styles.colTestSides}`}></Col>        
-        <Col xs={2} className={`d-lg-none d-xs-block ${styles.colTestSides}`}></Col>
+        <Col lg={4} xs={12} className={styles.headerCol}>
+          <h2 className={styles.colHeaderText}>HUMAN VS ZOMBIE</h2>
+        </Col>
+        <Col lg={4} className={`d-lg-block d-xs-none`}></Col>
       </Row>
     </Container>
   );

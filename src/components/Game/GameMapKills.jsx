@@ -41,7 +41,7 @@ const DeathLocations = (id) => {
         <Pane zIndex={500}>
           <Marker position={markerLatLng}>
             <GiPirateGrave className={styles.graveStone} />
-            <p>{deadStory}</p>
+            <p className={styles.deadStoryP}>{deadStory}</p>
           </Marker>
         </Pane>
       );

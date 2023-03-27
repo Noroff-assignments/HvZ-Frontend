@@ -81,7 +81,7 @@ const GameLobby = () => {
               >
                 Game Status: {gameStatus}
               </Button>
-              {gameStatus === "Open for Registration" ? (
+              {gameStatus === "Open for Registration" || "running" ? (
                 <Button
                   type="submit"
                   className={styles.joinBtn}
