@@ -63,7 +63,7 @@ const GameMap = () => {
           {
             <Circle
               center={[updatedLatitude, updatedLongitude]}
-              radius={10}
+              radius={2}
               pathOptions={{ color: "rgba(0, 0, 255, 0.8)" }}
             />
           }
