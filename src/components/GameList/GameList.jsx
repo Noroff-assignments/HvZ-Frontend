@@ -47,7 +47,7 @@ const GameList = () => {
                     <Row className={styles.gameListElementRow}>
                       <Col xs={4}>
                         <FaUserAlt className={styles.userIcon} />:
-                        {game.players.length}
+                        {game.amountPlayers}
                       </Col>
                       <Col xs={5}>
                         <FaCalendarAlt className={styles.calenderIcon} />{" "}
