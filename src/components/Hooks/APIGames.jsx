@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { getGames } from "../../api/GameAPI";
 import { getGame } from "../../api/GameAPI";
 import { putGame } from "../../api/GameAPI";
+import { postGame } from "../../api/GameAPI";
 
 
 export const useGetAllGamesAPI = () => {
@@ -49,33 +50,18 @@ export const useGetOneGameAPI = (gameId) => {
     return { game, isLoading };
 };
 
-export const useCreateGameAPI = () => {
-  const [game, setGame] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
+export const usePostGameAPI = () => {
   const [error, setError] = useState(null);
+  const [data, setData] = useState([]);
 
-  const createNewGame = async (gameData) => {
-    setIsLoading(true);
-    setError(null);
-
-    const [error, response] = await putGame(
-      gameData.title,
-      gameData.description,
-      gameData.beginTime,
-      gameData.endTime,
-      gameData.mapId,
-      gameData.adminId
-    );
-    
-    if (error !== null) {
-      setError(error);
-      setIsLoading(false);
-    } else if (response !== undefined) {
-      setGame(response);
-      setIsLoading(false);
+  const createGame = async (title, description, beginTime, endTime, mapId, adminId) => {
+    const [err, res] = await postGame(title, description, beginTime, endTime, mapId, adminId);
+    if (err) {
+      setError(err);
+    } else {
+      setData(res);
     }
   };
 
-  return { game, isLoading, error, createNewGame };
+  return [createGame, error, data];
 };
-

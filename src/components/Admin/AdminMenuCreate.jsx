@@ -7,7 +7,7 @@ const AdminMenuCreate = () => {
         <>
             Create Menu    
             <AdminMapCreate />    
-            {/* <AdminGameCreate /> */}
+            <AdminGameCreate />
         </>
     );
 };

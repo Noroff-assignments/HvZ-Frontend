@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, onCreate } from 'react';
 import L from 'leaflet';
 
-const AdminMapPopup = ({ map, position, onSave, resetChildren }) => {
+const AdminMapPopup = ({ map, position, onSave }) => {
   const popupRef = useRef(null);
 
   useEffect(() => {

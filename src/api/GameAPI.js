@@ -1,7 +1,6 @@
 const apiUrl = process.env.REACT_APP_API_URL;
 const gameURL = apiUrl+"/game";
 
-
 export const postGame = async (title, description, beginTime, endTime, mapId, adminId) => {
   try {
     const response = await fetch(gameURL, {
