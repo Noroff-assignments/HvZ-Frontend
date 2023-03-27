@@ -1,43 +1,47 @@
 import React, { useState, useEffect } from 'react';
-import AdminCreate from '../components/Admin/AdminCreate';
-import AdminEdit from '../components/Admin/AdminEdit';
+import AdminMapCreate from '../components/Admin/AdminMapCreate';
+import AdminMapEdit from '../components/Admin/AdminMapEdit';
 import AdminMap from '../components/Admin/AdminMap';
+import AdminGameCreate from '../components/Admin/AdminMenuCreate';
+import AdminMenu from '../components/Admin/AdminMenu';
 import { getMaps } from '../api/MapAPI';
 
 const AdminPage = () => {
-  const [selectedMap, setSelectedMap] = useState(null);
-  const [maps, setMaps] = useState([]);
-  const [mapSaved, setMapSaved] = useState(false);
+  // const [selectedMap, setSelectedMap] = useState(null);
+  // const [maps, setMaps] = useState([]);
+  // const [mapSaved, setMapSaved] = useState(false);
 
-  useEffect(() => {
-    getMaps()
-      .then(([error, data]) => {
-        if (error) {
-          throw new Error(error);
-        }
-        setMaps(data);
-      })
-      .catch((error) => {
-        console.log(error);
-        // Handle the error case here
-      });
-  }, []);
+  // useEffect(() => {
+  //   getMaps()
+  //     .then(([error, data]) => {
+  //       if (error) {
+  //         throw new Error(error);
+  //       }
+  //       setMaps(data);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //       // Handle the error case here
+  //     });
+  // }, []);
 
-  const handleMapSelect = (map) => {
-    setSelectedMap(map);
-    setMapSaved(false);
-  };
+  // const handleMapSelect = (map) => {
+  //   setSelectedMap(map);
+  //   setMapSaved(false);
+  // };
 
-  const handleSave = () => {
-    setMapSaved(true);
-    setSelectedMap(null);
-  };
+  // const handleSave = () => {
+  //   setMapSaved(true);
+  //   setSelectedMap(null);
+  // };
 
   return (
     <>
-      {!mapSaved && <AdminCreate onSave={handleSave} />}
-      {!mapSaved && <AdminEdit selectedMap={selectedMap} onMapSelect={handleMapSelect} maps={maps} />}
-      {!mapSaved && selectedMap && <AdminMap map={selectedMap} />}
+      <AdminMenu />
+      {/* <AdminGameCreate /> */}
+      {/* {!mapSaved && <AdminMapCreate onSave={handleSave} />}
+      {!mapSaved && <AdminMapEdit selectedMap={selectedMap} onMapSelect={handleMapSelect} maps={maps} />}
+      {!mapSaved && selectedMap && <AdminMap map={selectedMap} />} */}
     </>
   );
 };

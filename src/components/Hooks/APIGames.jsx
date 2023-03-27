@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { getGames } from "../../api/GameAPI";
 import { getGame } from "../../api/GameAPI";
+import { putGame } from "../../api/GameAPI";
 
 
 export const useGetAllGamesAPI = () => {
@@ -27,7 +28,6 @@ export const useGetAllGamesAPI = () => {
   return { games, isLoading };
 };
 
-
 export const useGetOneGameAPI = (gameId) => {
     const [game, setGame] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
@@ -47,5 +47,35 @@ export const useGetOneGameAPI = (gameId) => {
     }, [gameId]);
   
     return { game, isLoading };
+};
+
+export const useCreateGameAPI = () => {
+  const [game, setGame] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  const createNewGame = async (gameData) => {
+    setIsLoading(true);
+    setError(null);
+
+    const [error, response] = await putGame(
+      gameData.title,
+      gameData.description,
+      gameData.beginTime,
+      gameData.endTime,
+      gameData.mapId,
+      gameData.adminId
+    );
+    
+    if (error !== null) {
+      setError(error);
+      setIsLoading(false);
+    } else if (response !== undefined) {
+      setGame(response);
+      setIsLoading(false);
+    }
   };
+
+  return { game, isLoading, error, createNewGame };
+};
 

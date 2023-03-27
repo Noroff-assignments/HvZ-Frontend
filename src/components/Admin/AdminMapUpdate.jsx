@@ -1,27 +1,23 @@
 import React, { useState } from "react";
-import { saveMap } from "../../api/MapAPI";
+import { updateMap } from "../../api/MapAPI";
 
-const AdminSave = ({
+const AdminMapUpdate = ({
     mapName,
     mapDescription,
     latitude,
     longitude,
-    safezones,
-    missions,
-    supplies
+    radius
   }) => {
     const [saveStatus, setSaveStatus] = useState(null);
   
     const handleSave = async () => {
       setSaveStatus("Saving...");
-      const [error, data] = await saveMap({
+      const [error, data] = await updateMap({
         mapName,
         mapDescription,
         latitude,
         longitude,
-        safezones,
-        missions,
-        supplies
+        radius
       });
       if (error) {
         setSaveStatus("Save failed!");
@@ -39,4 +35,4 @@ const AdminSave = ({
       </div>
     );
   };
-  export default AdminSave
+  export default AdminMapUpdate

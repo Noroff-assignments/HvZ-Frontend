@@ -54,9 +54,9 @@ export const getGame = async (id) => {
   }
 };
 
-export const putGame = async (id,title, description, beginTime, endTime, mapId, adminId) => {
+export const putGame = async (title, description, beginTime, endTime, mapId, adminId) => {
   try {
-    const response = await fetch(gameURL + "/" + id, {
+    const response = await fetch(gameURL, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json'},
       body: JSON.stringify({
@@ -72,10 +72,10 @@ export const putGame = async (id,title, description, beginTime, endTime, mapId, 
       throw new Error("Could not update game!");
     }
     const data = await response.json();
-    return [null,data];
+    return { error: null, data };
   }
   catch (error){
-    return [error.message, []];
+    return { error: error.message, data: null };
   }
 };
 

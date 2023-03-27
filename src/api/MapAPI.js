@@ -40,11 +40,10 @@ export const deleteMap = async (id) => {
   }
 };
 
-export const saveMap = async (mapData) => {
+export const createMap = async (mapData) => {
   try {
-    const method = mapData.id ? "PUT" : "POST"; // determine whether to create or update the map
-    const response = await fetch(mapURL + (mapData.id ? `/${mapData.id}` : ""), {
-      method,
+    const response = await fetch(mapURL, {
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
@@ -53,17 +52,18 @@ export const saveMap = async (mapData) => {
         mapDescription: mapData.mapDescription,
         latitude: mapData.latitude,
         longitude: mapData.longitude,
-        safezones: mapData.safezones,
-        missions: mapData.missions,
-        supplies: mapData.supplies,
       }),
     });
+    const data = await response.json();
     if (!response.ok) {
       throw new Error("Could not complete request");
     }
-    const data = await response.json();
-    return [null, data];
+    return { error: null, data };
   } catch (error) {
-    return [error.message, null];
+    return { error: error.message, data: null };
   }
 };
+
+export const updateMap = async (mapData) => {
+
+}

@@ -1,7 +1,9 @@
 import { deleteMap } from "../../api/MapAPI";
 
-const AdminDelete = ({ map, onDelete }) => {
+const AdminMapDelete = ({ map, onDelete }) => {
+  console.log(`AdminMapDelete for map ${map.id}`);
   const handleDelete = () => {
+    console.log(`Deleting map ${map.id}`);
     deleteMap(map.id)
       .then(([error, data]) => {
         if (error) {
@@ -20,4 +22,4 @@ const AdminDelete = ({ map, onDelete }) => {
   );
 };
 
-export default AdminDelete;
+export default AdminMapDelete;
