@@ -3,12 +3,37 @@ import { Container, Col, Row } from "react-bootstrap";
 import useGeolocation from "../Hooks/useGeolocation";
 import styles from "./LandingPageHeader.module.css";
 import { useState, useEffect } from "react";
+import keycloak, { initialize, getUsername } from "../../keycloak/keycloak";
 
 const LandingPageHeader = () => {
 
   const { latitude, longitude, error } = useGeolocation();
   const [updatedLatitude, setUpdatedLatitude] = useState(null);
   const [updatedLongitude, setUpdatedLongitude] = useState(null);
+
+  keycloak
+  .init({
+    onLoad: "check-sso",
+    silentCheckSsoRedirectUri: window.location.origin + "/silent-check-sso.html",
+  })
+  .then((authenticated) => {
+    if (authenticated) {
+      console.log(`User ${keycloak.authenticated ? keycloak.tokenParsed.preferred_username : 'unknown'} is authenticated`);
+    } else {
+      console.log("User is not authenticated");
+    }
+  });
+
+  (async () => {
+    await initialize();
+    try {
+      const username = await getUsername();
+      console.log(username);
+    } catch (error) {
+      console.error('Error getting username:', error);
+    }
+  })();
+
 
   useEffect(() => {
     if (latitude && longitude) {
@@ -28,7 +53,7 @@ const LandingPageHeader = () => {
         <Col lg={4} xs={12} className={styles.colHeaderText}>
 
           <div>
-            {updatedLatitude} : {updatedLongitude}
+            {keycloak.tokenParsed.preferred_username}
           </div>
 
 

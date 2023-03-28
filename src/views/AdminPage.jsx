@@ -5,6 +5,7 @@ import AdminMap from '../components/Admin/AdminMap';
 import AdminGameCreate from '../components/Admin/AdminMenuCreate';
 import AdminMenu from '../components/Admin/AdminMenu';
 import { getMaps } from '../api/MapAPI';
+import keycloak from '../keycloak/keycloak';
 
 const AdminPage = () => {
   // const [selectedMap, setSelectedMap] = useState(null);
@@ -37,11 +38,13 @@ const AdminPage = () => {
 
   return (
     <>
+      { keycloak.tokenParsed &&
       <AdminMenu />
-      {/* <AdminGameCreate /> */}
-      {/* {!mapSaved && <AdminMapCreate onSave={handleSave} />}
-      {!mapSaved && <AdminMapEdit selectedMap={selectedMap} onMapSelect={handleMapSelect} maps={maps} />}
-      {!mapSaved && selectedMap && <AdminMap map={selectedMap} />} */}
+      // {/* <AdminGameCreate /> */}
+      // {/* {!mapSaved && <AdminMapCreate onSave={handleSave} />}
+      // {!mapSaved && <AdminMapEdit selectedMap={selectedMap} onMapSelect={handleMapSelect} maps={maps} />}
+      // {!mapSaved && selectedMap && <AdminMap map={selectedMap} />} */}
+      }
     </>
   );
 };
