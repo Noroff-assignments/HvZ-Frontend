@@ -1,8 +1,11 @@
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { Row, Col, Container, Button } from "react-bootstrap";
 import styles from "./GameChat.module.css";
-import { useState, useEffect } from "react";
 import Pusher from "../../utils/Pusher";
 import { postMessage } from "../../api/chatAPI";
+import { useGetUserIsZombie } from "../Hooks/APIPlayers";
+import keycloak from "../../keycloak/keycloak";
 import {
   MDBContainer,
   MDBRow,
@@ -16,12 +19,18 @@ import {
 } from "mdb-react-ui-kit";
 
 const GameChat = () => {
+  const [category, setCategory] = useState("global");
   const [showChat, setShowChat] = useState(false);
   const [myMessages, setMyMessages] = useState([]);
   const [messages, setMessages] = useState([]);
   const [combinedMessages, setCombinedMessages] = useState([]);
   const [newMessage, setNewMessage] = useState([]);
-
+  const location = useLocation();
+  const currentGameId = location.state.currentGameId;
+  const { isZombie, player } = useGetUserIsZombie(
+    currentGameId,
+    keycloak.tokenParsed.sub
+  );
   const toggleShow = () => setShowChat(!showChat);
 
   const handleSendMessage = (message) => {
@@ -31,8 +40,10 @@ const GameChat = () => {
 
   const handleSendMyMessage = (message) => {
     const timestamp = new Date().getTime();
-    setMyMessages([...myMessages, { message, timestamp }]);
-    postMessage(3, message, "zombies","rene").then(([error, data]) => {
+    setMyMessages([...myMessages, { message, timestamp, category }]);
+
+    postMessage(3, message, category === "squad" ? category + player?.squadId : category).then(([error, data]) => {
+      console.log("squad");
       if (error) {
         console.log(error);
       } else {
@@ -48,15 +59,15 @@ const GameChat = () => {
   }, [myMessages, messages]);
 
   const channel = Pusher.subscribe("HvZApp");
-  channel.bind("Game3_zombies", function (data) {
+  channel.bind("Game" + currentGameId + "_" + category, function (data) {
     const timestamp = new Date().getTime();
     setNewMessage(JSON.stringify(data));
-    setMessages([...messages, { message: data, timestamp }]);
+    setMessages([...messages, { message: data, timestamp, category }]);
   });
-
   useEffect(() => {
     console.log(messages);
   }, [messages]);
+
   return (
     <Container fluid>
       <Row>
@@ -69,9 +80,10 @@ const GameChat = () => {
                   onClick={toggleShow}
                   color="info"
                   className={styles.chatToggleBtn}
+                  style={{backgroundColor: category === "zombies" ? "rgb(64, 82, 102)" : category === "global" ? "rgb(102, 64, 64)" : "rgb(102, 93, 64)"}}
                 >
                   <div className={styles.ChatBtnText}>
-                    <span>CHAT</span>
+                    <span>{category.toUpperCase()}</span>
                     <MDBIcon fas icon="chevron-down" />
                   </div>
                 </MDBBtn>
@@ -80,17 +92,29 @@ const GameChat = () => {
                     <Col lg={4} xs={4} className={styles.chatCategoryCol}>
                       <Button
                         type="submit"
-                        className={styles.localBtn}
-                        onClick={toggleShow}
+                        className={
+                          category === "local"
+                            ? `${styles.localBtn} ${styles.active}`
+                            : styles.localBtn
+                        }
+                        onClick={() =>
+                          isZombie
+                            ? setCategory("zombies")
+                            : setCategory("humans")
+                        }
                       >
-                        local
+                        {isZombie ? <>zombie</> : <>human</>}
                       </Button>
                     </Col>
                     <Col lg={4} xs={4} className={styles.chatCategoryCol}>
                       <Button
                         type="submit"
-                        className={styles.squadBtn}
-                        onClick={toggleShow}
+                        className={
+                          category === "squad"
+                            ? `${styles.squadBtn} ${styles.active}`
+                            : styles.squadBtn
+                        }
+                        onClick={() => player?.squadId > 0 ? setCategory("squad") : setCategory(category)}
                       >
                         squad
                       </Button>
@@ -98,8 +122,12 @@ const GameChat = () => {
                     <Col lg={4} xs={4} className={styles.chatCategoryCol}>
                       <Button
                         type="submit"
-                        className={styles.globalBtn}
-                        onClick={toggleShow}
+                        className={
+                          category === "global"
+                            ? `${styles.globalBtn} ${styles.active}`
+                            : styles.globalBtn
+                        }
+                        onClick={() => setCategory("global")}
                       >
                         global
                       </Button>
@@ -109,8 +137,9 @@ const GameChat = () => {
                     <div className={styles.scroller}>
                       <MDBCardBody>
                         {combinedMessages.map(
-                          ({ message, timestamp }, index) => (
+                          ({ message, timestamp, category }, index) => (
                             <div
+                            
                               className={`d-flex flex-row justify-content-${
                                 myMessages.find(
                                   (m) => m.timestamp === timestamp
@@ -145,6 +174,7 @@ const GameChat = () => {
                                       ? "#f5f6f7"
                                       : "",
                                     wordBreak: "break-word",
+                                    color: category === "zombies" ? "white" : category === "global" ? "rgb(102, 64, 64)" : "orange"
                                   }}
                                 >
                                   {message}
