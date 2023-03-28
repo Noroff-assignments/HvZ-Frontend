@@ -50,8 +50,7 @@ const GameList = () => {
                         {game.amountPlayers}
                       </Col>
                       <Col xs={5}>
-                        <FaCalendarAlt className={styles.calenderIcon} />{" "}
-                        {game.endTime}
+                      <p><FaCalendarAlt className={styles.calenderIcon} />{" "} End date: {new Date(game.endTime).toLocaleString("en-GB", {dateStyle: "short", timeStyle: "short"})}</p> 
                       </Col>
                       <Col xs={3}></Col>
                     </Row>

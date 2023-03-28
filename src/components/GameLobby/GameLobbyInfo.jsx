@@ -64,7 +64,7 @@ const GameLobby = () => {
           </Row>
           <Row>
             <Col lg={12} xs={12} className={styles.gameInfoElementBottom}>
-              <p>End date: {game.endTime}</p>
+            <p>End date: {new Date(game.endTime).toLocaleString("en-GB", {dateStyle: "short", timeStyle: "short"})}</p>
             </Col>
           </Row>
           <Row>
