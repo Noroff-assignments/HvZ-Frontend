@@ -17,10 +17,7 @@ const GameInfo = () => {
   const handleReturn = () => {
     navigate("/");
   };
-  useEffect(() => {
-    if (game !== null) {
-    }
-  }, [game]);
+  
   return (
     <Container fluid className={styles.GameCol}>
       {game !== null && (
@@ -47,7 +44,7 @@ const GameInfo = () => {
             </Row>
             <Row>
               <Col lg={12} xs={12} className={styles.gameInfoElementMid}>
-                <p>End date: {game.endTime}</p>
+              <p>End date: {new Date(game.endTime).toLocaleString("en-GB", {dateStyle: "short", timeStyle: "short"})}</p>
               </Col>
             </Row>
             <Row>

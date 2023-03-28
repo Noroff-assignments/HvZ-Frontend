@@ -5,20 +5,13 @@ import { useNavigate, Link } from "react-router-dom";
 import { FaUserAlt, FaCalendarAlt } from "react-icons/fa";
 import React from "react";
 import { useGetAllGamesAPI } from "../Hooks/APIGames";
-import { useGetOneMapAPI } from "../Hooks/APIMaps";
 
 const GameList = () => {
   const { games, gamesIsLoading } = useGetAllGamesAPI();
-  const { map, mapIsLoading } = useGetOneMapAPI(1);
-  
 
   const [clickedGame, setClickedGame] = useState(null);
   const navigate = useNavigate();
  
-  useEffect(() => {
-    if (games !== null) {
-    }
-  }, [games, map]);
 
   useEffect(() => {
     if (clickedGame !== null) {
@@ -54,11 +47,10 @@ const GameList = () => {
                     <Row className={styles.gameListElementRow}>
                       <Col xs={4}>
                         <FaUserAlt className={styles.userIcon} />:
-                        {game.players.length}
+                        {game.amountPlayers}
                       </Col>
                       <Col xs={5}>
-                        <FaCalendarAlt className={styles.calenderIcon} />{" "}
-                        {game.endTime}
+                      <p><FaCalendarAlt className={styles.calenderIcon} />{" "} End date: {new Date(game.endTime).toLocaleString("en-GB", {dateStyle: "short", timeStyle: "short"})}</p> 
                       </Col>
                       <Col xs={3}></Col>
                     </Row>

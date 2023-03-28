@@ -49,6 +49,8 @@ export const getUsername = async () => {
   }
 
   const user = await response.json();
+  console.log("here");
+  console.log(user.id);
   return user.username;
 };
 

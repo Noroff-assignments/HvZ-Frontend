@@ -59,12 +59,12 @@ const GameLobby = () => {
           </Row>
           <Row>
             <Col lg={12} xs={12} className={styles.gameInfoElementTop}>
-              <p>Number of players: {game?.players}</p>
+              <p>Number of players: {game?.amountPlayers}</p>
             </Col>
           </Row>
           <Row>
             <Col lg={12} xs={12} className={styles.gameInfoElementBottom}>
-              <p>End date: {game.endTime}</p>
+            <p>End date: {new Date(game.endTime).toLocaleString("en-GB", {dateStyle: "short", timeStyle: "short"})}</p>
             </Col>
           </Row>
           <Row>
@@ -74,14 +74,14 @@ const GameLobby = () => {
                 className={styles.statusBtn}
                 style={{
                   color:
-                    gameStatus === "Open for Registration"
+                  gameStatus === "Open for Registration" || gameStatus === "Running"
                       ? "rgb(0, 255, 21)"
                       : "rgb(110, 26, 26)",
                 }}
               >
                 Game Status: {gameStatus}
               </Button>
-              {gameStatus === "Open for Registration" ? (
+              {gameStatus === "Open for Registration" || gameStatus === "Running" ? (
                 <Button
                   type="submit"
                   className={styles.joinBtn}

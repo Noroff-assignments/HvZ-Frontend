@@ -20,6 +20,7 @@ const PlayerLocations = (id) => {
       {players &&
         players.map((player, index) => {
           if (player) {
+            
             return (
               <Circle
                 key={index}
