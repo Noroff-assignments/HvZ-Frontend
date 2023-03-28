@@ -3,7 +3,7 @@ import { Container, Col, Row } from "react-bootstrap";
 import useGeolocation from "../Hooks/useGeolocation";
 import styles from "./LandingPageHeader.module.css";
 import { useState, useEffect } from "react";
-import keycloak, { initialize, getUsername } from "../../keycloak/keycloak";
+import keycloak from "../../keycloak/keycloak";
 
 const LandingPageHeader = () => {
 
@@ -24,17 +24,6 @@ const LandingPageHeader = () => {
     }
   });
 
-  (async () => {
-    await initialize();
-    try {
-      const username = await getUsername();
-      console.log(username);
-    } catch (error) {
-      console.error('Error getting username:', error);
-    }
-  })();
-
-
   useEffect(() => {
     if (latitude && longitude) {
       const interval = setInterval(() => {
@@ -52,7 +41,11 @@ const LandingPageHeader = () => {
         <Col lg={4} className={`d-lg-block d-xs-none`}></Col>
         <Col lg={4} xs={12} className={styles.colHeaderText}>
           <div>
+          {updatedLatitude} : {updatedLongitude}
+          <div>
             {keycloak.tokenParsed && keycloak.tokenParsed.preferred_username ? keycloak.tokenParsed.preferred_username : null}
+
+          </div>
           </div>
         </Col>
         <Col lg={1} className={`d-xs-none d-lg-block`}></Col>

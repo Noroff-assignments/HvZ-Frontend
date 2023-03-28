@@ -52,6 +52,7 @@ export const createMap = async (mapData) => {
         mapDescription: mapData.mapDescription,
         latitude: mapData.latitude,
         longitude: mapData.longitude,
+        radius: mapData.radius
       }),
     });
     const data = await response.json();
@@ -64,6 +65,3 @@ export const createMap = async (mapData) => {
   }
 };
 
-export const updateMap = async (mapData) => {
-
-}
