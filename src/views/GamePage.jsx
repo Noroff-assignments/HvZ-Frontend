@@ -4,8 +4,11 @@ import KillCodeQR from "../components/Game/KillCodeQR";
 import KillCodeQRScanner from "../components/Game/KillCodeQRScanner";
 import GameChat from "../components/Game/GameChat";
 import { Container, Row, Col } from "react-bootstrap";
+import keycloak from "../keycloak/keycloak";
 
 const GameLobbyPage = () => {
+
+
   return (
     <>
       <Container fluid

@@ -27,7 +27,7 @@ const GameMap = () => {
     [mapCoordinatesX + 0.0025, mapCoordinatesY + 0.0025],
   ];
 
-  //GEOLOCATION:
+  GEOLOCATION:
   useEffect(() => {
     if (latitude && longitude) {
       const interval = setInterval(() => {

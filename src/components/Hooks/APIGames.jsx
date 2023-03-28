@@ -2,6 +2,8 @@
 import { useEffect, useState } from "react";
 import { getGames } from "../../api/GameAPI";
 import { getGame } from "../../api/GameAPI";
+import { putGame } from "../../api/GameAPI";
+import { postGame } from "../../api/GameAPI";
 
 
 export const useGetAllGamesAPI = () => {
@@ -27,7 +29,6 @@ export const useGetAllGamesAPI = () => {
   return { games, isLoading };
 };
 
-
 export const useGetOneGameAPI = (gameId) => {
     const [game, setGame] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
@@ -47,5 +48,20 @@ export const useGetOneGameAPI = (gameId) => {
     }, [gameId]);
   
     return { game, isLoading };
+};
+
+export const usePostGameAPI = () => {
+  const [error, setError] = useState(null);
+  const [data, setData] = useState([]);
+
+  const createGame = async (title, description, beginTime, endTime, mapId, adminId) => {
+    const [err, res] = await postGame(title, description, beginTime, endTime, mapId, adminId);
+    if (err) {
+      setError(err);
+    } else {
+      setData(res);
+    }
   };
 
+  return [createGame, error, data];
+};

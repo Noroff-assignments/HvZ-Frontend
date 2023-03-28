@@ -3,11 +3,36 @@ import { Container, Col, Row } from "react-bootstrap";
 import useGeolocation from "../Hooks/useGeolocation";
 import styles from "./LandingPageHeader.module.css";
 import { useState, useEffect } from "react";
+import keycloak, { initialize, getUsername } from "../../keycloak/keycloak";
 
 const LandingPageHeader = () => {
   const { latitude, longitude, error } = useGeolocation();
   const [updatedLatitude, setUpdatedLatitude] = useState(null);
   const [updatedLongitude, setUpdatedLongitude] = useState(null);
+
+  keycloak
+  .init({
+    onLoad: "check-sso",
+    silentCheckSsoRedirectUri: window.location.origin + "/silent-check-sso.html",
+  })
+  .then((authenticated) => {
+    if (authenticated) {
+      console.log(`User ${keycloak.authenticated ? keycloak.tokenParsed.preferred_username : 'unknown'} is authenticated`);
+    } else {
+      console.log("User is not authenticated");
+    }
+  });
+
+  (async () => {
+    await initialize();
+    try {
+      const username = await getUsername();
+      console.log(username);
+    } catch (error) {
+      console.error('Error getting username:', error);
+    }
+  })();
+
 
   useEffect(() => {
     if (latitude && longitude) {
@@ -23,6 +48,7 @@ const LandingPageHeader = () => {
     <Container fluid className={styles.LandingPageHeaderContainer}>
       <Row className={styles.colHeaderRow}>
         {/*<img src="./resources/LandingBackGround.jpg" className={styles.LandingPageHeaderImage} alt="Landing Page" />*/}
+<<<<<<< HEAD
         <Col lg={4} className={`d-lg-block d-xs-none`}>
           <p className={styles.colHeaderCoordinatesTest}> {updatedLatitude} : {updatedLongitude}{" "} </p>
           
@@ -31,6 +57,17 @@ const LandingPageHeader = () => {
           <h2 className={styles.colHeaderText}>HUMAN VS ZOMBIE</h2>
         </Col>
         <Col lg={4} className={`d-lg-block d-xs-none`}></Col>
+=======
+        <Col lg={4} className={`d-lg-block d-xs-none`}></Col>
+        <Col lg={4} xs={12} className={styles.colHeaderText}>
+          <div>
+            {keycloak.tokenParsed && keycloak.tokenParsed.preferred_username ? keycloak.tokenParsed.preferred_username : null}
+          </div>
+        </Col>
+        <Col lg={1} className={`d-xs-none d-lg-block`}></Col>
+        <Col xs={2} className={`d-lg-none d-xs-block ${styles.colTestSides}`}></Col>        
+        <Col xs={2} className={`d-lg-none d-xs-block ${styles.colTestSides}`}></Col>
+>>>>>>> Feature/AdminPage
       </Row>
     </Container>
   );

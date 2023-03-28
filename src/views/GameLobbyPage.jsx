@@ -1,11 +1,12 @@
+import { Container, Row, Col } from "react-bootstrap";
 import GameLobbyInfo from "../components/GameLobby/GameLobbyInfo";
 import GameLobbyMap from "../components/GameLobby/GameLobbyMap";
-import { Container, Row, Col } from "react-bootstrap";
 
 const GameLobbyPage = () => {
+
     return (
-        <>
-            <Container fluid
+      <>
+        <Container fluid
             style={{
               backgroundImage: `url(${"https://e0.pxfuel.com/wallpapers/884/480/desktop-wallpaper-post-apocalypse-background-apocalypse-city.jpg"})`,
               backgroundSize: "cover",
@@ -17,19 +18,17 @@ const GameLobbyPage = () => {
               borderBottom: "2vh solid rgba(190, 157, 87)",
             }}
             >
-        <Row style={{padding: "0px"}}>
-          <Col lg={6} xs={12}style={{padding: "0px"}}>
-          <GameLobbyInfo/>
-          </Col>
-          <Col lg={6} xs={12}style={{padding: "0px"}}>
-          <GameLobbyMap/>
-          </Col>
-        </Row>
-      </Container>
-            
-            
-        </>
-    );
+          <Row style={{padding: "0px"}}>
+            <Col lg={6} xs={12}style={{padding: "0px"}}>
+              <GameLobbyInfo />
+            </Col>
+            <Col lg={6} xs={12} style={{ padding: "0px" }}>
+              <GameLobbyMap />
+            </Col>
+          </Row>
+        </Container>
+      </>
+  );
 };
 
 export default GameLobbyPage;
