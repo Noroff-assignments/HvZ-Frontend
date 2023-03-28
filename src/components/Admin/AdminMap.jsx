@@ -3,28 +3,24 @@ import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import useGeolocation from '../Hooks/useGeolocation';
 import AdminMapPopup from './AdminMapPopup';
+import AdminGameCreate from './AdminGameCreate';
 
 const AdminMap = (onSave) => {
-  const [mapId, setMapId] = useState(null);
-  const [mapCreated, setMapCreated] = useState(false);
-  const [mapData, setMapData] = useState(null);
+  const [showMap, setShowMap] = useState(true);
+  const [mapId, setMapId] = useState("");
   const mapRef = useRef(null);
   const [leafletMap, setLeafletMap] = useState(null);
   const [popupPosition, setPopupPosition] = useState(null);
   const [userLocation, setUserLocation] = useState(null);
   const { latitude, longitude, error } = useGeolocation();
 
-  const handleMapCreated = (onSave) => {
-    setMapCreated(true);
-  };
-
   const handleMapIdUpdate = (newMapId) => {
+    console.log("adminmap" + newMapId)
     setMapId(newMapId);
-    console.log("adminmap: " + mapId);
   };
 
   useEffect(() => {
-    let defaultLocation = [55.6761, 12.5683];
+    let defaultLocation = [55.6761, 12.5683]; //Copenhagen
     if (latitude !== 0 && longitude !== 0) {
       defaultLocation = [latitude, longitude];
     }
@@ -59,12 +55,18 @@ const AdminMap = (onSave) => {
 
   return (
     <>
-    <div>
-      <div ref={mapRef} style={{ height: '50vh', width: '80vw' }} />
+      {!showMap && <div>Map created!</div>}
+      {showMap && (
+        <div>
+          <div ref={mapRef} style={{ height: '50vh', width: '80vw' }} />
           {leafletMap && popupPosition && (
-            <AdminMapPopup onSave={handleMapIdUpdate} map={leafletMap} position={popupPosition} />
+            <AdminMapPopup onSave={handleMapIdUpdate} map={leafletMap} position={popupPosition} onMapCreated={() => setShowMap(false)} />
           )}
-    </div>
+        </div>
+      )}
+      <div>
+        <AdminGameCreate mapId={mapId} onSave={onSave} />
+      </div>
     </>
   );
 };

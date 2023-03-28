@@ -14,16 +14,9 @@ const AdminMapCreate = (onSave) => {
     radius: 0
   });
 
-  const handleMapIdUpdate = (newMapId) => {
-    setMapId(newMapId);
-    console.log("adminmapcreate: " + mapId);
-  };
-
   return (
     <>
-
-          <AdminMap onSave={handleMapIdUpdate}  />
-
+          <AdminMap />
     </>
   );
 };

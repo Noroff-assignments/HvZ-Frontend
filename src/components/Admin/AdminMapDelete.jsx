@@ -1,24 +1,56 @@
+import { useState, useEffect } from "react";
+import { useGetAllMapsAPI } from "../Hooks/APIMaps";
+import { FaTrash } from "react-icons/fa";
 import { deleteMap } from "../../api/MapAPI";
 
-const AdminMapDelete = ({ map, onDelete }) => {
-  console.log(`AdminMapDelete for map ${map.id}`);
-  const handleDelete = () => {
-    console.log(`Deleting map ${map.id}`);
-    deleteMap(map.id)
-      .then(([error, data]) => {
-        if (error) {
-          throw new Error(error);
-        }
-        onDelete(map.id);
-      })
-      .catch((error) => {
-        console.log(error);
-        // Handle the error case here
-      });
+const AdminMapDelete = () => {
+  const { maps, isLoading } = useGetAllMapsAPI();
+  const [selectedMaps, setSelectedMaps] = useState([]);
+  const [displayedMaps, setDisplayedMaps] = useState([]);
+
+  useEffect(() => {
+    if (maps) {
+      setDisplayedMaps(maps);
+    }
+  }, [maps]);
+
+  const handleMapClick = (map) => {
+    if (selectedMaps.includes(map)) {
+      deleteMap(map.id)
+        .then(() => {
+          const updatedMaps = displayedMaps.filter((m) => m.id !== map.id);
+          setDisplayedMaps(updatedMaps);
+        })
+        .catch((error) => console.log(error));
+    } else {
+      setSelectedMaps([...selectedMaps, map]);
+    }
   };
 
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
   return (
-    <button onClick={handleDelete}>Delete</button>
+    <>
+      <h1>List of Maps:</h1>
+      <div style={{ display: "flex", flexDirection: "column", width: "60vw" }}>
+        {displayedMaps.map((map) => (
+          <div key={map.id} style={{ display: "flex", justifyContent: "center" }}>
+            <button
+              style={{
+                backgroundColor: selectedMaps.includes(map) ? "red" : "",
+                width: "100%",
+                height: "3rem",
+              }}
+              onClick={() => handleMapClick(map)}
+            >
+              {selectedMaps.includes(map) ? <FaTrash style={{ margin: "auto" }} /> : map.mapName}
+            </button>
+          </div>
+        ))}
+      </div>
+    </>
   );
 };
 

@@ -8,6 +8,7 @@ const AdminMapPopup = ({ map, position, onSave }) => {
   
   const popupRef = useRef(null);
   const { latitude, longtitude, error } = useGeolocation;
+  const [mapId, setMapId] = useState();
 
   useEffect(() => {
     let popup = null;
@@ -40,26 +41,28 @@ const AdminMapPopup = ({ map, position, onSave }) => {
         radius: radiusInput.value
       };
   
-      // Pass map details to API
-      const data = createMap(mapData)
-      .then((response) => {
-        onSave(response.data.id)
-      })
-      .catch((error) => {
+      try {
+        // Pass map details to API
+        const response = await createMap(mapData);
+        console.log("RESPONSE: " + response.data.id)
+        setMapId(response.data.id);
+  
+        // Create a new circle object
+        const circle = L.circle(position, {
+          color: 'red',
+          fillColor: '#f03',
+          fillOpacity: 0.5,
+          radius: radiusInput.value
+        }).addTo(map);
+  
+        map.closePopup();
+      } catch (error) {
         console.log(error);
-      });
-  
-      // Create a new circle object
-      const circle = L.circle(position, {
-        color: 'red',
-        fillColor: '#f03',
-        fillOpacity: 0.5,
-        radius: radiusInput.value
-      }).addTo(map);
-  
-      map.closePopup();
+      }
     }
   };
+
+  onSave(mapId);
   
   return (
     <div ref={popupRef} style={{ display: 'inline-block' }}>
