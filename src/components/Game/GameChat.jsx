@@ -32,7 +32,7 @@ const GameChat = () => {
   const handleSendMyMessage = (message) => {
     const timestamp = new Date().getTime();
     setMyMessages([...myMessages, { message, timestamp }]);
-    postMessage(message, "rene").then(([error, data]) => {
+    postMessage(3, message, "zombies","rene").then(([error, data]) => {
       if (error) {
         console.log(error);
       } else {
@@ -48,7 +48,7 @@ const GameChat = () => {
   }, [myMessages, messages]);
 
   const channel = Pusher.subscribe("HvZApp");
-  channel.bind("rene", function (data) {
+  channel.bind("Game3_zombies", function (data) {
     const timestamp = new Date().getTime();
     setNewMessage(JSON.stringify(data));
     setMessages([...messages, { message: data, timestamp }]);
