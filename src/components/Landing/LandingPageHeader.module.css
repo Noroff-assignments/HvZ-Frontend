@@ -28,7 +28,7 @@
     color: rgb(255, 255, 255);
     
   }
-  .colHeaderText > h3{
+  .colHeaderText{
     color: rgb(255, 255, 255);
     height: 8vh;
     font-size: 5vh;
@@ -46,4 +46,7 @@
   font-size: 10px;
   position: absolute;
   color: white;
+}
+.userText{
+  font-size: 25px;
 }
