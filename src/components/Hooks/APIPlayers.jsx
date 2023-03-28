@@ -105,6 +105,6 @@ export const useGetAllPlayersAPI = (gameId) => {
       fetchPlayerIsZombie();
     }, [gameId, player]);
   
-    return { isZombie };
+    return { isZombie, player };
   };
   
