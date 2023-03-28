@@ -39,10 +39,13 @@ const GameChat = () => {
   };
 
   const handleSendMyMessage = (message) => {
+    const playerPrefix = player.userID;
+    console.log("playerPrefix")
+    console.log(playerPrefix)
     const timestamp = new Date().getTime();
     setMyMessages([...myMessages, { message, timestamp, category }]);
 
-    postMessage(3, message, category === "squad" ? category + player?.squadId : category).then(([error, data]) => {
+    postMessage(3, playerPrefix + message, category === "squad" ? category + player?.squadId : category).then(([error, data]) => {
       console.log("squad");
       if (error) {
         console.log(error);
@@ -61,8 +64,16 @@ const GameChat = () => {
   const channel = Pusher.subscribe("HvZApp");
   channel.bind("Game" + currentGameId + "_" + category, function (data) {
     const timestamp = new Date().getTime();
+    let message = data;
+    let newMessages = [];
+    if (player && data.substring(0, 36).trim() === player.userID.trim()) {
+      // do nothing since the message is from the current player
+    } else {
+      message = data.substring(36); // remove the first 36 characters
+      newMessages.push({ message, timestamp, category });
+    }
     setNewMessage(JSON.stringify(data));
-    setMessages([...messages, { message: data, timestamp, category }]);
+    setMessages([...messages, ...newMessages]);
   });
   useEffect(() => {
     console.log(messages);
@@ -80,7 +91,16 @@ const GameChat = () => {
                   onClick={toggleShow}
                   color="info"
                   className={styles.chatToggleBtn}
-                  style={{backgroundColor: category === "zombies" ? "rgb(64, 82, 102)" : category === "global" ? "rgb(102, 64, 64)" : "rgb(102, 93, 64)"}}
+                  style={{
+                    backgroundColor:
+                      category === "zombies" || category === "humans"
+                        ? "rgb(64, 82, 102)"
+                        : category === "global"
+                        ? "rgb(102, 64, 64)"
+                        : category === "squad"
+                        ? "rgb(102, 93, 64)"
+                        : "rgb(102, 93, 64)"
+                  }}
                 >
                   <div className={styles.ChatBtnText}>
                     <span>{category.toUpperCase()}</span>
@@ -198,33 +218,7 @@ const GameChat = () => {
                       </MDBCardBody>
                     </div>
                     <MDBCardFooter>
-                      <form
-                        onSubmit={(e) => {
-                          e.preventDefault();
-                          const messageInput = e.target.elements.message;
-                          if (messageInput.value.trim() !== "") {
-                            handleSendMessage(messageInput.value);
-                            messageInput.value = null;
-                          }
-                        }}
-                      >
-                        <div className="input-group">
-                          <input
-                            type="text"
-                            className="form-control breakWord"
-                            placeholder="Type others message here..."
-                            name="message"
-                          />
-                          <div className="input-group-append">
-                            <button
-                              className={styles.sendMessageBtn}
-                              type="submit"
-                            >
-                              Send
-                            </button>
-                          </div>
-                        </div>
-                      </form>
+                      
                       <form
                         onSubmit={(e) => {
                           e.preventDefault();
