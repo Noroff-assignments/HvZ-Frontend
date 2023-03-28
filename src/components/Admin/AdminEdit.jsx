@@ -1,9 +1,10 @@
+import AdminEditMap from './AdminEditMap';
 import React, { useState, useEffect } from 'react';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { patchGameEndTime, patchGameTitle, patchGameDescription, patchGameBeginTime } from '../../api/GameAPI';
 
-const AdminMapEdit = ({ game }) => {
+const AdminEdit = ({ game }) => {
   const [gameName, setGameName] = useState('');
   const [gameNameEdited, setGameNameEdited] = useState(false);
   const [gameDescription, setGameDescription] = useState('');
@@ -67,54 +68,67 @@ const AdminMapEdit = ({ game }) => {
 
   };
 
-  return (
+return (
     <div>
       <div>GAME ID: {game.id}</div>
-      <label htmlFor="gameName">Game Name:</label>
-      <input
-        type="text"
-        id="gameName"
-        value={gameName}
-        onChange={handleInputChange}
-      />
-      {gameNameEdited && <button onClick={handleSave}>✓</button>}
+      <div>
+        <label htmlFor="gameName">Game Name:</label>
+        <input
+          type="text"
+          id="gameName"
+          value={gameName}
+          onChange={handleInputChange}
+        />
+        {gameNameEdited && <button onClick={handleSave}>✓</button>}
+      </div>
 
-      <label htmlFor="gameDescription">Game Description:</label>
-      <textarea
-        id="gameDescription"
-        value={gameDescription}
-        onChange={handleInputChange}
-      />
-      {gameDescriptionEdited && <button onClick={handleSave}>✓</button>}
+      <div>
+        <label htmlFor="gameDescription">Game Description:</label>
+        <textarea
+          id="gameDescription"
+          value={gameDescription}
+          onChange={handleInputChange}
+        />
+        {gameDescriptionEdited && <button onClick={handleSave}>✓</button>}
+      </div>
 
-      <label htmlFor="beginTime">Begin Time:</label>
-      <input
-        type="datetime-local"
-        id="beginTime"
-        value={beginTime}
-        onChange={handleInputChange}
-      />
-      {beginTimeEdited && <button onClick={handleSave}>✓</button>}
+      <div>
+        <label htmlFor="beginTime">Begin Time:</label>
+        <input
+          type="datetime-local"
+          id="beginTime"
+          value={beginTime}
+          onChange={handleInputChange}
+        />
+        {beginTimeEdited && <button onClick={handleSave}>✓</button>}
+      </div>
 
-      <label htmlFor="endTime">End Time:</label>
-      <input
-        type="datetime-local"
-        id="endTime"
-        value={endTime}
-        onChange={handleInputChange}
-      />
-      {endTimeEdited && <button onClick={handleSave}>✓</button>}
-      
-      <label htmlFor="mapId">Map Id:</label>
-      <input
-        type="text"
-        id="mapId"
-        value={mapId}
-        onChange={handleInputChange}
-      />
-      {mapIdEdited && <button onClick={handleSave}>✓</button>}
+      <div>
+        <label htmlFor="endTime">End Time:</label>
+        <input
+          type="datetime-local"
+          id="endTime"
+          value={endTime}
+          onChange={handleInputChange}
+        />
+        {endTimeEdited && <button onClick={handleSave}>✓</button>}
+      </div>
+
+      <div>
+        <label htmlFor="mapId">Map Id:</label>
+        <input
+          type="text"
+          id="mapId"
+          value={mapId}
+          onChange={handleInputChange}
+        />
+        {mapIdEdited && <button onClick={handleSave}>✓</button>}
+      </div>
+
+      <AdminEditMap />
+
     </div>
-    );
+  )
 };
 
-export default AdminMapEdit;
+export default AdminEdit;

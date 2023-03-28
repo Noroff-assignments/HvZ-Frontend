@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useGetAllGamesAPI } from '../Hooks/APIGames';
-import AdminMapEdit from './AdminMapEdit';
+import AdminEdit from './AdminEdit';
 
 const AdminMenuEditGames = () => {
   const { games, isLoading } = useGetAllGamesAPI();
@@ -29,7 +29,7 @@ const AdminMenuEditGames = () => {
       ) : (
         <div>Editing game:</div>
       )}
-      {selectedGame && <AdminMapEdit game={selectedGame} />}
+      {selectedGame && <AdminEdit game={selectedGame} />}
     </div>
   );
 };
