@@ -4,7 +4,8 @@ import styles from "./GameLobbyInfo.module.css";
 import { BsArrowLeftSquare } from "react-icons/bs";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useGetOneGameAPI } from "../Hooks/APIGames";
-
+import keycloak from "../../keycloak/keycloak";
+import { postPlayer } from "../../api/PlayerAPI";
 const GameLobby = () => {
   const location = useLocation();
   const currentGameId = location.state.currentGameId;
@@ -15,10 +16,19 @@ const GameLobby = () => {
   const handleReturn = () => {
     navigate("/");
   };
-  const handleJoin = () => {
-    navigate("/currentGame", { state: { currentGameId: game.id } });
+  const handleJoin = async () => {
+    const[error, data] = await postPlayer(currentGameId,keycloak.tokenParsed.sub, false);
+    if(error){
+      console.error(error);
+    }
+    else{
+      console.log(data)
+      JoinGame();
+    }
   };
-
+  const JoinGame = () => {
+    navigate("/currentGame", { state: { currentGameId: game.id } });
+  }
   useEffect(() => {
     if (game !== null) {
       switch (game.status) {
@@ -81,7 +91,7 @@ const GameLobby = () => {
               >
                 Game Status: {gameStatus}
               </Button>
-              {gameStatus === "Open for Registration" || gameStatus === "Running" ? (
+              {keycloak.tokenParsed && (gameStatus === "Open for Registration" || gameStatus === "Running" ? (
                 <Button
                   type="submit"
                   className={styles.joinBtn}
@@ -93,7 +103,7 @@ const GameLobby = () => {
                 <Button type="submit" className={styles.CantJoinBtn}>
                   Closed
                 </Button>
-              )}
+              ))}
             </Col>
           </Row>
         </Col>
