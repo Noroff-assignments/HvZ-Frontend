@@ -53,7 +53,7 @@ const LandingPageHeader = () => {
         <Col lg={4} xs={12} className={styles.colHeaderText}>
 
           <div>
-            {keycloak.tokenParsed.preferred_username}
+          {keycloak.tokenParsed.preferred_username ? keycloak.tokenParsed.preferred_username : null}
           </div>
 
 
