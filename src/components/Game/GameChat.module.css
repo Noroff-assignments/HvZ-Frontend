@@ -69,13 +69,20 @@
     background-color: rgb(12, 105, 227)!important;
     word-break: break-all;
     color: white;
-    font-weight: 600;
+    font-weight: 800;
+    font-size: 2vh !important;
+    -webkit-text-stroke-width: 0.2px;
+  -webkit-text-stroke-color: rgb(182, 182, 182);
   }
   .theirMessageP{
     background-color: rgb(112, 112, 112)!important;
     word-break: break-all;
     color: white;
     font-weight: 600;
+    font-weight: 800;
+    font-size: 2vh !important;
+    -webkit-text-stroke-width: 0.2px;
+  -webkit-text-stroke-color: rgb(182, 182, 182);
   }
   .sendMessageBtn{
     color: white;
