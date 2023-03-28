@@ -51,12 +51,9 @@ const LandingPageHeader = () => {
         {/*<img src="./resources/LandingBackGround.jpg" className={styles.LandingPageHeaderImage} alt="Landing Page" />*/}
         <Col lg={4} className={`d-lg-block d-xs-none`}></Col>
         <Col lg={4} xs={12} className={styles.colHeaderText}>
-
           <div>
-          {keycloak.tokenParsed.preferred_username ? keycloak.tokenParsed.preferred_username : null}
+            {keycloak.tokenParsed && keycloak.tokenParsed.preferred_username ? keycloak.tokenParsed.preferred_username : null}
           </div>
-
-
         </Col>
         <Col lg={1} className={`d-xs-none d-lg-block`}></Col>
         <Col xs={2} className={`d-lg-none d-xs-block ${styles.colTestSides}`}></Col>        
