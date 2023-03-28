@@ -125,7 +125,7 @@ return (
         {mapIdEdited && <button onClick={handleSave}>✓</button>}
       </div>
 
-      <AdminEditMap />
+      <AdminEditMap mapId={mapId} />
 
     </div>
   )

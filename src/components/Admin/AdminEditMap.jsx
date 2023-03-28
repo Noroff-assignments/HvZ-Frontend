@@ -1,8 +1,12 @@
-const AdminEditMap = (map) => {
+import { useGetOneMapAPI } from "../Hooks/APIMaps";
+
+const AdminEditMap = (mapId) => {
+
+    const [map, setMap] = useGetOneMapAPI(mapId);
 
     return (
         <>
-            MAP
+            
         </>
     )
 }
