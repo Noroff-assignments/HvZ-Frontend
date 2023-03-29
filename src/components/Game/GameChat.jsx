@@ -67,16 +67,15 @@ const GameChat = () => {
     let message = data;
     let newMessages = [];
     if (player && data.substring(0, 36).trim() === player.userID.trim()) {
-      // do nothing since the message is from the current player
+      // do nothing if the message is from the current player
     } else {
-      message = data.substring(36); // remove the first 36 characters
+      message = data.substring(36); // remove the playerPrefix
       newMessages.push({ message, timestamp, category });
     }
     setNewMessage(JSON.stringify(data));
     setMessages([...messages, ...newMessages]);
   });
   useEffect(() => {
-    console.log(messages);
   }, [messages]);
 
   return (

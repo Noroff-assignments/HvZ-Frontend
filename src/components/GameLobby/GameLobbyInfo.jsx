@@ -61,11 +61,17 @@ const GameLobby = () => {
             </Col>
             <Col lg={1} xs={1} className={styles.headerReturnCol}></Col>
           </Row>
+          
           <Row>
             <Col lg={12} xs={12} className={styles.gameInfoElementTop}>
               <p>Number of players: {game?.amountPlayers}</p>
             </Col>
           </Row>
+          <Row>
+              <Col lg={12} xs={12} className={styles.gameInfoElementMid}>
+              <p>Description: {game?.description}</p>
+              </Col>
+            </Row>
           <Row>
             <Col lg={12} xs={12} className={styles.gameInfoElementBottom}>
             <p>End date: {new Date(game.endTime).toLocaleString("en-GB", {dateStyle: "short", timeStyle: "short"})}</p>
