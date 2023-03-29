@@ -28,10 +28,11 @@ export const getKill = async (gameId, killId) => {
   };
   export const postKill = async (killCode, gameId, timeDead, deadStory, latitude, longitude, killerId ) => {
     try {
-      const response = await fetch(gameURL + gameId + "/kill/" + killCode,{ 
+      const response = await fetch(gameURL + gameId + "/kill",{ 
         method: 'POST',
         headers: { 'Content-Type': 'application/json'},
         body: JSON.stringify({
+          killCode: killCode,
           timeDead: timeDead,
           deadStory: deadStory,
           latitude: latitude,

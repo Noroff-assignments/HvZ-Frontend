@@ -1,20 +1,33 @@
 import styles from "./KillCodeQRScanner.module.css";
 import { Col, Row } from "react-bootstrap";
-import React, { useState } from "react";
 import { QrReader } from "react-qr-reader";
 import { postKill } from "../../api/KillAPI";
-
-const KillCodeQRScanner = (gameId) => {
+import { useState, useEffect } from "react";
+const KillCodeQRScanner = ({gameId, playerId}) => {
   const [data, setData] = useState("No result");
   //const {longitude, latitude, error} = useGeolocation();
   const handleKill = async (killCode) => {
-    const[error, killData] = await postKill(gameId,new Date().getTime(), "RIP", 55.642876, 12.272070, killCode  );
-    console.log(killData);
+    const decodedData = decodeURIComponent(killCode);
+    const { biteCode } = JSON.parse(decodedData);
+    const [error, killData] = await postKill(
+      biteCode,
+      gameId,
+      new Date().getTime(),
+      "RIP",
+      55.642876,
+      12.27207,
+      playerId
+    );
   };
+  useEffect(() => {
+    if (data.length > 0) {
+      handleKill(data);
+    }
+  }, [data]);
   return (
     <Row>
       <Col lg={1} className={`d-none d-sm-block`}></Col>
-      <Col lg={10} xs={12} >
+      <Col lg={10} xs={12}>
         <Row className={styles.qrRow}>
           <Col lg={2} xs={12} className={styles.qrColSides}></Col>
           <Col lg={8} xs={12} className={styles.qrColMid}>
@@ -27,22 +40,19 @@ const KillCodeQRScanner = (gameId) => {
                 src="https://static.thenounproject.com/png/3046863-200.png"
                 alt="qrScanner"
               />
-              {data &&
               <QrReader
                 onResult={(result, error) => {
                   if (!!result) {
-                    setData(result?.text);
-                     handleKill(result);
+                    setData(JSON.stringify(JSON.parse(result)));
                   }
-
                   if (!!error) {
                     console.info(error);
                   }
                 }}
                 className={styles.qrScanner}
+                facingMode={"environment"}
               />
-            }
-              <p>{data}</p>
+              <p className={styles.qrScanData}>{data}</p>
             </Col>
           </Col>
           <Col lg={2} xs={12} className={styles.qrColSides}></Col>
@@ -52,5 +62,4 @@ const KillCodeQRScanner = (gameId) => {
     </Row>
   );
 };
-
 export default KillCodeQRScanner;

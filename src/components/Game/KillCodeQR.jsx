@@ -1,9 +1,9 @@
 import styles from "./KillCodeQR.module.css";
 import { Col, Row } from "react-bootstrap";
-import React from "react";
 import QRCode from "react-qr-code";
 import { useGetBiteCode } from "../Hooks/APIPlayers";
 const KillCodeQR = ({gameId, playerId}) => {
+
   const {biteCode} = useGetBiteCode(gameId, playerId);
   
   return (

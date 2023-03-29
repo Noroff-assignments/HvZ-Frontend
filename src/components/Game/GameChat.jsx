@@ -46,7 +46,6 @@ const GameChat = () => {
     setMyMessages([...myMessages, { message, timestamp, category }]);
 
     postMessage(3, playerPrefix + message, category === "squad" ? category + player?.squadId : category).then(([error, data]) => {
-      console.log("squad");
       if (error) {
         console.log(error);
       } else {

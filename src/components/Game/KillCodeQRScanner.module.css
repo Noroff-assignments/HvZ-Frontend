@@ -1,3 +1,9 @@
+@font-face {
+    font-family: 'FiraSans';
+    src: url('/public/Fonts/Fira_Sans/FiraSans-Medium.ttf');
+    font-weight: normal;
+    font-style: normal;
+  }
 .qrHeaderCol{
     text-align: center;
     margin: auto;
@@ -11,7 +17,12 @@
     padding-right: 5px;
     
 }
-
+.qrScanData{
+    color: white;
+    text-align: center;
+    font-weight: 400;
+    font-family: FiraSans;
+}
 .qrHeaderCol h2 {
     margin: 0;
   position:relative;;

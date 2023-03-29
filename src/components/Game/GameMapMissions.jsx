@@ -1,14 +1,8 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { Col } from "react-bootstrap";
 import styles from "./GameMap.module.css";
-import { MapContainer } from "react-leaflet/MapContainer";
-import { TileLayer } from "react-leaflet/TileLayer";
-import { useMap } from "react-leaflet/hooks";
 import { Circle, Pane } from "react-leaflet";
-import { GiPirateGrave } from "react-icons/gi";
 import { Marker } from "react-leaflet-marker";
-import L from "leaflet";
 import { useGetAllMissionsAPI } from "../Hooks/APIMissions";
 
 const GameMissions = ({ id, gameId }) => {
