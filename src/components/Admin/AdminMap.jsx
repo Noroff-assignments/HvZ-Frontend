@@ -58,7 +58,7 @@ const AdminMap = (onSave) => {
       {!showMap && <div>Map created!</div>}
       {showMap && (
         <div>
-          <div ref={mapRef} style={{ height: '50vh', width: '80vw' }} />
+          <div ref={mapRef} style={{ height: '50vh', width: '84vw' }} />
           {leafletMap && popupPosition && (
             <AdminMapPopup onSave={handleMapIdUpdate} map={leafletMap} position={popupPosition} onMapCreated={() => setShowMap(false)} />
           )}

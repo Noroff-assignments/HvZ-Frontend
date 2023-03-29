@@ -4,7 +4,6 @@ const AdminMenuCreate = () => {
 
     return(
         <>
-            Create Menu  
             <AdminMapCreate />  
         </>
     );
