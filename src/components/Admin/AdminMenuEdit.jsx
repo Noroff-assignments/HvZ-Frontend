@@ -6,7 +6,6 @@ const AdminMenuEdit = () => {
 
   return (
     <div style={{ display: "flex" }}>
-      Edit Games
       <div>
         {isLoading ? (
           <p>Loading...</p>

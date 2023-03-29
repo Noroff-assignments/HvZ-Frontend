@@ -23,6 +23,7 @@ const AdminEdit = ({ game }) => {
       setBeginTime(game.beginTime.replace("T", " ") || '');
       setEndTime(game.endTime.replace("T", " ") || '');
       setMapId(game.mapId || '');
+      console.log("ID:" + mapId)
     }
   }, [game]);
 
@@ -68,9 +69,9 @@ const AdminEdit = ({ game }) => {
 
   };
 
-return (
+  return (
     <div>
-      <div>GAME ID: {game.id}</div>
+      <div><h2>GAME ID: {game.id}</h2></div>
       <div>
         <label htmlFor="gameName">Game Name:</label>
         <input
@@ -81,7 +82,7 @@ return (
         />
         {gameNameEdited && <button onClick={handleSave}>✓</button>}
       </div>
-
+  
       <div>
         <label htmlFor="gameDescription">Game Description:</label>
         <textarea
@@ -91,7 +92,7 @@ return (
         />
         {gameDescriptionEdited && <button onClick={handleSave}>✓</button>}
       </div>
-
+  
       <div>
         <label htmlFor="beginTime">Begin Time:</label>
         <input
@@ -102,7 +103,7 @@ return (
         />
         {beginTimeEdited && <button onClick={handleSave}>✓</button>}
       </div>
-
+  
       <div>
         <label htmlFor="endTime">End Time:</label>
         <input
@@ -113,7 +114,7 @@ return (
         />
         {endTimeEdited && <button onClick={handleSave}>✓</button>}
       </div>
-
+  
       <div>
         <label htmlFor="mapId">Map Id:</label>
         <input
@@ -125,10 +126,11 @@ return (
         {mapIdEdited && <button onClick={handleSave}>✓</button>}
       </div>
 
-      <AdminEditMap mapId={mapId} />
-
+      <div>
+        {mapId && <AdminEditMap mapId={mapId} />}
+      </div>
     </div>
-  )
+  );
 };
 
 export default AdminEdit;

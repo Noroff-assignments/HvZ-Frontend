@@ -4,7 +4,9 @@ import { getMissions, getMission } from "../../api/MissionAPI";
 
 
 export const useGetAllMissionsAPI = (mapId) => {
+  console.log("HOOK: " + mapId);
   const [missions, setMissions] = useState(null);
+
   useEffect(() => {
     async function fetchMissions() {
       const [error, response] = await getMissions(mapId);
@@ -15,8 +17,9 @@ export const useGetAllMissionsAPI = (mapId) => {
       }
     }
     fetchMissions();
-  }, []);
-  return { missions};
+  }, [mapId]); // Add mapId as a dependency
+
+  return { missions };
 };
 
 export const useGetMissionAPI = (mapId, missionId) => {

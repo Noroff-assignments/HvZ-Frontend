@@ -16,6 +16,7 @@ const mapURL = apiUrl+"/map";
   };
   
   export const getMissions = async (mapId) => {
+    console.log("API: " + mapId)
     try {
       const response = await fetch(mapURL + "/" + mapId + "/mission");
       if (!response.ok) {
