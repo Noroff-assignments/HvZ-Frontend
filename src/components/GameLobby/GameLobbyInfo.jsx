@@ -18,13 +18,7 @@ const GameLobby = () => {
   };
   const handleJoin = async () => {
     const[error, data] = await postPlayer(currentGameId,keycloak.tokenParsed.sub, false);
-    if(error){
-      console.error(error);
-    }
-    else{
-      console.log(data)
-      JoinGame();
-    }
+    JoinGame();
   };
   const JoinGame = () => {
     navigate("/currentGame", { state: { currentGameId: game.id } });
