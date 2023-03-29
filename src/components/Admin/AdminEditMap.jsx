@@ -69,7 +69,9 @@ const AdminEditMap = ({ mapId }) => {
                 <label htmlFor="radius">Radius:</label>
                 <input type="text" id="radius" name="radius" value={indexMap.radius} />
             </div>
-            <pre>{JSON.stringify(missions, null, 2)}</pre>
+
+
+            <h2>Missions:</h2>
             <pre>{JSON.stringify(missions, null, 2)}</pre>
             <pre>{JSON.stringify(safezones, null, 2)}</pre>
         </>
