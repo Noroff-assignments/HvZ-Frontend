@@ -4,7 +4,8 @@ import styles from "./GameLobbyInfo.module.css";
 import { BsArrowLeftSquare } from "react-icons/bs";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useGetOneGameAPI } from "../Hooks/APIGames";
-
+import keycloak from "../../keycloak/keycloak";
+import { postPlayer } from "../../api/PlayerAPI";
 const GameLobby = () => {
   const location = useLocation();
   const currentGameId = location.state.currentGameId;
@@ -15,10 +16,13 @@ const GameLobby = () => {
   const handleReturn = () => {
     navigate("/");
   };
-  const handleJoin = () => {
-    navigate("/currentGame", { state: { currentGameId: game.id } });
+  const handleJoin = async () => {
+    const[error, data] = await postPlayer(currentGameId,keycloak.tokenParsed.sub, false);
+    JoinGame();
   };
-
+  const JoinGame = () => {
+    navigate("/currentGame", { state: { currentGameId: game.id } });
+  }
   useEffect(() => {
     if (game !== null) {
       switch (game.status) {
@@ -40,79 +44,65 @@ const GameLobby = () => {
 
   return (
     <Container fluid className={styles.GameCol}>
-      {game !== null && (
-        <Row className={styles.InfoRow}>
-          <Col lg={1} className={`d-none d-sm-block`}></Col>
-          <Col lg={10} xs={12} className={styles.gameInfoColContainer}>
-            <Row className={styles.headerRow}>
-              <Col lg={1} xs={1} className={styles.headerReturnCol}>
-                <BsArrowLeftSquare
-                  className={styles.returnIcon}
-                  onClick={handleReturn}
-                />
-              </Col>
+    {game !== null && (
+      <Row className={styles.InfoRow}>
+        <Col lg={1} className={`d-none d-sm-block`}></Col>
+        <Col lg={10} xs={12} className={styles.gameInfoColContainer}>
+          <Row className={styles.headerRow}>
+            <Col lg={1} xs={1} className={styles.headerReturnCol}>
+              <BsArrowLeftSquare
+                className={styles.returnIcon}
+                onClick={handleReturn}
+              />
+            </Col>
 
-              <Col lg={10} xs={10} className={styles.gameTitleCol}>
-                <h3 className={styles.gameTitle}>{game?.title}</h3>
-              </Col>
-              <Col lg={1} xs={1} className={styles.headerReturnCol}></Col>
-            </Row>
-            <Row>
-              <Col lg={12} xs={12} className={styles.gameInfoElementTop}>
-                <p>Number of players: {game?.amountPlayers}</p>
-              </Col>
-            </Row>
-            <Row>
-              <Col lg={12} xs={12} className={styles.gameInfoElementMid}>
-              <p>Description: {game?.description}</p>
-              </Col>
-            </Row>
-            
-            <Row>
-              <Col lg={12} xs={12} className={styles.gameInfoElementBottom}>
-                <p>
-                  End date:{" "}
-                  {new Date(game.endTime).toLocaleString("en-GB", {
-                    dateStyle: "short",
-                    timeStyle: "short",
-                  })}
-                </p>
-              </Col>
-            </Row>
-            <Row>
-              <Col lg={12} xs={12} style={{ padding: "0px" }}>
+            <Col lg={10} xs={10} className={styles.gameTitleCol}>
+              <h3 className={styles.gameTitle}>{game?.title}</h3>
+            </Col>
+            <Col lg={1} xs={1} className={styles.headerReturnCol}></Col>
+          </Row>
+          <Row>
+            <Col lg={12} xs={12} className={styles.gameInfoElementTop}>
+              <p>Number of players: {game?.amountPlayers}</p>
+            </Col>
+          </Row>
+          <Row>
+            <Col lg={12} xs={12} className={styles.gameInfoElementBottom}>
+            <p>End date: {new Date(game.endTime).toLocaleString("en-GB", {dateStyle: "short", timeStyle: "short"})}</p>
+            </Col>
+          </Row>
+          <Row>
+            <Col lg={12} xs={12} style={{ padding: "0px" }}>
+              <Button
+                type="none"
+                className={styles.statusBtn}
+                style={{
+                  color:
+                  gameStatus === "Open for Registration" || gameStatus === "Running"
+                      ? "rgb(0, 255, 21)"
+                      : "rgb(110, 26, 26)",
+                }}
+              >
+                Game Status: {gameStatus}
+              </Button>
+              {keycloak.tokenParsed && (gameStatus === "Open for Registration" || gameStatus === "Running" ? (
                 <Button
-                  type="none"
-                  className={styles.statusBtn}
-                  style={{
-                    color:
-                      gameStatus === "Open for Registration" ||
-                      gameStatus === "Running"
-                        ? "rgb(0, 255, 21)"
-                        : "rgb(110, 26, 26)",
-                  }}
+                  type="submit"
+                  className={styles.joinBtn}
+                  onClick={handleJoin}
                 >
-                  Game Status: {gameStatus}
+                  Join
                 </Button>
-                {gameStatus === "Open for Registration" ||
-                gameStatus === "Running" ? (
-                  <Button
-                    type="submit"
-                    className={styles.joinBtn}
-                    onClick={handleJoin}
-                  >
-                    Join
-                  </Button>
-                ) : (
-                  <Button type="submit" className={styles.CantJoinBtn}>
-                    Closed
-                  </Button>
-                )}
-              </Col>
-            </Row>
-          </Col>
-          <Col lg={1} className={`d-none d-sm-block`} />
-        </Row>
+              ) : (
+                <Button type="submit" className={styles.CantJoinBtn}>
+                  Closed
+                </Button>
+              ))}
+            </Col>
+          </Row>
+        </Col>
+        <Col lg={1} className={`d-none d-sm-block`} />
+      </Row>
       )}
     </Container>
   );
