@@ -194,7 +194,14 @@ const GameChat = () => {
                                       ? "#f5f6f7"
                                       : "",
                                     wordBreak: "break-word",
-                                    color: category === "zombies" ? "white" : category === "global" ? "rgb(102, 64, 64)" : "orange"
+                                    color: category === "zombies" || category === "humans"
+                                    ? "white"
+                                    : category === "global"
+                                    ? "rgb(102, 64, 64)"
+                                    : category === "squad"
+                                    ? "orange"
+                                    : "orange"
+                                    
                                   }}
                                 >
                                   {message}
