@@ -8,13 +8,13 @@ import { useGetUserIsZombie } from "../Hooks/APIPlayers";
 const BiteCode = () => {
     const location = useLocation();
     const currentGameId = location.state.currentGameId;
-    const playerId = 71;
-    const { isZombie } = useGetUserIsZombie(currentGameId,keycloak.tokenParsed.sub);
+    const { isZombie, player } = useGetUserIsZombie(currentGameId,keycloak.tokenParsed.sub);
     
     
     return (
       <div>
-        {isZombie ? <KillCodeQRScanner /> : <KillCodeQR id={currentGameId} />}
+        {player && console.log(player.id)}
+        {player?.id && isZombie ? <KillCodeQRScanner gameId ={location.state.currentGameId} /> : <KillCodeQR gameId ={location.state.currentGameId} playerId={72} />}
       </div>
     );
   };

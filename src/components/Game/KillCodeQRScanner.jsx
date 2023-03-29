@@ -2,9 +2,15 @@ import styles from "./KillCodeQRScanner.module.css";
 import { Col, Row } from "react-bootstrap";
 import React, { useState } from "react";
 import { QrReader } from "react-qr-reader";
-const KillCodeQRScanner = (props) => {
-  const [data, setData] = useState("No result");
+import { postKill } from "../../api/KillAPI";
 
+const KillCodeQRScanner = (gameId) => {
+  const [data, setData] = useState("No result");
+  //const {longitude, latitude, error} = useGeolocation();
+  const handleKill = async (killCode) => {
+    const[error, killData] = await postKill(gameId,new Date().getTime(), "RIP", 55.642876, 12.272070, killCode  );
+    console.log(killData);
+  };
   return (
     <Row>
       <Col lg={1} className={`d-none d-sm-block`}></Col>
@@ -21,10 +27,12 @@ const KillCodeQRScanner = (props) => {
                 src="https://static.thenounproject.com/png/3046863-200.png"
                 alt="qrScanner"
               />
+              {data &&
               <QrReader
                 onResult={(result, error) => {
                   if (!!result) {
                     setData(result?.text);
+                     handleKill(result);
                   }
 
                   if (!!error) {
@@ -33,6 +41,7 @@ const KillCodeQRScanner = (props) => {
                 }}
                 className={styles.qrScanner}
               />
+            }
               <p>{data}</p>
             </Col>
           </Col>

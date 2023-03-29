@@ -26,3 +26,26 @@ export const getKill = async (gameId, killId) => {
       return [error.message, []];
     }
   };
+  export const postKill = async (killCode, gameId, timeDead, deadStory, latitude, longitude, killerId ) => {
+    try {
+      const response = await fetch(gameURL + gameId + "/kill/" + killCode,{ 
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json'},
+        body: JSON.stringify({
+          timeDead: timeDead,
+          deadStory: deadStory,
+          latitude: latitude,
+          longitude: longitude,
+          killerId: killerId
+        })
+      });
+      if (!response.ok){
+        throw new Error("Could not add Kill");
+      }
+      const data = await response.json();
+      return [null,data];
+    }
+    catch (error){
+      return [error.message, []];
+    }
+  };

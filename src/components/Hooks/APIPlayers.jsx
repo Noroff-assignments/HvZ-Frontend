@@ -3,7 +3,7 @@ import { getPlayer } from "../../api/PlayerAPI";
 import { getPlayers } from "../../api/PlayerAPI";
 import { getPlayerByUserId } from "../../api/PlayerAPI";
 import { getPlayerIsZombie } from "../../api/PlayerAPI";
-
+import { getBiteCode } from "../../api/PlayerAPI";
 export const useGetAllPlayersAPI = (gameId) => {
     const [players, setPlayers] = useState(null);
   
@@ -51,6 +51,22 @@ export const useGetAllPlayersAPI = (gameId) => {
       fetchPlayer();
     }, []);
     return { player};
+  };
+  export const useGetBiteCode = (gameId,playerId) => {
+    const [biteCode, setBiteCode] = useState(null);
+  
+    useEffect(() => {
+      async function fetchBiteCode() {
+        const [error, response] = await getBiteCode(gameId,playerId);
+        if (error !== null) {
+          alert(error);
+        } else if (response !== undefined) {
+          setBiteCode(response);
+        }
+      }
+      fetchBiteCode();
+    }, []);
+    return { biteCode};
   };
   export const useGetPlayerIsZombieAPI = (gameId, playerId) => {
     const [isZombie, setZombie] = useState(null);
