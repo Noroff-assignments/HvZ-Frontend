@@ -71,9 +71,9 @@ const AdminEditMap = ({ mapId }) => {
             </div>
 
 
-            <h2>Missions:</h2>
+            {/* <h2>Missions:</h2>
             <pre>{JSON.stringify(missions, null, 2)}</pre>
-            <pre>{JSON.stringify(safezones, null, 2)}</pre>
+            <pre>{JSON.stringify(safezones, null, 2)}</pre> */}
         </>
         )}
     </div>
