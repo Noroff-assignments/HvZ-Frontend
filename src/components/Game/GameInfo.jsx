@@ -55,7 +55,7 @@ const GameInfo = () => {
             </Row>
             <Row>
               <Col lg={12} xs={12} className={styles.gameInfoElementMid}>
-                <p>Number of players: {game?.description}</p>
+                <p>Description: {game?.description}</p>
               </Col>
             </Row>
             <Row>
