@@ -1,13 +1,11 @@
-import AdminGameCreate from "./AdminGameCreate";
 import AdminMapCreate from "./AdminMapCreate";
 
 const AdminMenuCreate = () => {
-    
+
     return(
         <>
-            Create Menu    
-            <AdminMapCreate />    
-            <AdminGameCreate />
+            Create Menu  
+            <AdminMapCreate />  
         </>
     );
 };

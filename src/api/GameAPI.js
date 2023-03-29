@@ -53,9 +53,10 @@ export const getGame = async (id) => {
   }
 };
 
-export const putGame = async (title, description, beginTime, endTime, mapId, adminId) => {
+export const putGame = async (id, title, description, beginTime, endTime, status, adminId) => {
+  console.log("POST: " + id, title, description, beginTime, endTime, status, adminId);
   try {
-    const response = await fetch(gameURL, {
+    const response = await fetch(gameURL + "/" + id, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json'},
       body: JSON.stringify({
@@ -63,7 +64,7 @@ export const putGame = async (title, description, beginTime, endTime, mapId, adm
         description: description,
         beginTime: beginTime,
         endTime: endTime,
-        mapId: mapId,
+        status: status,
         adminId: adminId
       })
     });
@@ -79,8 +80,9 @@ export const putGame = async (title, description, beginTime, endTime, mapId, adm
 };
 
 export const patchGameTitle = async (id,title) => {
+  console.log("PATCH: " + id, title)
   try {
-    const response = await fetch(gameURL + "/" + id, {
+    const response = await fetch(gameURL + "/" + id + "/title", {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json'},
       body: JSON.stringify({
@@ -100,7 +102,7 @@ export const patchGameTitle = async (id,title) => {
 
 export const patchGameDescription = async (id,description) => {
   try {
-    const response = await fetch(gameURL + "/" + id, {
+    const response = await fetch(gameURL + "/" + id + "/description", {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json'},
       body: JSON.stringify({
@@ -126,6 +128,46 @@ export const patchGamePeriod = async (id, beginTime, endTime) => {
       body: JSON.stringify({
         beginTime: beginTime,
         endTime: endTime
+      })
+    });
+    if (!response.ok){
+      throw new Error("Could not update time period of game!");
+    }
+    const data = await response.json();
+    return [null,data];
+  }
+  catch (error){
+    return [error.message, []];
+  }
+};
+
+export const patchGameBeginTime = async (id, beginTime) => {
+  try {
+    const response = await fetch(gameURL + "/" + id + "/begintime", {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        beginTime: beginTime,
+      })
+    });
+    if (!response.ok){
+      throw new Error("Could not update time period of game!");
+    }
+    const data = await response.json();
+    return [null,data];
+  }
+  catch (error){
+    return [error.message, []];
+  }
+};
+
+export const patchGameEndTime = async (id, endTime) => {
+  try {
+    const response = await fetch(gameURL + "/" + id + "/endtime", {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        endTime: endTime,
       })
     });
     if (!response.ok){

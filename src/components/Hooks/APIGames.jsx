@@ -4,6 +4,7 @@ import { getGames } from "../../api/GameAPI";
 import { getGame } from "../../api/GameAPI";
 import { putGame } from "../../api/GameAPI";
 import { postGame } from "../../api/GameAPI";
+import { deleteGame } from "../../api/GameAPI";
 
 
 export const useGetAllGamesAPI = () => {
@@ -64,4 +65,19 @@ export const usePostGameAPI = () => {
   };
 
   return [createGame, error, data];
+};
+
+export const useDeleteGame = async (id) => {
+  const [error, setError] = useState(null);
+  const [data, setData] = useState([]);
+
+  try {
+    const [err, response] = await deleteGame(id);
+    if (err) {
+      throw new Error(err.message);
+    }
+    setData(response);
+  } catch (err) {
+    setError(err.message);
+  }
 };

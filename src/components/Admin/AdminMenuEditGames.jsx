@@ -1,10 +1,10 @@
-// AdminMenuEditGames component
 import React, { useState } from 'react';
 import { useGetAllGamesAPI } from '../Hooks/APIGames';
-import AdminMapEdit from './AdminMapEdit';
+import AdminEdit from './AdminEdit';
 
 const AdminMenuEditGames = () => {
   const { games, isLoading } = useGetAllGamesAPI();
+  const [visibleButtons, setVisibleButtons] = useState(true);
   const [selectedGame, setSelectedGame] = useState(null);
 
   if (isLoading) {
@@ -13,24 +13,23 @@ const AdminMenuEditGames = () => {
 
   const handleGameClick = (game) => {
     setSelectedGame(game);
+    setVisibleButtons(false);
   };
 
   return (
     <div>
-      {games && games.length > 0 ? (
-        <ul>
+      {visibleButtons && games && games.length > 0 ? (
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
           {games.map((game) => (
-            <li key={game.id}>
-              <button onClick={() => handleGameClick(game)}>
-                <h3>{game.title}</h3>
-              </button>
-            </li>
+            <button key={game.id} onClick={() => handleGameClick(game)}>
+              <h3>{game.title}</h3>
+            </button>
           ))}
-        </ul>
+        </div>
       ) : (
-        <div>No games found</div>
+        <div>Editing game:</div>
       )}
-      {selectedGame && <AdminMapEdit game={selectedGame} />}
+      {selectedGame && <AdminEdit game={selectedGame} />}
     </div>
   );
 };

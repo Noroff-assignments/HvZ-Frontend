@@ -8,16 +8,29 @@ const useGeolocation = (options = {}) => {
   useEffect(() => {
     let watcher;
     if (navigator.geolocation) {
-      watcher = navigator.geolocation.watchPosition(
-        (position) => {
-          setLatitude(position.coords.latitude);
-          setLongitude(position.coords.longitude);
-        },
-        (error) => {
-          setError(error.message);
-        },                            
-        { maximumAge: 0, ...options }
-      );
+      const cachedLocation = JSON.parse(localStorage.getItem("cachedLocation"));
+      if (cachedLocation) {
+        setLatitude(cachedLocation.latitude);
+        setLongitude(cachedLocation.longitude);
+      } else {
+        watcher = navigator.geolocation.watchPosition(
+          (position) => {
+            setLatitude(position.coords.latitude);
+            setLongitude(position.coords.longitude);
+            localStorage.setItem(
+              "cachedLocation",
+              JSON.stringify({
+                latitude: position.coords.latitude,
+                longitude: position.coords.longitude,
+              })
+            );
+          },
+          (error) => {
+            setError(error.message);
+          },
+          { maximumAge: 0, ...options }
+        );
+      }
     } else {
       setError("Geolocation is not supported by this browser.");
     }

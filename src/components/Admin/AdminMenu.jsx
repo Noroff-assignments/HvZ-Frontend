@@ -16,7 +16,7 @@ const AdminMenu = () => {
     switch (activeButton) {
       case "create":
         return <AdminMenuCreate key={refreshKey} />;
-      case "change":
+      case "edit":
         return <AdminMenuEdit key={refreshKey} />;
       case "delete":
         return <AdminMenuDelete key={refreshKey} />;
@@ -29,7 +29,7 @@ const AdminMenu = () => {
     <>
       <div style={{ display: "flex", justifyContent: "center" }}>
         <button onClick={() => handleClick("create")}>Create</button>
-        <button onClick={() => handleClick("change")}>Change</button>
+        <button onClick={() => handleClick("edit")}>Edit</button>
         <button onClick={() => handleClick("delete")}>Delete</button>
       </div>
       {activeButton === null}
