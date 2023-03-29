@@ -63,7 +63,7 @@ const GameLobby = () => {
               </Col>
             </Row>
             <Row>
-              <Col lg={12} xs={12} className={styles.gameInfoElementTop}>
+              <Col lg={12} xs={12} className={styles.gameInfoElementMid}>
               <p>Description: {game?.description}</p>
               </Col>
             </Row>
