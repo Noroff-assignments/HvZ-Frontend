@@ -17,19 +17,21 @@ const AdminMenuEditGames = () => {
   };
 
   return (
-    <div>
-      {visibleButtons && games && games.length > 0 ? (
-        <div style={{ display: 'flex', flexDirection: 'column' }}>
-          {games.map((game) => (
-            <button key={game.id} onClick={() => handleGameClick(game)}>
-              <h3>{game.title}</h3>
-            </button>
-          ))}
-        </div>
-      ) : (
-        <div>Editing game:</div>
-      )}
-      {selectedGame && <AdminEdit game={selectedGame} />}
+    <div style={{ display: 'flex', justifyContent: 'center' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '10px' }}>
+        {visibleButtons && games && games.length > 0 ? (
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            {games.map((game) => (
+              <button key={game.id} onClick={() => handleGameClick(game)}>
+                <h3>{game.title}</h3>
+              </button>
+            ))}
+          </div>
+        ) : (
+          <div>Editing game:</div>
+        )}
+        {selectedGame && <AdminEdit game={selectedGame} />}
+      </div>
     </div>
   );
 };

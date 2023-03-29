@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import { usePostGameAPI } from '../Hooks/APIGames';
+import './AdminGameCreate.css'; // import the custom CSS file
 
 const AdminGameCreate = ({ mapId }) => {
   const [title, setTitle] = useState('');
@@ -33,27 +34,29 @@ const AdminGameCreate = ({ mapId }) => {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <Form.Group controlId="title">
-        <Form.Label>Title</Form.Label>
-        <Form.Control type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
-      </Form.Group>
-      <Form.Group controlId="description">
-        <Form.Label>Description</Form.Label>
-        <Form.Control as="textarea" rows={3} value={description} onChange={(e) => setDescription(e.target.value)} />
-      </Form.Group>
-      <Form.Group controlId="beginTime">
-        <Form.Label>Begin Time</Form.Label>
-        <Form.Control type="datetime-local" value={beginTime} onChange={(e) => setBeginTime(e.target.value)} />
-      </Form.Group>
-      <Form.Group controlId="endTime">
-        <Form.Label>End Time</Form.Label>
-        <Form.Control type="datetime-local" value={endTime} onChange={(e) => setEndTime(e.target.value)} />
-      </Form.Group>
-      <Button variant="primary" type="submit">
-        Create
-      </Button>
-    </Form>
+    <div className="text-center"> {/* wrap the form and the button in a div with the text-center class */}
+      <Form onSubmit={handleSubmit} className="custom-form mx-auto">
+        <Form.Group controlId="title">
+          <Form.Label>Title</Form.Label>
+          <Form.Control type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
+        </Form.Group>
+        <Form.Group controlId="description">
+          <Form.Label>Description</Form.Label>
+          <Form.Control as="textarea" rows={3} value={description} onChange={(e) => setDescription(e.target.value)} />
+        </Form.Group>
+        <Form.Group controlId="beginTime">
+          <Form.Label>Begin Time</Form.Label>
+          <Form.Control type="datetime-local" value={beginTime} onChange={(e) => setBeginTime(e.target.value)} />
+        </Form.Group>
+        <Form.Group controlId="endTime">
+          <Form.Label>End Time</Form.Label>
+          <Form.Control type="datetime-local" value={endTime} onChange={(e) => setEndTime(e.target.value)} />
+        </Form.Group>
+        <Button variant="primary" type="submit">
+          Create
+        </Button>
+      </Form>
+    </div>
   );
 };
 

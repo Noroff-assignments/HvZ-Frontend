@@ -1,9 +1,11 @@
+import { Container, Col, Row, Button } from "react-bootstrap";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import AdminMenuCreate from "./AdminMenuCreate";
 import AdminMenuEdit from "./AdminMenuEdit";
 import AdminMenuDelete from "./AdminMenuDelete";
 import { Container, Col, Row } from "react-bootstrap";
+import styles from "./Buttons.module.css"
 
 const AdminMenu = () => {
   const [activeButton, setActiveButton] = useState(null);
@@ -29,18 +31,21 @@ const AdminMenu = () => {
 
   return (
     <>
+    <Container>
       <div style={{ display: "flex", justifyContent: "space-between" }}>
         <Link to="/" style={{ textDecoration: "none" }}>
-          <button>Back</button>
+          <Button>Back</Button>
         </Link>
         <div>
-          <button onClick={() => handleClick("create")}>Create</button>
-          <button onClick={() => handleClick("edit")}>Edit</button>
-          <button onClick={() => handleClick("delete")}>Delete</button>
+          <Button onClick={() => handleClick("create")}>Create</Button>
+          <Button onClick={() => handleClick("edit")}>Edit</Button>
+          <Button onClick={() => handleClick("delete")}>Delete</Button>
         </div>
       </div>
-      {activeButton === null && <div>Please select an option above</div>}
+      {activeButton === null}
       <div>{renderComponent()}</div>
+    </Container>
+
     </>
   );
 };
