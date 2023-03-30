@@ -1,3 +1,17 @@
 .custom-form {
     max-width: 60%;
   }
+
+  .createBtn{
+    color: white;
+    padding: 10px 20px;
+    border: solid 2px rgb(37, 33, 51);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+    background-color:  rgb(67, 95, 114);
+  }
+
+  .createBtn:hover{
+      border: solid 2px rgb(190, 157, 87);
+  }
