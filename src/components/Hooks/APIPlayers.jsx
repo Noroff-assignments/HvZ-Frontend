@@ -59,7 +59,7 @@ export const useGetAllPlayersAPI = (gameId) => {
       async function fetchBiteCode() {
         const [error, response] = await getBiteCode(gameId,playerId);
         if (error !== null) {
-          alert(error);
+          //alert(error);
         } else if (response !== undefined) {
           setBiteCode(response);
         }
