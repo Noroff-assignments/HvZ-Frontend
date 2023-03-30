@@ -32,7 +32,7 @@ export const getKill = async (gameId, killId) => {
         method: 'POST',
         headers: { 'Content-Type': 'application/json'},
         body: JSON.stringify({
-          killCode: killCode,
+          biteCode: killCode,
           timeDead: timeDead,
           deadStory: deadStory,
           latitude: latitude,

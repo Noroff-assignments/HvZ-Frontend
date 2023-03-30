@@ -50,7 +50,7 @@ const KillCodeQRScanner = ({gameId, playerId}) => {
                   }
                 }}
                 className={styles.qrScanner}
-                facingMode={"environment"}
+                facingMode={{ exact: "environment" }}
               />
               <p className={styles.qrScanData}>{data}</p>
             </Col>

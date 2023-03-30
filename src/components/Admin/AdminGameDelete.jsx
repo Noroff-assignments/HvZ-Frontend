@@ -33,7 +33,7 @@ const AdminGameDelete = () => {
 
   return (
     <>
-      <h1>List of Games:</h1>
+      <h1 style={{ color:"White"}}>List of Games:</h1>
       <div style={{ display: "flex", flexDirection: "column", width: "60vw" }}>
         {displayedGames.map((game) => (
           <div key={game.id} style={{ display: "flex", justifyContent: "center" }}>
