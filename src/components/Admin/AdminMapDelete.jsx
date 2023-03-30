@@ -33,7 +33,7 @@ const AdminMapDelete = () => {
 
   return (
     <>
-      <h1>List of Maps:</h1>
+      <h1 style={{ color:"White"}}>List of Maps:</h1>
       <div style={{ display: "flex", flexDirection: "column", width: "60vw" }}>
         {displayedMaps.map((map) => (
           <div key={map.id} style={{ display: "flex", justifyContent: "center" }}>
