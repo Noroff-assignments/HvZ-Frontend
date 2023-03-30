@@ -52,7 +52,7 @@ const AdminGameCreate = ({ mapId }) => {
           <Form.Label>End Time</Form.Label>
           <Form.Control type="datetime-local" value={endTime} onChange={(e) => setEndTime(e.target.value)} />
         </Form.Group>
-        <Button variant="primary" type="submit">
+        <Button className='createBtn' variant="primary" type="submit">
           Create
         </Button>
       </Form>
