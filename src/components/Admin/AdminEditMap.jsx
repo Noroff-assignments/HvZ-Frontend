@@ -44,7 +44,7 @@ const AdminEditMap = ({ mapId }) => {
 
   return (
     <div>
-        <h2>Map:</h2>
+        <h2 style={{ color:"White"}}>Map:</h2>
         <div ref={mapRef} style={{ height: "50vh", width: "80vw" }}></div>
         {dataLoaded && (
             

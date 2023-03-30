@@ -26,3 +26,52 @@
     padding-left: 0px;
     padding-right: 0px;
   }
+  .backBtn{
+    background-color:rgb(103, 131, 150);
+    color: white;
+    padding: 10px 20px;
+    border: solid 2px rgb(37, 33, 51);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  }
+  .backBtn:hover{
+    border: solid 2px rgb(190, 157, 87);
+  }
+  .createBtn{
+    background-color:rgb(103, 131, 150);
+    color: white;
+    padding: 10px 20px;
+    border: solid 2px rgb(37, 33, 51);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  }
+  .createBtn:hover{
+    border: solid 2px rgb(190, 157, 87);
+  }
+  .editBtn{
+    background-color:rgb(103, 131, 150);
+    color: white;
+    padding: 10px 20px;
+    border: solid 2px rgb(37, 33, 51);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  }
+  .editBtn:hover{
+    border: solid 2px rgb(190, 157, 87);
+  }
+  .deleteBtn{
+    background-color:rgb(103, 131, 150);
+    color: white;
+    padding: 10px 20px;
+    border: solid 2px rgb(37, 33, 51);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  }
+  .deleteBtn:hover{
+    border: solid 2px rgb(190, 157, 87);
+  }
+  
