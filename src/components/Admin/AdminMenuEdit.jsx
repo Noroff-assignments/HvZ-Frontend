@@ -9,10 +9,8 @@ const AdminMenuEdit = () => {
   return (
     <Container fluid className={styles.AdminMenuEdit}>
       <Row className={styles.colHeaderRow}>
-        {/*<img src="./resources/LandingBackGround.jpg" className={styles.LandingPageHeaderImage} alt="Landing Page" />*/}
         <Col lg={3} className={`d-lg-block d-xs-none`}></Col>
         <Col lg={6} xs={12} className={styles.colHeaderText}>
-          {/*<h2 className={styles.colHeaderText}>HUMAN VS ZOMBIE</h2>*/}
         </Col>
         <Col lg={3} className={`d-lg-block d-xs-none`}></Col>
       

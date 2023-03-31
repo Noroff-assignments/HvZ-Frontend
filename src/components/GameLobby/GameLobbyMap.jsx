@@ -6,6 +6,8 @@ import { MapContainer } from "react-leaflet/MapContainer";
 import { TileLayer } from "react-leaflet/TileLayer";
 import { Circle } from "react-leaflet";
 import { useGetOneGameMapAPI } from "../Hooks/APIGameMapPlayer";
+
+// renders the game map without all the inner map information
 const GameLobbyMap = () => {
   const location = useLocation();
   

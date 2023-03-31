@@ -3,6 +3,10 @@ import { useGetAllGamesAPI } from "../Hooks/APIGames";
 import { FaTrash } from "react-icons/fa";
 import { deleteGame } from "../../api/GameAPI";
 
+//allows the user to select and delete games by clicking on the game's title, 
+//which will change its color to red. When a selected game is clicked again, 
+//it will be deleted using the deleteGame function from the GameAPI module, 
+//and the list of displayed games will be updated to remove the deleted game.
 const AdminGameDelete = () => {
   const { games, isLoading } = useGetAllGamesAPI();
   const [selectedGames, setSelectedGames] = useState([]);

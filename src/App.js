@@ -18,17 +18,6 @@ import Pusher from './utils/Pusher';
 
 function App() {
 
-  useEffect(() => {
-    // Enable pusher logging - don't include this in production
-    Pusher.logToConsole = true;
-
-    // Use the pusher instance imported from pusher.js
-    var channel = Pusher.subscribe('HvZApp');
-    channel.bind('rene', function(data) {
-      alert(JSON.stringify(data));
-    });
-  }, []);
-  
   return (
     <ReactKeycloakProvider authClient={keycloak}>
     <BrowserRouter>

@@ -73,7 +73,7 @@ const AdminEdit = ({ game }) => {
     <div>
       <div><h2 style={{ color:"White"}}>GAME ID: {game.id}</h2></div>
       <div>
-        <label htmlFor="gameName" style={{ color:"White"}}>Game Name:</label>
+        <label htmlFor="gameName" style={{width: "100%", color:"White"}}>Game Name:</label>
         <input
           type="text"
           id="gameName"
@@ -84,7 +84,7 @@ const AdminEdit = ({ game }) => {
       </div>
   
       <div>
-        <label htmlFor="gameDescription" style={{ color:"White"}}>Game Description:</label>
+        <label htmlFor="gameDescription" style={{width: "100%", color:"White"}}>Game Description:</label>
         <textarea
           id="gameDescription"
           value={gameDescription}
@@ -94,7 +94,7 @@ const AdminEdit = ({ game }) => {
       </div>
   
       <div>
-        <label htmlFor="beginTime" style={{ color:"White"}}>Begin Time:</label>
+        <label htmlFor="beginTime" style={{width: "100%", color:"White"}}>Begin Time:</label>
         <input
           type="datetime-local"
           id="beginTime"
@@ -105,7 +105,7 @@ const AdminEdit = ({ game }) => {
       </div>
   
       <div>
-        <label htmlFor="endTime" style={{ color:"White"}}>End Time:</label>
+        <label htmlFor="endTime" style={{width: "100%", color:"White"}}>End Time:</label>
         <input
           type="datetime-local"
           id="endTime"
@@ -116,7 +116,7 @@ const AdminEdit = ({ game }) => {
       </div>
   
       <div>
-        <label htmlFor="mapId" style={{ color:"White"}}>Map Id:</label>
+        <label htmlFor="mapId" style={{width: "100%", color:"White"}}>Map Id:</label>
         <input
           type="text"
           id="mapId"

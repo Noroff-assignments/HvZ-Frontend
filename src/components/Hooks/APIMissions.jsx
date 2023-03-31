@@ -2,7 +2,11 @@
 import { useEffect, useState } from "react";
 import { getMissions, getMission } from "../../api/MissionAPI";
 
-
+/**
+ * A custom React hook to fetch all missions for a given map.
+ * @param {string} mapId - The ID of the map for which to fetch the missions.
+ * @returns {object} An object containing the fetched missions.
+ */
 export const useGetAllMissionsAPI = (mapId) => {
   console.log("HOOK: " + mapId);
   const [missions, setMissions] = useState(null);
@@ -22,6 +26,12 @@ export const useGetAllMissionsAPI = (mapId) => {
   return { missions };
 };
 
+/**
+ * A custom React hook to fetch a specific mission for a given map.
+ * @param {string} mapId - The ID of the map for which to fetch the mission.
+ * @param {string} missionId - The ID of the mission to fetch.
+ * @returns {object} An object containing the fetched mission.
+ */
 export const useGetMissionAPI = (mapId, missionId) => {
     const [missions, setMission] = useState(null);
     useEffect(() => {

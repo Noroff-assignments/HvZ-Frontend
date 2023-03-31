@@ -4,6 +4,12 @@ import { getPlayers } from "../../api/PlayerAPI";
 import { getPlayerByUserId } from "../../api/PlayerAPI";
 import { getPlayerIsZombie } from "../../api/PlayerAPI";
 import { getBiteCode } from "../../api/PlayerAPI";
+
+/**
+ * A custom React hook to fetch all players for a given game.
+ * @param {string} gameId - The ID of the game for which to fetch players.
+ * @returns {object} An object containing the fetched players.
+ */
 export const useGetAllPlayersAPI = (gameId) => {
     const [players, setPlayers] = useState(null);
   
@@ -20,6 +26,13 @@ export const useGetAllPlayersAPI = (gameId) => {
     }, []);
     return { players};
   };
+
+/**
+ * A custom React hook to fetch a specific player for a given game.
+ * @param {string} gameId - The ID of the game in which the player exists.
+ * @param {string} playerId - The ID of the player to fetch.
+ * @returns {object} An object containing the fetched player.
+ */
   export const useGetPlayerAPI = (gameId,playerId) => {
     const [player, setPlayer] = useState(null);
   
@@ -36,6 +49,12 @@ export const useGetAllPlayersAPI = (gameId) => {
     }, []);
     return { player};
   };
+
+ /**
+ * A custom React hook to fetch a player by user ID.
+ * @param {string} userId - The ID of the user associated with the player to fetch.
+ * @returns {object} An object containing the fetched player.
+ */
   export const useGetPlayerByUserId = (userId) => {
     const [player, setPlayerId] = useState(null);
   
@@ -52,6 +71,13 @@ export const useGetAllPlayersAPI = (gameId) => {
     }, []);
     return { player};
   };
+
+/**
+ * A custom React hook to fetch the bite code for a player in a game.
+ * @param {string} gameId - The ID of the game in which the player exists.
+ * @param {string} playerId - The ID of the player for which to fetch the bite code.
+ * @returns {object} An object containing the fetched bite code.
+ */
   export const useGetBiteCode = (gameId,playerId) => {
     const [biteCode, setBiteCode] = useState(null);
   
@@ -68,6 +94,13 @@ export const useGetAllPlayersAPI = (gameId) => {
     }, []);
     return { biteCode};
   };
+
+/**
+ * A custom React hook to fetch whether a given player is a zombie in a game.
+ * @param {string} gameId - The ID of the game in which the player exists.
+ * @param {string} playerId - The ID of the player for which to fetch the zombie status.
+ * @returns {object} An object containing whether the player is a zombie.
+ */
   export const useGetPlayerIsZombieAPI = (gameId, playerId) => {
     const [isZombie, setZombie] = useState(null);
   
@@ -91,6 +124,12 @@ export const useGetAllPlayersAPI = (gameId) => {
     return { isZombie};
   };
 
+/**
+ * A custom React hook to fetch the player and whether they are a zombie by user ID.
+ * @param {string} gameId - The ID of the game in which the player exists.
+ * @param {string} userId - The ID of the user associated with the player to fetch.
+ * @returns {object} An object containing the fetched player and whether they are a zombie.
+ */
   export const useGetUserIsZombie = (gameId, userId) => {
     const [player, setPlayer] = useState(null);
     const [isZombie, setZombie] = useState(null);

@@ -3,9 +3,10 @@ import { Col, Row } from "react-bootstrap";
 import { QrReader } from "react-qr-reader";
 import { postKill } from "../../api/KillAPI";
 import { useState, useEffect } from "react";
+
+// gives the user a scanner to scan human players QR codes which will then kill them and turn them into zombies
 const KillCodeQRScanner = ({ gameId, playerId }) => {
   const [data, setData] = useState("No result");
-  //const {longitude, latitude, error} = useGeolocation();
   const handleKill = async (killCode) => {
     const decodedData = decodeURIComponent(killCode);
     const { biteCode } = JSON.parse(decodedData);

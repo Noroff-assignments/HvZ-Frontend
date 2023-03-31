@@ -9,7 +9,7 @@ import keycloak from '../keycloak/keycloak';
 const AdminPage = () => {
 
   return (
-    <Container>
+    <Container fluid style={{ backgroundColor: "rgb(67, 95, 114)",width: "100%"}}>
       
     { keycloak.tokenParsed &&
         <AdminMenu />

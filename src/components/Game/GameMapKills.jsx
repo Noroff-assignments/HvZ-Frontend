@@ -7,6 +7,7 @@ import { Marker } from "react-leaflet-marker";
 import L from "leaflet";
 import { useGetAllKillsAPI } from "../Hooks/APIKills";
 
+// renders the death locations on the leaflet map 
 const DeathLocations = (id) => {
   const { kills } = useGetAllKillsAPI(id.id);
   //ensures death locations are being updated every 30 seconds

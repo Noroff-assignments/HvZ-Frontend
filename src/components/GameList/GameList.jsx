@@ -6,13 +6,15 @@ import { FaUserAlt, FaCalendarAlt } from "react-icons/fa";
 import React from "react";
 import { useGetAllGamesAPI } from "../Hooks/APIGames";
 
+// renders the loaded gamelist from API to the landing page for the logged in user to join
 const GameList = () => {
   const { games, gamesIsLoading } = useGetAllGamesAPI();
 
   const [clickedGame, setClickedGame] = useState(null);
   const navigate = useNavigate();
  
-
+  // activates if the user clicks on a game and the clickedGame changes state, 
+  // then the global state is set to the clicked games id and the user is navigated to the gamelobby page.
   useEffect(() => {
     if (clickedGame !== null) {
       

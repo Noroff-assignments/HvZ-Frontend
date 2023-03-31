@@ -3,7 +3,7 @@ import { Container, Col, Row } from "react-bootstrap";
 import useGeolocation from "../Hooks/useGeolocation";
 import styles from "./LandingPageHeader.module.css";
 import { useState, useEffect } from "react";
-import keycloak, { initKeycloak } from "../../keycloak/keyCloakInit";
+import { initKeycloak } from "../../keycloak/keyCloakInit";
 const LandingPageHeader = () => {
   const { latitude, longitude, error } = useGeolocation();
   const [updatedLatitude, setUpdatedLatitude] = useState(null);
@@ -27,7 +27,6 @@ const LandingPageHeader = () => {
   return (
     <Container fluid className={styles.LandingPageHeaderContainer}>
       <Row className={styles.colHeaderRow}>
-        {/*<img src="./resources/LandingBackGround.jpg" className={styles.LandingPageHeaderImage} alt="Landing Page" />*/}
         <Col lg={3} className={`d-lg-block d-xs-none`}></Col>
         <Col lg={6} xs={12} className={styles.colHeaderText}>
           <h2 className={styles.colHeaderText}>HUMAN VS ZOMBIE</h2>
@@ -40,4 +39,4 @@ const LandingPageHeader = () => {
 
 export default LandingPageHeader;
 
-//55.642925074626866:12.270545074626867
+

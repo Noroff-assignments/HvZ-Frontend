@@ -18,6 +18,10 @@ import {
   MDBCollapse,
 } from "mdb-react-ui-kit";
 
+// Component for the HvZ gamechat that takes in to account the users zombie status (human/zombie) and splits
+// the chat into categories like human/squad/global where human lets you chat with all humans in game, squad 
+// restricts the messages to only display for others of the same squad and global is shown for all players,  
+// both human and zombies.
 const GameChat = () => {
   const [category, setCategory] = useState("global");
   const [showChat, setShowChat] = useState(false);
@@ -33,11 +37,9 @@ const GameChat = () => {
   );
   const toggleShow = () => setShowChat(!showChat);
 
-  const handleSendMessage = (message) => {
-    const timestamp = new Date().getTime();
-    setMessages([...messages, { message, timestamp }]);
-  };
 
+  // when sending a message a prefix is added containing the senders userId which is used to compare incoming messages 
+  // to decide whether to render them or not.
   const handleSendMyMessage = (message) => {
     const playerPrefix = player.userID;
     console.log("playerPrefix")
@@ -54,28 +56,33 @@ const GameChat = () => {
     });
   };
 
+  // combines all messages and sorts them by the time they where written.
   useEffect(() => {
     setCombinedMessages(
       [...myMessages, ...messages].sort((a, b) => a.timestamp - b.timestamp)
     );
   }, [myMessages, messages]);
 
+  // uses the Pusher library to subscribe to a channel called "HvZApp" and listens for events 
+  // with the name "Game" + currentGameId + "_" + category. When an event is received, it processes 
+  // the data and adds a new message to the messages state using the setMessages function.
   const channel = Pusher.subscribe("HvZApp");
   channel.bind("Game" + currentGameId + "_" + category, function (data) {
     const timestamp = new Date().getTime();
     let message = data;
     let newMessages = [];
+    // compares the userId with the current user 
     if (player && data.substring(0, 36).trim() === player.userID.trim()) {
       // do nothing if the message is from the current player
-    } else {
+    } 
+    // if the message is from another user add the message to the array
+    else {
       message = data.substring(36); // remove the playerPrefix
       newMessages.push({ message, timestamp, category });
     }
-    setNewMessage(JSON.stringify(data));
+    
     setMessages([...messages, ...newMessages]);
   });
-  useEffect(() => {
-  }, [messages]);
 
   return (
     <Container fluid>

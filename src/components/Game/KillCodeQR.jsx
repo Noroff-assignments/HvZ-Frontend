@@ -2,8 +2,9 @@ import styles from "./KillCodeQR.module.css";
 import { Col, Row } from "react-bootstrap";
 import QRCode from "react-qr-code";
 import { useGetBiteCode } from "../Hooks/APIPlayers";
-const KillCodeQR = ({gameId, playerId}) => {
 
+// renders the users bitecode as a QR code which the zombie can scan
+const KillCodeQR = ({gameId, playerId}) => {
   const {biteCode} = useGetBiteCode(gameId, playerId);
   
   return (

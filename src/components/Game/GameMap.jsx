@@ -11,8 +11,10 @@ import GameMissions from "./GameMapMissions";
 import GameSafeZones from "./GameMapSafeZones";
 import useGeolocation from "../Hooks/useGeolocation";
 import { useGetOneGameMapAPI } from "../Hooks/APIGameMapPlayer";
+
+
+// the component for the current games leaflet map  
 const GameMap = () => {
-  // GEOLOCATION:
   const { latitude, longitude, error } = useGeolocation();
   const [updatedLatitude, setUpdatedLatitude] = useState(0);
   const [updatedLongitude, setUpdatedLongitude] = useState(0);
@@ -27,7 +29,7 @@ const GameMap = () => {
     [mapCoordinatesX + 0.0025, mapCoordinatesY + 0.0025],
   ];
 
-  GEOLOCATION:
+  //Set the geoLocation of the users player
   useEffect(() => {
     if (latitude && longitude) {
       const interval = setInterval(() => {
@@ -61,10 +63,11 @@ const GameMap = () => {
           {game && <GameSafeZones id={indexMap.id} />}
           {game && <DeathLocations id={game.id} />}
           {
+            //Your location
             <Circle
               center={[updatedLatitude, updatedLongitude]}
-              radius={2}
-              pathOptions={{ color: "rgba(0, 0, 255, 0.8)" }}
+              radius={5}
+              pathOptions={{ color: "pink" }}
             />
           }
           <TileLayer

@@ -5,6 +5,8 @@ import KillCodeQRScanner from "./KillCodeQRScanner";
 import { useGetUserIsZombie } from "../Hooks/APIPlayers";
 import { useState, useEffect } from "react";
 
+// component that checks the users currently Joined game Zombie Status then renders the QR scanner Component 
+// if the user is zombie and the QR code for the user containing the bitecode instead if human.
 const BiteCode = () => {
   const location = useLocation();
   const currentGameId = location.state.currentGameId;

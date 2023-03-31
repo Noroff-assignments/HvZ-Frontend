@@ -12,7 +12,7 @@ const AdminMap = (onSave) => {
   const [leafletMap, setLeafletMap] = useState(null);
   const [popupPosition, setPopupPosition] = useState(null);
   const [userLocation, setUserLocation] = useState(null);
-  const { latitude, longitude, error } = useGeolocation();
+  const { latitude, longitude } = useGeolocation();
 
   const handleMapIdUpdate = (newMapId) => {
     console.log("adminmap" + newMapId)

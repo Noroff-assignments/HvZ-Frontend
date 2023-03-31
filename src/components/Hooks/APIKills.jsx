@@ -1,6 +1,11 @@
 import { useEffect, useState } from "react";
 import { getKill,getKills } from "../../api/KillAPI";
 
+/**
+ * Custom React hook that fetches all the kills for a given game using the KillAPI.
+ * @param {string} gameId - The ID of the game to fetch the kills for.
+ * @returns {object} - Returns an object containing an array of kills or null if the request is still being made.
+ */
 export const useGetAllKillsAPI = (gameId) => {
     const [kills, setKills] = useState(null);
   
@@ -18,6 +23,12 @@ export const useGetAllKillsAPI = (gameId) => {
     return { kills};
   };
 
+  /**
+ * Custom React hook that fetches a specific kill for a given game and kill ID using the KillAPI.
+ * @param {string} gameId - The ID of the game to fetch the kill for.
+ * @param {string} killId - The ID of the kill to fetch.
+ * @returns {object} - Returns an object containing the kill or null if the request is still being made.
+ */
   export const useGetKillAPI = (gameId, killId) => {
     const [kill, setKill] = useState(null);
   

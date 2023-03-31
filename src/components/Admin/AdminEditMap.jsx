@@ -1,35 +1,42 @@
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import React, { useState, useEffect, useRef } from "react";
-import useGeolocation from "../Hooks/useGeolocation";
 import { useGetOneMapAPI } from "../Hooks/APIMaps";
 import { useGetAllMissionsAPI } from "../Hooks/APIMissions";
 import { useGetAllSafeZonesAPI } from "../Hooks/APISafeZones";
-
+//AdminEditMap component renders a Leaflet map and provides editing functionality 
+//for map properties like name, description, latitude, longitude, and radius.
 const AdminEditMap = ({ mapId }) => {
   const mapRef = useRef(null);
   const [leafletMap, setLeafletMap] = useState(null);
   const { indexMap, isLoading: isLoadingMap } = useGetOneMapAPI(mapId);
-  const { missions, isLoading: isLoadingMissions } = useGetAllMissionsAPI(mapId);
-  const { safezones, isLoading: isLoadingSafeZones } = useGetAllSafeZonesAPI(mapId);
+  const { isLoading: isLoadingMissions } = useGetAllMissionsAPI(mapId);
+  const { safezones, isLoading: isLoadingSafeZones } =
+    useGetAllSafeZonesAPI(mapId);
 
   const [dataLoaded, setDataLoaded] = useState(false);
-
+  
+  // Initialize and render the Leaflet map when indexMap object changes
   useEffect(() => {
     if (indexMap) {
-      const map = L.map(mapRef.current).setView([indexMap.latitude, indexMap.longitude], 14);
-      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(map);
-      
+      const map = L.map(mapRef.current).setView(
+        [indexMap.latitude, indexMap.longitude],
+        14
+      );
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(
+        map
+      );
+
       const circle = L.circle([indexMap.latitude, indexMap.longitude], {
-        color: 'red',
-        fillColor: '#f03',
+        color: "red",
+        fillColor: "#f03",
         fillOpacity: 0.5,
-        radius: indexMap.radius
+        radius: indexMap.radius,
       }).addTo(map);
       circle.bindPopup("Map location");
-      
+
       setLeafletMap(map);
-    
+
       return () => {
         map.remove();
       };
@@ -44,38 +51,57 @@ const AdminEditMap = ({ mapId }) => {
 
   return (
     <div>
-        <h2 style={{ color:"White"}}>Map:</h2>
-        <div ref={mapRef} style={{ height: "50vh", width: "80vw" }}></div>
-        {dataLoaded && (
-            
+      <h2 style={{ color: "White" }}>Map:</h2>
+      <div ref={mapRef} style={{ height: "50vh", width: "80vw" }}></div>
+      {dataLoaded && (
         <>
-            <div>
-                <label htmlFor="mapName">Map Name:</label>
-                <input type="text" id="mapName" name="mapName" value={indexMap.mapName} />
-            </div>
-            <div>
-                <label htmlFor="mapDescription">Map Description:</label>
-                <input type="text" id="mapDescription" name="mapDescription" value={indexMap.mapDescription} />
-            </div>
-            <div>
-                <label htmlFor="latitude">Latitude:</label>
-                <input type="text" id="latitude" name="latitude" value={indexMap.latitude} />
-            </div>
-            <div>
-                <label htmlFor="longitude">Longitude:</label>
-                <input type="text" id="longitude" name="longitude" value={indexMap.longitude} />
-            </div>
-            <div>
-                <label htmlFor="radius">Radius:</label>
-                <input type="text" id="radius" name="radius" value={indexMap.radius} />
-            </div>
-
-
-            {/* <h2>Missions:</h2>
-            <pre>{JSON.stringify(missions, null, 2)}</pre>
-            <pre>{JSON.stringify(safezones, null, 2)}</pre> */}
+          <div>
+            <label htmlFor="mapName" style={{ width: "100%", color:"White"}}>Map Name:</label>
+            <input
+              type="text"
+              id="mapName"
+              name="mapName"
+              value={indexMap.mapName}
+            />
+          </div>
+          <div>
+            <label htmlFor="mapDescription" style={{ width: "100%", color:"White"}}>Map Description:</label>
+            <input
+              type="text"
+              id="mapDescription"
+              name="mapDescription"
+              value={indexMap.mapDescription}
+            />
+          </div>
+          <div>
+            <label htmlFor="latitude" style={{width: "100%",color:"White"}}>Latitude:</label>
+            <input
+              type="text"
+              id="latitude"
+              name="latitude"
+              value={indexMap.latitude}
+            />
+          </div>
+          <div>
+            <label htmlFor="longitude" style={{width: "100%", color:"White"}}>Longitude:</label>
+            <input
+              type="text"
+              id="longitude"
+              name="longitude"
+              value={indexMap.longitude}
+            />
+          </div>
+          <div>
+            <label htmlFor="radius" style={{width: "100%", color:"White"}}>Radius:</label>
+            <input
+              type="text"
+              id="radius"
+              name="radius"
+              value={indexMap.radius}
+            />
+          </div>
         </>
-        )}
+      )}
     </div>
   );
 };

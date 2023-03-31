@@ -5,6 +5,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { BsArrowLeftSquare } from "react-icons/bs";
 import { useGetOneGameAPI } from "../Hooks/APIGames";
 
+// Component for displaying the joined games informations such as Title, Description, player count and end date. 
 const GameInfo = () => {
   const location = useLocation();
   const currentMission =

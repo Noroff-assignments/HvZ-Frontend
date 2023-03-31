@@ -6,6 +6,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useGetOneGameAPI } from "../Hooks/APIGames";
 import keycloak from "../../keycloak/keycloak";
 import { postPlayer } from "../../api/PlayerAPI";
+
+// renders the current game lobby where the user can join the game if the state is not ended.
 const GameLobby = () => {
   const location = useLocation();
   const currentGameId = location.state.currentGameId;
@@ -16,6 +18,7 @@ const GameLobby = () => {
   const handleReturn = () => {
     navigate("/");
   };
+  // when the user joins, the user is added as a player to the game if not already a part of the game
   const handleJoin = async () => {
     const[error, data] = await postPlayer(currentGameId,keycloak.tokenParsed.sub, false);
     JoinGame();
