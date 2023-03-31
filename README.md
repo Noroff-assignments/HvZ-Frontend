@@ -9,6 +9,8 @@ The application uses Keycloak for user authentication and registration. Users ca
 
 # QR-Code / QR-Scanner
 The application includes a unique feature where players receive a unique QR code as their Bitecode, which is required by zombies to scan to "catch" them. This eliminates the need for players to manually input a long code each time they kill a human player.
+![QRExample](https://user-images.githubusercontent.com/44801529/229130043-53129ad6-9e70-4ecf-bdb0-8040baa4ebe0.png)
+
 
 # In game chat
 We have added a chat system to our game to enhance the player experience by facilitating communication between players. The chat system allows players to communicate globally and in different categories, with some categories restricted to certain players. For example, the "squad" category is restricted to squad mates only, and messages cannot be seen by players outside of the category.
