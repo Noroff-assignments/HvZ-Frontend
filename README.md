@@ -1,6 +1,18 @@
 # Background
 This is the frontend part of our Heroes Vs Zombies assignment, created as the final project for the Accelerated Learning course in Fullstack .Net development (Noroff). The HvZ Frontend is built using JavaScript and React and is a single-page application designed to manage physical games of Humans vs Zombies. The primary objective of this assignment is to connect our knowledge of frontend and backend development to create a fully functional and secure application that runs on Azure with Keycloak security and a database to store and retrieve data.
 
+# Description
+The main feature of the application is to act as a game management app for the Humans versus Zombies game. Users can join the game, chat with other players, and view game details such as the current game geo location, their own location, as well as their team members' locations. The app also allows players to view mission markers with descriptions, safezones, and gravestone markers for when humans died and turned to zombies on a live interactive map. Additionally, the app includes a unique feature where zombie players can turn human players into zombies by scanning their QR bitecode with a zombie's QR scanner.
+
+# Login/Register
+The application uses Keycloak for user authentication and registration. Users can register as a new user within the application and then join available games from the game list. When a user joins an available game (a game that hasn't ended), they are added as a player to the selected game and equipped with either a QR scanner as a zombie or a unique bitecode QR code, which zombies can scan to "kill" the player.
+
+# QR-Code / QR-Scanner
+The application includes a unique feature where players receive a unique QR code as their Bitecode, which is required by zombies to scan to "catch" them. This eliminates the need for players to manually input a long code each time they kill a human player.
+
+# In game chat
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
