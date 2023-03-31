@@ -4,6 +4,7 @@ import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { patchGameEndTime, patchGameTitle, patchGameDescription, patchGameBeginTime } from '../../api/GameAPI';
 
+// Holds fields for game and map settings, which can be edited.
 const AdminEdit = ({ game }) => {
   const [gameName, setGameName] = useState('');
   const [gameNameEdited, setGameNameEdited] = useState(false);
@@ -27,6 +28,7 @@ const AdminEdit = ({ game }) => {
     }
   }, [game]);
 
+  // Updates fields when a change is made when the tick-mark button is clicked
   const handleInputChange = (e) => {
     const value = e.target.value;
     switch (e.target.id) {
@@ -55,6 +57,8 @@ const AdminEdit = ({ game }) => {
     }
   };
 
+  // Saves all components at the same time
+  // THIS IS WRONG and should of course be split into seperate async calls.
   const handleSave = async () => {
     setGameNameEdited(false);
     setGameDescriptionEdited(false);

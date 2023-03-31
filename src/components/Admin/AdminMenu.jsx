@@ -6,6 +6,10 @@ import AdminMenuEdit from "./AdminMenuEdit";
 import AdminMenuDelete from "./AdminMenuDelete";
 import styles from "./Buttons.module.css"
 
+// Admin Navbar, containing 4 buttons:
+// Back - Leads to website root
+// Create - Loads the Create Map and Game components
+// Deletes - Loads the Delete Map and Game components
 const AdminMenu = () => {
   const [activeButton, setActiveButton] = useState(null);
   const [refreshKey, setRefreshKey] = useState(0);

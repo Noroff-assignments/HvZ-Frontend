@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useGetAllGamesAPI } from '../Hooks/APIGames';
 import AdminEdit from './AdminEdit';
 
+// Displays a list of games as buttons, which can be clicked, when a game is clicked
+// it is sent to the AdminEdit which handles the actual editing of the game and map
 const AdminMenuEditGames = () => {
   const { games, isLoading } = useGetAllGamesAPI();
   const [visibleButtons, setVisibleButtons] = useState(true);

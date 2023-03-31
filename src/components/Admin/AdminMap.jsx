@@ -5,6 +5,8 @@ import useGeolocation from '../Hooks/useGeolocation';
 import AdminMapPopup from './AdminMapPopup';
 import AdminGameCreate from './AdminGameCreate';
 
+// Component responsible for displaying a leaflet map, locating
+// the admin, and finding the AdminMapPopup component display location.
 const AdminMap = (onSave) => {
   const [showMap, setShowMap] = useState(true);
   const [mapId, setMapId] = useState("");
@@ -15,7 +17,6 @@ const AdminMap = (onSave) => {
   const { latitude, longitude } = useGeolocation();
 
   const handleMapIdUpdate = (newMapId) => {
-    console.log("adminmap" + newMapId)
     setMapId(newMapId);
   };
 

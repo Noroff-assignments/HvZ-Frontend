@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 
+// Unused component, but it is essentially mens to save mapdata.
 const AdminMapSave = ({ mapData, onSave }) => {
   const [saving, setSaving] = useState(false);
 

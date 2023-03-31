@@ -3,6 +3,7 @@ import { useGetAllGamesAPI } from "../Hooks/APIGames";
 import {Container, Row, Col} from "react-bootstrap";
 import styles from "./AdminMenuEdit.css"
 
+// Menu which sends the Games that can be edited to the AdminMenuEditGames component
 const AdminMenuEdit = () => {
   const { games, isLoading } = useGetAllGamesAPI();
 

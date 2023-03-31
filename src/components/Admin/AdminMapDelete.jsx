@@ -3,6 +3,10 @@ import { useGetAllMapsAPI } from "../Hooks/APIMaps";
 import { FaTrash } from "react-icons/fa";
 import { deleteMap } from "../../api/MapAPI";
 
+// Displays all maps from the database as buttons.
+// When a button is pressed it changes to a red button with a trash bin icon.
+// If the trash bin icon is pressed the map is deleted and the component is rerendered without
+// the deleted map.
 const AdminMapDelete = () => {
   const { maps, isLoading } = useGetAllMapsAPI();
   const [selectedMaps, setSelectedMaps] = useState([]);
@@ -31,6 +35,7 @@ const AdminMapDelete = () => {
     return <div>Loading...</div>;
   }
 
+  // Maps the maps as buttons.
   return (
     <>
       <h1 style={{ color:"White"}}>List of Maps:</h1>

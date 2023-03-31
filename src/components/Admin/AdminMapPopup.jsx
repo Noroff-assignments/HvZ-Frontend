@@ -4,6 +4,8 @@ import 'leaflet/dist/leaflet.css';
 import { createMap } from "../../api/MapAPI";
 import useGeolocation from '../Hooks/useGeolocation';
 
+// On AdminMap click this Popup is opened, maps are created after the
+// 3 inputs fields are filled and the Create button is pressed. 
 const AdminMapPopup = ({ map, position, onSave }) => {
   
   const popupRef = useRef(null);
@@ -44,7 +46,6 @@ const AdminMapPopup = ({ map, position, onSave }) => {
       try {
         // Pass map details to API
         const response = await createMap(mapData);
-        console.log("RESPONSE: " + response.data.id)
         setMapId(response.data.id);
   
         // Create a new circle object
