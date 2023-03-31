@@ -1,3 +1,6 @@
+# Background
+This is the frontend part of our Heroes Vs Zombies assignment, created as the final project for the Accelerated Learning course in Fullstack .Net development (Noroff). The HvZ Frontend is built using JavaScript and React and is a single-page application designed to manage physical games of Humans vs Zombies. The primary objective of this assignment is to connect our knowledge of frontend and backend development to create a fully functional and secure application that runs on Azure with Keycloak security and a database to store and retrieve data.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
