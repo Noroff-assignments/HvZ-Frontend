@@ -1,6 +1,11 @@
 # Background
 This is the frontend part of our Heroes Vs Zombies assignment, created as the final project for the Accelerated Learning course in Fullstack .Net development (Noroff). The HvZ Frontend is built using JavaScript and React and is a single-page application designed to manage physical games of Humans vs Zombies. The primary objective of this assignment is to connect our knowledge of frontend and backend development to create a fully functional and secure application that runs on Azure with Keycloak security and a database to store and retrieve data.
 
+The back-end repository: https://github.com/Noroff-assignments/hvz-backend 
+
+# User Manual
+Here in the repository is a pdf which is a user manual for moving around the application.
+
 # Description
 The main feature of the application is to act as a game management app for the Humans versus Zombies game. Users can join the game, chat with other players, and view game details such as the current game geo location, their own location, as well as their team members' locations. The app also allows players to view mission markers with descriptions, safezones, and gravestone markers for when humans died and turned to zombies on a live interactive map. Additionally, the app includes a unique feature where zombie players can turn human players into zombies by scanning their QR bitecode with a zombie's QR scanner.
 
